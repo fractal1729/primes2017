@@ -1,3 +1,12 @@
+# Custom
+*.png
+*.log
+*.txt
+*.aux
+*.pdf
+*.mp
+*.tex
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
