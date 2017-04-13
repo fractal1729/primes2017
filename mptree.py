@@ -12,7 +12,7 @@ NUMERIC_MIN_VALUE = 1
 class Program: # currently set up to draw a single black circle randomly on the 50x50 canvas
 	def __init__(self, commands=None):
 		if commands: self.commands = commands
-		else: self.commands = [Draw(), Fill()]
+		else: self.commands = [Draw(), Draw()]
 
 	def mutate(self):
 		for command in self.commands:
@@ -116,8 +116,8 @@ class Numeric:
 		self.time = 0
 
 	def mutate(self):
-		self.time++
-		self.sigma =  # stochastic stdev decay
+		# self.time++
+		# self.sigma =  # stochastic stdev decay
 		self.val = truncnorm.rvs(((float)(self.minVal-self.val))/((float)(self.sigma)),
 			((float)(self.maxVal-self.val))/((float)(self.sigma)), loc=self.val, scale=self.sigma)
 
