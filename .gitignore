@@ -8,6 +8,9 @@
 *.tex
 *.pyc
 
+!RUN*.txt
+!RUN*.png
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
