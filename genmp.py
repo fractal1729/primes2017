@@ -3,17 +3,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import copy
+from data_writer import dataWriter
 
 # Notes:
 # Future work:
 # See comment in beamSearch regarding more stochastic method of determining next generation
 
-def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100): # beam search + edge hausdorff
+def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100, dw=dataWriter(None)): # beam search + edge hausdorff
 	print "Starting Beam Search + Edge Hausdorff with numiter="+str(numiter)+", survival="+str(survival)+", numprogs="+str(numprogs)+"."
-	progs = [mptree.Program()]*numprogs
-	for gennum in range(1, numiter+1): # i = generation number
+	dw.writeln("start-search beam-edge-hausdorff")
+	dw.writeln("numiter "+str(numiter))
+	dw.writeln("survival "+str(numiter))
+	dw.writeln("numprogs "+str(numprogs))
+	dw.writeln("imgsize "+str(mptree.CANVAS_SIZE))
+	
+	progs = []
+	for i in range(numprogs):
+		progs.append(mptree.Program())
+		dw.writeln("")
+	best_scores = []
+	for gennum in range(1, numiter+1):
 		print "\nSTARTING GENERATION "+str(gennum)+"\n\nPROGRAMS:"
-		numprogs = len(progs) # this line is important because the number of progs may change from gen 0 to gen 1
+		dw.writeln("generation "+str(gennum))
 		scores = [np.inf]*numprogs
 		for j in range(0, numprogs):
 			candprog = progs[j]
@@ -21,9 +32,14 @@ def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100): # beam search 
 			candprogpix = rendermp.renderImage(candprogsrc)
 			scores[j] = compare.edge_hausdorff(goalpix, candprogpix)
 			print str(j+1)+"\t"+candprogsrc+"\t"+str(scores[j])
+			dw.writeln("program-num "+str(j+1))
+			dw.writeln("code "+str(candprogsrc))
+			dw.writeln("image "+dw.encodeBinaryImage(candprogpix))
+			dw.writeln("score "+str(scores[j]))
 			sys.__stdout__.write("\r",)
 			sys.__stdout__.write("Generation "+str(gennum)+"/"+str(numiter)+"........Program "+str(j+1)+"/"+str(numprogs)+"         \r",)
 
+		best_scores.append(min(scores))
 		sortedProgs = [x for (y,x) in sorted(zip(scores,progs))]
 		survivors = sortedProgs[0:(int)(survival*numprogs)]
 		print "\nSURVIVORS:"
@@ -63,7 +79,9 @@ def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100): # beam search 
 		if(candscore < minscore):
 			minscore = candscore
 			bestprog = candprog
-	return bestprog
+	best_scores.append(minscore)
+	sys.__stdout__.write(str(best_scores))
+	return bestprog, best_scores
 
 def simpleMatch(goalpix, numiter=500): # goalpix is a numpy array of the grayscale pixels
 	# Currently configured to run a simple Hausdorff distance metric

@@ -4,6 +4,7 @@ import datetime, time
 import numpy as numpy
 import matplotlib.pyplot as plt
 import sys
+from data_writer import dataWriter
 
 def testSimpleCircle(numiter):
 	print '''**************************************
@@ -31,7 +32,7 @@ def testSimpleCircle(numiter):
 ************   END TEST   ************
 **************************************'''
 
-def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100):
+def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(None)):
 	print '''**************************************
 ***********   START TEST   ***********
 **************************************
@@ -42,16 +43,25 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100):
 	#goalsrc = '''fill fullcircle scaled 12 shifted (30,20) withcolor black;'''
 	goalsrc = mptree.Program().tocode() # generate random line
 	goalpix = rendermp.renderImage(goalsrc)
-	bestprog = genmp.beamSearch(goalpix, numiter, survival, numprogs)
-	print "***** Best code: " + bestprog.tocode() + " *****"
-	print "*****  Original: " + goalsrc + " *****"
+	bestprog, best_scores = genmp.beamSearch(goalpix, numiter, survival, numprogs, dw)
+	print "***** Best code: *****\n" + bestprog.tocode()
+	print "***** Original: *****\n" + goalsrc
+	print "***** Score: *****\n" + str(best_scores[-1])
+	print "***** Best scores over generations: *****"
+	print best_scores
 
+	plt.figure(1)
 	plt.subplot(2,1,1)
 	plt.imshow(rendermp.renderImage(bestprog.tocode()), cmap="gray")
 	plt.title("Generated image")
 	plt.subplot(2,1,2)
 	plt.imshow(goalpix, cmap="gray")
 	plt.title("Original image")
+
+	plt.figure(2)
+	plt.plot(range(len(best_scores)), best_scores, 'ro')
+	plt.ylim(0, plt.ylim()[1])
+
 	plt.show()
 
 	print '''
@@ -74,7 +84,9 @@ def end():
 
 if __name__ == "__main__":
 	filename = start()
+	#dw = dataWriter("./data/data_"+filename+".txt")
+	dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
-	testBeamHausdorff(20, 0.3, 20)
-	sys.__stdout__.write("Output written to genmp_"+filename+".log.")
+	testBeamHausdorff(20, 0.3, 20, dw)
+	sys.__stdout__.write("Output written to genmp_"+filename+".txt.")
 	end()

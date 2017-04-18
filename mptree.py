@@ -12,7 +12,7 @@ NUMERIC_MIN_VALUE = 1
 class Program: # currently set up to draw a single black circle randomly on the 50x50 canvas
 	def __init__(self, commands=None):
 		if commands: self.commands = commands
-		else: self.commands = [Draw(), Draw()]
+		else: self.commands = [Draw()]
 
 	def mutate(self):
 		for command in self.commands:
@@ -106,20 +106,35 @@ class Pair:
 		return "("+self.x.tocode()+","+self.y.tocode()+")"
 
 class Numeric:
+
+	P_SIGMA_RESET = 0.03 # number should be tweaked
+	SIGMA_DECAY_FACTOR = 0.9 # number should be tweaked
+
 	def __init__(self, val=None, minVal=NUMERIC_MIN_VALUE, maxVal=NUMERIC_MAX_VALUE, sigma=None):
 		if val: self.val = val
 		else: self.val = random.randint(minVal, maxVal) # generate random value in range
 		self.minVal = minVal
 		self.maxVal = maxVal
-		if sigma: self.sigma = sigma
-		else: self.sigma = (float)(maxVal-minVal)/10 # this is pretty arbitrary
-		self.time = 0
+		self.sigma_reset_val = (float)(maxVal-minVal)/8 # this is pretty arbitrary
+		if sigma: self.sigma = (float)(sigma)
+		else: self.sigma = self.sigma_reset_val
+		self.time_absolute = 0
+		self.time_since_reset = 0
 
 	def mutate(self):
-		# self.time++
-		# self.sigma =  # stochastic stdev decay
-		self.val = truncnorm.rvs(((float)(self.minVal-self.val))/((float)(self.sigma)),
-			((float)(self.maxVal-self.val))/((float)(self.sigma)), loc=self.val, scale=self.sigma)
+		self.mutate_sigma()
+		self.val = (int)(truncnorm.rvs(((float)(self.minVal-self.val))/((float)(self.sigma)),
+			((float)(self.maxVal-self.val))/((float)(self.sigma)), loc=self.val, scale=self.sigma))
+
+	def mutate_sigma(self):
+		self.time_absolute += 1
+		self.time_since_reset += 1
+		p = random.random()
+		if p < self.P_SIGMA_RESET: # reset sigma
+			self.sigma = self.sigma_reset_val
+			self.time_since_reset += 1
+		else: # decay sigma
+			self.sigma = self.SIGMA_DECAY_FACTOR
 
 	def tocode(self):
 		return str(self.val)
