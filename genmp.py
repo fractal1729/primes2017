@@ -62,7 +62,9 @@ def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100, dw=dataWriter(N
 		for i in range(0, len(survivors)):
 			nummutate = (int)(1/survival)
 			if i < a: nummutate += 1
-			for j in range(0, nummutate):
+			survivorCopy = copy.deepcopy(survivors[i])
+			newProgs.append(survivorCopy)
+			for j in range(1, nummutate):
 				newProg = copy.deepcopy(survivors[i]) # note need for deepcopy instead of copy
 				newProg.mutate()
 				newProgs.append(newProg)

@@ -95,5 +95,5 @@ if __name__ == "__main__":
 	#dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
 	testBeamHausdorff(20, 0.3, 20, dw)
-	sys.__stdout__.write("Output written to genmp_"+filename+".txt.")
+	sys.__stdout__.write("Output written to RUN"+run_id+"-log.txt.")
 	end()
