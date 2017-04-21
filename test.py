@@ -69,13 +69,15 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 ************   END TEST   ************
 **************************************'''
 
-def start():
-	filename = "genmp_"+re.sub(r' ', '-', re.sub(r':', '-', str(datetime.datetime.now())))
-	sys.stdout = open("./log/"+filename+".txt", 'w')
+def start(compname, run_id):
+	#filename = "genmp_"+re.sub(r' ', '-', re.sub(r':', '-', str(datetime.datetime.now())))
+	#sys.stdout = open("./log/"+filename+".txt", 'w')
+	sys.stdout = open("./log/RUN"+run_id+"-log.txt", 'w')
 	sys.stderr = sys.stdout
 	print "Starting test at "+str(datetime.datetime.now())+"."
-	return filename
-
+	print "Running on "+compname
+	print "Run ID: "+run_id
+	
 def end():
     print "Test completed at "+str(datetime.datetime.now())+"."
     sys.stdout.close()
@@ -83,9 +85,14 @@ def end():
     sys.stderr = sys.__stderr__
 
 if __name__ == "__main__":
-	filename = start()
-	#dw = dataWriter("./data/data_"+filename+".txt")
-	dw = dataWriter(None) # don't write data for now
+	compinfo = open("compinfo.txt", 'r')
+	compname = compinfo.readline()
+	compinfo.close()
+	run_id = sys.argv[1]
+
+	start(compname, run_id)
+	dw = dataWriter("./data/RUN"+sys.argv[1]+"-data.txt")
+	#dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
 	testBeamHausdorff(20, 0.3, 20, dw)
 	sys.__stdout__.write("Output written to genmp_"+filename+".txt.")
