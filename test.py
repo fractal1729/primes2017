@@ -32,7 +32,7 @@ def testSimpleCircle(numiter):
 ************   END TEST   ************
 **************************************'''
 
-def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(None)):
+def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(None), showgraphs=False):
 	print '''**************************************
 ***********   START TEST   ***********
 **************************************
@@ -50,19 +50,18 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 	print "***** Best scores over generations: *****"
 	print best_scores
 
-	plt.figure(1)
-	plt.subplot(2,1,1)
-	plt.imshow(rendermp.renderImage(bestprog.tocode()), cmap="gray")
-	plt.title("Generated image")
-	plt.subplot(2,1,2)
-	plt.imshow(goalpix, cmap="gray")
-	plt.title("Original image")
-
-	plt.figure(2)
-	plt.plot(range(len(best_scores)), best_scores, 'ro')
-	plt.ylim(0, plt.ylim()[1])
-
-	plt.show()
+	if showgraphs:
+		plt.figure(1)
+		plt.subplot(2,1,1)
+		plt.imshow(rendermp.renderImage(bestprog.tocode()), cmap="gray")
+		plt.title("Generated image")
+		plt.subplot(2,1,2)
+		plt.imshow(goalpix, cmap="gray")
+		plt.title("Original image")
+		plt.figure(2)
+		plt.plot(range(len(best_scores)), best_scores, 'ro')
+		plt.ylim(0, plt.ylim()[1])
+		plt.show()
 
 	print '''
 **************************************
@@ -94,6 +93,6 @@ if __name__ == "__main__":
 	dw = dataWriter("./data/RUN"+sys.argv[1]+"-data.txt")
 	#dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
-	testBeamHausdorff(20, 0.3, 20, dw)
+	testBeamHausdorff(10, 0.3, 40, dw, True)
 	sys.__stdout__.write("Output written to RUN"+run_id+"-log.txt.")
 	end()
