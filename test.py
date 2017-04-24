@@ -93,6 +93,6 @@ if __name__ == "__main__":
 	dw = dataWriter("./data/RUN"+sys.argv[1]+"-data.txt")
 	#dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
-	testBeamHausdorff(10, 0.3, 40, dw, True)
-	sys.__stdout__.write("Output written to RUN"+run_id+"-log.txt.")
+	testBeamHausdorff(20, 0.3, 40, dw, True)
+	sys.__stdout__.write("\nOutput written to RUN"+run_id+"-log.txt.")
 	end()
