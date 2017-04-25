@@ -107,7 +107,7 @@ class Pair:
 
 class Numeric:
 
-	P_SIGMA_RESET = 0.03 # number should be tweaked
+	P_SIGMA_RESET = 0.07 # number should be tweaked
 	SIGMA_DECAY_FACTOR = 0.9 # number should be tweaked
 
 	def __init__(self, val=None, minVal=NUMERIC_MIN_VALUE, maxVal=NUMERIC_MAX_VALUE, sigma=None):

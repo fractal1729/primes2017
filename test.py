@@ -32,7 +32,7 @@ def testSimpleCircle(numiter):
 ************   END TEST   ************
 **************************************'''
 
-def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(None), showgraphs=False):
+def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(None), showgraphs=False, run_id="Run Data"):
 	print '''**************************************
 ***********   START TEST   ***********
 **************************************
@@ -41,7 +41,8 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 **************************************
 '''
 	#goalsrc = '''fill fullcircle scaled 12 shifted (30,20) withcolor black;'''
-	goalsrc = mptree.Program().tocode() # generate random line
+	#goalsrc = mptree.Program().tocode() # generate random program
+	goalsrc = mptree.Program([mptree.Draw(), mptree.Draw()]).tocode() # generate two random lines code
 	goalpix = rendermp.renderImage(goalsrc)
 	bestprog, best_scores = genmp.beamSearch(goalpix, numiter, survival, numprogs, dw)
 	print "***** Best code: *****\n" + bestprog.tocode()
@@ -73,7 +74,9 @@ def start(compname, run_id):
 	#sys.stdout = open("./log/"+filename+".txt", 'w')
 	sys.stdout = open("./log/RUN"+run_id+"-log.txt", 'w')
 	sys.stderr = sys.stdout
-	print "Starting test at "+str(datetime.datetime.now())+"."
+	timestamp = str(datetime.datetime.now())
+	sys.__stdout__.write(timestamp+"\n")
+	print "Starting test at "+timestamp+"."
 	print "Running on "+compname
 	print "Run ID: "+run_id
 	
@@ -93,6 +96,6 @@ if __name__ == "__main__":
 	dw = dataWriter("./data/RUN"+sys.argv[1]+"-data.txt")
 	#dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
-	testBeamHausdorff(20, 0.3, 40, dw, True)
+	testBeamHausdorff(20, 0.3, 40, dw, True, run_id)
 	sys.__stdout__.write("\nOutput written to RUN"+run_id+"-log.txt.")
 	end()
