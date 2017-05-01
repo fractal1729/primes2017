@@ -1,11 +1,12 @@
 import random
 from scipy.stats import truncnorm
+import rendermp
 
 # Notes:
 # Might want to make code an attribute so that it can be accessed multiple
 # times without having to recompute each time.
 
-CANVAS_SIZE = 50
+CANVAS_SIZE = rendermp.CANVAS_SIZE
 NUMERIC_MAX_VALUE = CANVAS_SIZE-1
 NUMERIC_MIN_VALUE = 1
 

@@ -6,7 +6,7 @@ import sys
 from PIL import Image
 import numpy as np
 
-CANVAS_SIZE = 50
+CANVAS_SIZE = 100
 
 def renderImage(mpsrc, returnPixels=True, storeSrc=False, storeImg=False, storeLog=False):
 	# Start clock

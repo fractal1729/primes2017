@@ -42,7 +42,7 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 '''
 	#goalsrc = '''fill fullcircle scaled 12 shifted (30,20) withcolor black;'''
 	#goalsrc = mptree.Program().tocode() # generate random program
-	goalsrc = mptree.Program([mptree.Draw(), mptree.Draw()]).tocode() # generate two random lines code
+	goalsrc = mptree.Program([mptree.Draw()]).tocode() # generate two random lines code
 	goalpix = rendermp.renderImage(goalsrc)
 	bestprog, best_scores = genmp.beamSearch(goalpix, numiter, survival, numprogs, dw)
 	print "***** Best code: *****\n" + bestprog.tocode()
@@ -96,6 +96,6 @@ if __name__ == "__main__":
 	dw = dataWriter("./data/RUN"+sys.argv[1]+"-data.txt")
 	#dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
-	testBeamHausdorff(20, 0.3, 40, dw, True, run_id)
+	testBeamHausdorff(15, 0.3, 30, dw, True, run_id)
 	sys.__stdout__.write("\nOutput written to RUN"+run_id+"-log.txt.")
 	end()
