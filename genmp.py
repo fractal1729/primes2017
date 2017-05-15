@@ -9,7 +9,7 @@ from data_writer import dataWriter
 # Future work:
 # See comment in beamSearch regarding more stochastic method of determining next generation
 
-def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100, dw=dataWriter(None)): # beam search + edge hausdorff
+def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100, dw=dataWriter(None), run_id="RUN"): # beam search + edge hausdorff
 	print "Starting Beam Search + Edge Hausdorff with numiter="+str(numiter)+", survival="+str(survival)+", numprogs="+str(numprogs)+"."
 	dw.writeln("start-search beam-edge-hausdorff")
 	dw.writeln("numiter "+str(numiter))
@@ -29,7 +29,7 @@ def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100, dw=dataWriter(N
 		for j in range(0, numprogs):
 			candprog = progs[j]
 			candprogsrc = candprog.tocode()
-			candprogpix = rendermp.renderImage(candprogsrc)
+			candprogpix = rendermp.renderImage(candprogsrc, run_id)
 			scores[j] = compare.edge_hausdorff(goalpix, candprogpix)
 			print str(j+1)+"\t"+candprogsrc+"\t"+str(scores[j])
 			dw.writeln("program-num "+str(j+1))
@@ -79,7 +79,7 @@ def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100, dw=dataWriter(N
 	for i in range(0, len(progs)):
 		candprog = progs[i]
 		candprogsrc = candprog.tocode()
-		candprogpix = rendermp.renderImage(candprogsrc)
+		candprogpix = rendermp.renderImage(candprogsrc, run_id)
 		candscore = compare.edge_hausdorff(goalpix, candprogpix)
 		if(candscore < minscore):
 			minscore = candscore
@@ -88,7 +88,7 @@ def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100, dw=dataWriter(N
 	sys.__stdout__.write(str(best_scores))
 	return bestprog, best_scores
 
-def simpleMatch(goalpix, numiter=500): # goalpix is a numpy array of the grayscale pixels
+def simpleMatch(goalpix, numiter=500, run_id="RUN"): # goalpix is a numpy array of the grayscale pixels
 	# Currently configured to run a simple Hausdorff distance metric
 	# with indepedent, randomly generated candidates
 	mindist = None
@@ -97,7 +97,7 @@ def simpleMatch(goalpix, numiter=500): # goalpix is a numpy array of the graysca
 	for i in range(0, numiter):
 		candprog = mptree.Program() # candidate program
 		candprogsrc = candprog.tocode()
-		candprogpix = rendermp.renderImage(candprogsrc)
+		candprogpix = rendermp.renderImage(candprogsrc, run_id)
 		dist = compare.edge_hausdorff(candprogpix, goalpix)
 		note = str(i+1)+"\t"+candprogsrc+"\t"+str(dist)
 		if not mindist: mindist = dist

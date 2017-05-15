@@ -8,7 +8,7 @@ import numpy as np
 
 CANVAS_SIZE = 100
 
-def renderImage(mpsrc, returnPixels=True, storeSrc=False, storeImg=False, storeLog=False):
+def renderImage(mpsrc, run_id="RUN", returnPixels=True, storeSrc=False, storeImg=False, storeLog=False):
 	# Start clock
 	# start_time = time.time()
 
@@ -26,7 +26,7 @@ endfig;
 end.'''%(canvas, mpsrc)
 
 	# Prepare source file
-	filename = "mprender"+re.sub(r' ', '-', re.sub(r':', '-', str(datetime.datetime.now())))
+	filename = run_id+"mprender"+re.sub(r' ', '-', re.sub(r':', '-', str(datetime.datetime.now())))
 	out = open("./mpsrc/"+filename+".mp", 'w')
 	out.write(src)
 	out.close()

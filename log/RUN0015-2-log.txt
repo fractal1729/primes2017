@@ -1,0 +1,1316 @@
+Starting test at 2017-05-13 12:00:31.291000.
+Running on vvale
+Run ID: 0015-2
+**************************************
+***********   START TEST   ***********
+**************************************
+********* SEARCH ALGO:  BEAM *********
+*** SCORING METRIC: EDGE HAUSDORFF ***
+**************************************
+
+Starting Beam Search + Edge Hausdorff with numiter=15, survival=0.3, numprogs=30.
+
+STARTING GENERATION 1
+
+PROGRAMS:
+1	draw (89,70)--(12,96);
+draw fullcircle scaled 1 shifted (75,4) withcolor black;	20.9698375402
+2	draw (10,17)--(53,36);
+draw fullcircle scaled 19 shifted (28,57) withcolor black;	25.211359428
+3	draw (64,39)--(44,87);
+draw fullcircle scaled 5 shifted (53,68) withcolor black;	12.1368425003
+4	draw (41,79)--(96,49);
+draw fullcircle scaled 1 shifted (50,80) withcolor black;	11.2800731989
+5	draw (51,94)--(47,69);
+draw fullcircle scaled 7 shifted (85,49) withcolor black;	11.7277634522
+6	draw (82,37)--(34,15);
+draw fullcircle scaled 9 shifted (82,25) withcolor black;	23.3381304472
+7	draw (77,5)--(19,48);
+draw fullcircle scaled 24 shifted (42,65) withcolor black;	17.4181170919
+8	draw (81,55)--(76,88);
+draw fullcircle scaled 1 shifted (97,87) withcolor black;	18.7904771998
+9	draw (63,64)--(1,36);
+draw fullcircle scaled 1 shifted (94,8) withcolor black;	23.7914977061
+10	draw (79,39)--(15,20);
+draw fullcircle scaled 2 shifted (6,79) withcolor black;	20.5541176849
+11	draw (13,94)--(50,49);
+draw fullcircle scaled 19 shifted (42,51) withcolor black;	20.8222394274
+12	draw (3,24)--(97,6);
+draw fullcircle scaled 15 shifted (24,43) withcolor black;	32.4031859903
+13	draw (60,65)--(2,97);
+draw fullcircle scaled 3 shifted (91,61) withcolor black;	25.2560703089
+14	draw (42,16)--(96,79);
+draw fullcircle scaled 6 shifted (81,13) withcolor black;	15.5011403516
+15	draw (36,38)--(84,21);
+draw fullcircle scaled 11 shifted (88,75) withcolor black;	18.357360677
+16	draw (83,8)--(11,64);
+draw fullcircle scaled 22 shifted (60,38) withcolor black;	15.9485297859
+17	draw (15,96)--(35,76);
+draw fullcircle scaled 12 shifted (54,29) withcolor black;	21.8622335191
+18	draw (30,90)--(34,71);
+draw fullcircle scaled 1 shifted (49,36) withcolor black;	25.6667639672
+19	draw (50,64)--(97,11);
+draw fullcircle scaled 17 shifted (59,49) withcolor black;	10.6396284818
+20	draw (31,50)--(27,13);
+draw fullcircle scaled 9 shifted (85,87) withcolor black;	28.4046564892
+21	draw (97,10)--(62,56);
+draw fullcircle scaled 3 shifted (52,97) withcolor black;	12.7308873608
+22	draw (14,42)--(98,32);
+draw fullcircle scaled 1 shifted (86,66) withcolor black;	16.1299848598
+23	draw (13,55)--(41,8);
+draw fullcircle scaled 2 shifted (95,79) withcolor black;	34.1246607177
+24	draw (72,2)--(31,97);
+draw fullcircle scaled 20 shifted (72,37) withcolor black;	11.7311225296
+25	draw (9,57)--(47,12);
+draw fullcircle scaled 4 shifted (44,84) withcolor black;	30.7645844491
+26	draw (3,42)--(47,95);
+draw fullcircle scaled 15 shifted (85,82) withcolor black;	28.2488889382
+27	draw (54,59)--(75,71);
+draw fullcircle scaled 4 shifted (68,92) withcolor black;	16.5070883931
+28	draw (71,71)--(86,30);
+draw fullcircle scaled 8 shifted (40,25) withcolor black;	12.5102936216
+29	draw (86,29)--(90,14);
+draw fullcircle scaled 2 shifted (46,2) withcolor black;	34.3142408825
+30	draw (87,60)--(52,50);
+draw fullcircle scaled 23 shifted (47,34) withcolor black;	12.3656587557
+
+SURVIVORS:
+draw (50,64)--(97,11);
+draw fullcircle scaled 17 shifted (59,49) withcolor black;
+draw (41,79)--(96,49);
+draw fullcircle scaled 1 shifted (50,80) withcolor black;
+draw (51,94)--(47,69);
+draw fullcircle scaled 7 shifted (85,49) withcolor black;
+draw (72,2)--(31,97);
+draw fullcircle scaled 20 shifted (72,37) withcolor black;
+draw (64,39)--(44,87);
+draw fullcircle scaled 5 shifted (53,68) withcolor black;
+draw (87,60)--(52,50);
+draw fullcircle scaled 23 shifted (47,34) withcolor black;
+draw (71,71)--(86,30);
+draw fullcircle scaled 8 shifted (40,25) withcolor black;
+draw (97,10)--(62,56);
+draw fullcircle scaled 3 shifted (52,97) withcolor black;
+draw (42,16)--(96,79);
+draw fullcircle scaled 6 shifted (81,13) withcolor black;
+GENERATION 1/15 COMPLETE
+
+
+STARTING GENERATION 2
+
+PROGRAMS:
+1	draw (50,64)--(97,11);
+draw fullcircle scaled 17 shifted (59,49) withcolor black;	10.6396284818
+2	draw (48,65)--(97,12);
+draw fullcircle scaled 16 shifted (57,49) withcolor black;	10.8993299844
+3	draw (50,62)--(97,11);
+draw fullcircle scaled 17 shifted (60,49) withcolor black;	11.2619847071
+4	draw (50,62)--(97,10);
+draw fullcircle scaled 17 shifted (57,48) withcolor black;	11.4781327777
+5	draw (41,79)--(96,49);
+draw fullcircle scaled 1 shifted (50,80) withcolor black;	11.2800731989
+6	draw (40,78)--(95,50);
+draw fullcircle scaled 1 shifted (50,80) withcolor black;	11.2808342406
+7	draw (40,79)--(95,48);
+draw fullcircle scaled 2 shifted (50,79) withcolor black;	10.7131872642
+8	draw (40,78)--(95,50);
+draw fullcircle scaled 1 shifted (49,93) withcolor black;	11.3454711097
+9	draw (51,94)--(47,69);
+draw fullcircle scaled 7 shifted (85,49) withcolor black;	11.7277634522
+10	draw (51,95)--(47,68);
+draw fullcircle scaled 8 shifted (86,50) withcolor black;	11.6370478586
+11	draw (49,98)--(45,70);
+draw fullcircle scaled 6 shifted (85,49) withcolor black;	13.0107702215
+12	draw (51,94)--(46,68);
+draw fullcircle scaled 4 shifted (85,51) withcolor black;	12.9204588202
+13	draw (72,2)--(31,97);
+draw fullcircle scaled 20 shifted (72,37) withcolor black;	11.7311225296
+14	draw (73,1)--(31,96);
+draw fullcircle scaled 19 shifted (71,36) withcolor black;	12.2311966189
+15	draw (71,3)--(32,93);
+draw fullcircle scaled 16 shifted (71,36) withcolor black;	11.9231650955
+16	draw (64,39)--(44,87);
+draw fullcircle scaled 5 shifted (53,68) withcolor black;	12.1368425003
+17	draw (63,38)--(44,87);
+draw fullcircle scaled 5 shifted (53,66) withcolor black;	12.4264151134
+18	draw (63,53)--(42,87);
+draw fullcircle scaled 3 shifted (51,67) withcolor black;	14.8988355479
+19	draw (87,60)--(52,50);
+draw fullcircle scaled 23 shifted (47,34) withcolor black;	12.3656587557
+20	draw (86,59)--(52,48);
+draw fullcircle scaled 23 shifted (48,34) withcolor black;	12.8252845814
+21	draw (87,60)--(50,48);
+draw fullcircle scaled 21 shifted (47,33) withcolor black;	12.6619270976
+22	draw (71,71)--(86,30);
+draw fullcircle scaled 8 shifted (40,25) withcolor black;	12.5102936216
+23	draw (71,71)--(85,30);
+draw fullcircle scaled 7 shifted (39,24) withcolor black;	13.0285453053
+24	draw (70,66)--(85,28);
+draw fullcircle scaled 9 shifted (40,24) withcolor black;	13.3118074463
+25	draw (97,10)--(62,56);
+draw fullcircle scaled 3 shifted (52,97) withcolor black;	12.7308873608
+26	draw (96,9)--(61,56);
+draw fullcircle scaled 1 shifted (52,98) withcolor black;	13.6237700628
+27	draw (96,10)--(62,57);
+draw fullcircle scaled 2 shifted (51,95) withcolor black;	13.1522002583
+28	draw (42,16)--(96,79);
+draw fullcircle scaled 6 shifted (81,13) withcolor black;	15.5011403516
+29	draw (41,15)--(93,79);
+draw fullcircle scaled 6 shifted (79,14) withcolor black;	15.1715075519
+30	draw (41,16)--(95,79);
+draw fullcircle scaled 5 shifted (81,13) withcolor black;	15.3223651367
+
+SURVIVORS:
+draw (50,64)--(97,11);
+draw fullcircle scaled 17 shifted (59,49) withcolor black;
+draw (40,79)--(95,48);
+draw fullcircle scaled 2 shifted (50,79) withcolor black;
+draw (48,65)--(97,12);
+draw fullcircle scaled 16 shifted (57,49) withcolor black;
+draw (50,62)--(97,11);
+draw fullcircle scaled 17 shifted (60,49) withcolor black;
+draw (41,79)--(96,49);
+draw fullcircle scaled 1 shifted (50,80) withcolor black;
+draw (40,78)--(95,50);
+draw fullcircle scaled 1 shifted (50,80) withcolor black;
+draw (40,78)--(95,50);
+draw fullcircle scaled 1 shifted (49,93) withcolor black;
+draw (50,62)--(97,10);
+draw fullcircle scaled 17 shifted (57,48) withcolor black;
+draw (51,95)--(47,68);
+draw fullcircle scaled 8 shifted (86,50) withcolor black;
+GENERATION 2/15 COMPLETE
+
+
+STARTING GENERATION 3
+
+PROGRAMS:
+1	draw (50,64)--(97,11);
+draw fullcircle scaled 17 shifted (59,49) withcolor black;	10.6396284818
+2	draw (50,63)--(97,10);
+draw fullcircle scaled 17 shifted (58,49) withcolor black;	11.132654086
+3	draw (48,63)--(98,11);
+draw fullcircle scaled 15 shifted (57,47) withcolor black;	11.480734311
+4	draw (51,65)--(97,11);
+draw fullcircle scaled 15 shifted (59,48) withcolor black;	9.95994831825
+5	draw (40,79)--(95,48);
+draw fullcircle scaled 2 shifted (50,79) withcolor black;	10.7131872642
+6	draw (40,73)--(93,38);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;	8.03415605292
+7	draw (39,80)--(95,48);
+draw fullcircle scaled 2 shifted (49,77) withcolor black;	11.0498633593
+8	draw (39,78)--(96,49);
+draw fullcircle scaled 1 shifted (49,77) withcolor black;	11.2693181414
+9	draw (48,65)--(97,12);
+draw fullcircle scaled 16 shifted (57,49) withcolor black;	10.8993299844
+10	draw (47,64)--(96,11);
+draw fullcircle scaled 14 shifted (55,35) withcolor black;	11.4457783059
+11	draw (46,64)--(98,11);
+draw fullcircle scaled 16 shifted (55,48) withcolor black;	11.773234437
+12	draw (47,64)--(97,12);
+draw fullcircle scaled 16 shifted (52,47) withcolor black;	11.4039855441
+13	draw (50,62)--(97,11);
+draw fullcircle scaled 17 shifted (60,49) withcolor black;	11.2619847071
+14	draw (52,62)--(96,11);
+draw fullcircle scaled 16 shifted (59,50) withcolor black;	11.1765378744
+15	draw (49,60)--(96,11);
+draw fullcircle scaled 16 shifted (58,48) withcolor black;	12.5236168197
+16	draw (41,79)--(96,49);
+draw fullcircle scaled 1 shifted (50,80) withcolor black;	11.2800731989
+17	draw (40,78)--(94,48);
+draw fullcircle scaled 1 shifted (51,79) withcolor black;	10.2578946313
+18	draw (42,79)--(96,49);
+draw fullcircle scaled 1 shifted (50,87) withcolor black;	11.162734347
+19	draw (40,78)--(95,50);
+draw fullcircle scaled 1 shifted (50,80) withcolor black;	11.2808342406
+20	draw (38,77)--(89,49);
+draw fullcircle scaled 2 shifted (50,66) withcolor black;	10.7985476462
+21	draw (41,78)--(94,49);
+draw fullcircle scaled 1 shifted (49,80) withcolor black;	10.9048827094
+22	draw (40,78)--(95,50);
+draw fullcircle scaled 1 shifted (49,93) withcolor black;	11.3454711097
+23	draw (40,79)--(94,48);
+draw fullcircle scaled 2 shifted (47,85) withcolor black;	10.630077382
+24	draw (38,59)--(96,50);
+draw fullcircle scaled 1 shifted (49,74) withcolor black;	8.90369658208
+25	draw (50,62)--(97,10);
+draw fullcircle scaled 17 shifted (57,48) withcolor black;	11.4781327777
+26	draw (49,60)--(95,10);
+draw fullcircle scaled 16 shifted (57,47) withcolor black;	12.7616218807
+27	draw (49,63)--(96,8);
+draw fullcircle scaled 15 shifted (55,48) withcolor black;	11.8143193258
+28	draw (51,95)--(47,68);
+draw fullcircle scaled 8 shifted (86,50) withcolor black;	11.6370478586
+29	draw (50,94)--(46,66);
+draw fullcircle scaled 8 shifted (86,32) withcolor black;	13.3367642707
+30	draw (50,95)--(46,68);
+draw fullcircle scaled 7 shifted (85,49) withcolor black;	11.9489217996
+
+SURVIVORS:
+draw (40,73)--(93,38);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;
+draw (38,59)--(96,50);
+draw fullcircle scaled 1 shifted (49,74) withcolor black;
+draw (51,65)--(97,11);
+draw fullcircle scaled 15 shifted (59,48) withcolor black;
+draw (40,78)--(94,48);
+draw fullcircle scaled 1 shifted (51,79) withcolor black;
+draw (40,79)--(94,48);
+draw fullcircle scaled 2 shifted (47,85) withcolor black;
+draw (50,64)--(97,11);
+draw fullcircle scaled 17 shifted (59,49) withcolor black;
+draw (40,79)--(95,48);
+draw fullcircle scaled 2 shifted (50,79) withcolor black;
+draw (38,77)--(89,49);
+draw fullcircle scaled 2 shifted (50,66) withcolor black;
+draw (48,65)--(97,12);
+draw fullcircle scaled 16 shifted (57,49) withcolor black;
+GENERATION 3/15 COMPLETE
+
+
+STARTING GENERATION 4
+
+PROGRAMS:
+1	draw (40,73)--(93,38);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;	8.03415605292
+2	draw (39,72)--(92,38);
+draw fullcircle scaled 1 shifted (47,79) withcolor black;	8.44474638768
+3	draw (38,72)--(92,38);
+draw fullcircle scaled 1 shifted (49,79) withcolor black;	8.12815758308
+4	draw (38,71)--(94,35);
+draw fullcircle scaled 2 shifted (50,82) withcolor black;	7.90863577134
+5	draw (38,59)--(96,50);
+draw fullcircle scaled 1 shifted (49,74) withcolor black;	8.90369658208
+6	draw (36,59)--(97,51);
+draw fullcircle scaled 1 shifted (48,86) withcolor black;	9.28653913901
+7	draw (56,59)--(95,49);
+draw fullcircle scaled 1 shifted (49,74) withcolor black;	9.20190387999
+8	draw (38,59)--(94,49);
+draw fullcircle scaled 1 shifted (49,72) withcolor black;	8.76825722257
+9	draw (51,65)--(97,11);
+draw fullcircle scaled 15 shifted (59,48) withcolor black;	9.95994831825
+10	draw (50,67)--(93,10);
+draw fullcircle scaled 15 shifted (57,45) withcolor black;	10.1069082321
+11	draw (49,61)--(96,11);
+draw fullcircle scaled 15 shifted (57,48) withcolor black;	12.1563708113
+12	draw (41,65)--(97,8);
+draw fullcircle scaled 14 shifted (59,50) withcolor black;	13.2339226112
+13	draw (40,78)--(94,48);
+draw fullcircle scaled 1 shifted (51,79) withcolor black;	10.2578946313
+14	draw (38,79)--(92,47);
+draw fullcircle scaled 1 shifted (49,79) withcolor black;	9.93702636234
+15	draw (41,79)--(94,47);
+draw fullcircle scaled 1 shifted (51,78) withcolor black;	10.2301172451
+16	draw (40,79)--(94,48);
+draw fullcircle scaled 2 shifted (47,85) withcolor black;	10.630077382
+17	draw (38,79)--(94,47);
+draw fullcircle scaled 2 shifted (46,84) withcolor black;	10.3017260596
+18	draw (39,78)--(94,49);
+draw fullcircle scaled 1 shifted (51,66) withcolor black;	11.2050884088
+19	draw (50,64)--(97,11);
+draw fullcircle scaled 17 shifted (59,49) withcolor black;	10.6396284818
+20	draw (88,65)--(97,11);
+draw fullcircle scaled 18 shifted (59,49) withcolor black;	7.88920098084
+21	draw (48,65)--(98,11);
+draw fullcircle scaled 16 shifted (60,49) withcolor black;	10.8328694799
+22	draw (40,79)--(95,48);
+draw fullcircle scaled 2 shifted (50,79) withcolor black;	10.7131872642
+23	draw (40,78)--(95,46);
+draw fullcircle scaled 2 shifted (49,77) withcolor black;	10.1530557487
+24	draw (39,77)--(95,47);
+draw fullcircle scaled 1 shifted (49,78) withcolor black;	10.1836172444
+25	draw (38,77)--(89,49);
+draw fullcircle scaled 2 shifted (50,66) withcolor black;	10.7985476462
+26	draw (37,77)--(88,48);
+draw fullcircle scaled 1 shifted (49,65) withcolor black;	10.5160841419
+27	draw (37,76)--(88,47);
+draw fullcircle scaled 3 shifted (48,66) withcolor black;	10.3088332733
+28	draw (48,65)--(97,12);
+draw fullcircle scaled 16 shifted (57,49) withcolor black;	10.8993299844
+29	draw (49,63)--(91,10);
+draw fullcircle scaled 17 shifted (57,34) withcolor black;	12.0601394286
+30	draw (46,64)--(96,11);
+draw fullcircle scaled 15 shifted (56,48) withcolor black;	11.960371076
+
+SURVIVORS:
+draw (88,65)--(97,11);
+draw fullcircle scaled 18 shifted (59,49) withcolor black;
+draw (38,71)--(94,35);
+draw fullcircle scaled 2 shifted (50,82) withcolor black;
+draw (40,73)--(93,38);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;
+draw (38,72)--(92,38);
+draw fullcircle scaled 1 shifted (49,79) withcolor black;
+draw (39,72)--(92,38);
+draw fullcircle scaled 1 shifted (47,79) withcolor black;
+draw (38,59)--(94,49);
+draw fullcircle scaled 1 shifted (49,72) withcolor black;
+draw (38,59)--(96,50);
+draw fullcircle scaled 1 shifted (49,74) withcolor black;
+draw (56,59)--(95,49);
+draw fullcircle scaled 1 shifted (49,74) withcolor black;
+draw (36,59)--(97,51);
+draw fullcircle scaled 1 shifted (48,86) withcolor black;
+GENERATION 4/15 COMPLETE
+
+
+STARTING GENERATION 5
+
+PROGRAMS:
+1	draw (88,65)--(97,11);
+draw fullcircle scaled 18 shifted (59,49) withcolor black;	7.88920098084
+2	draw (87,65)--(97,11);
+draw fullcircle scaled 17 shifted (58,49) withcolor black;	7.79762554804
+3	draw (88,61)--(97,12);
+draw fullcircle scaled 20 shifted (60,48) withcolor black;	7.47433659223
+4	draw (87,66)--(96,10);
+draw fullcircle scaled 17 shifted (59,48) withcolor black;	7.9414966641
+5	draw (38,71)--(94,35);
+draw fullcircle scaled 2 shifted (50,82) withcolor black;	7.90863577134
+6	draw (37,70)--(94,33);
+draw fullcircle scaled 3 shifted (48,81) withcolor black;	8.11557849859
+7	draw (38,69)--(92,35);
+draw fullcircle scaled 1 shifted (51,79) withcolor black;	7.89532885143
+8	draw (38,71)--(92,34);
+draw fullcircle scaled 1 shifted (48,81) withcolor black;	8.48455710595
+9	draw (40,73)--(93,38);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;	8.03415605292
+10	draw (38,73)--(93,38);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;	7.97448610639
+11	draw (39,72)--(91,36);
+draw fullcircle scaled 1 shifted (51,78) withcolor black;	7.97642664898
+12	draw (39,74)--(94,37);
+draw fullcircle scaled 2 shifted (48,79) withcolor black;	8.37302016503
+13	draw (38,72)--(92,38);
+draw fullcircle scaled 1 shifted (49,79) withcolor black;	8.12815758308
+14	draw (39,72)--(91,37);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;	7.98939031723
+15	draw (37,71)--(93,50);
+draw fullcircle scaled 1 shifted (51,79) withcolor black;	9.69497757211
+16	draw (39,72)--(92,38);
+draw fullcircle scaled 1 shifted (47,79) withcolor black;	8.44474638768
+17	draw (40,73)--(90,37);
+draw fullcircle scaled 1 shifted (45,80) withcolor black;	8.88001812496
+18	draw (38,72)--(92,38);
+draw fullcircle scaled 2 shifted (46,78) withcolor black;	8.6725341213
+19	draw (38,59)--(94,49);
+draw fullcircle scaled 1 shifted (49,72) withcolor black;	8.76825722257
+20	draw (38,58)--(93,49);
+draw fullcircle scaled 1 shifted (47,72) withcolor black;	9.04538455357
+21	draw (37,60)--(94,49);
+draw fullcircle scaled 2 shifted (48,72) withcolor black;	9.04064540584
+22	draw (38,59)--(96,50);
+draw fullcircle scaled 1 shifted (49,74) withcolor black;	8.90369658208
+23	draw (38,59)--(96,50);
+draw fullcircle scaled 1 shifted (48,75) withcolor black;	9.03202761469
+24	draw (39,58)--(94,50);
+draw fullcircle scaled 2 shifted (49,73) withcolor black;	8.88022966518
+25	draw (56,59)--(95,49);
+draw fullcircle scaled 1 shifted (49,74) withcolor black;	9.20190387999
+26	draw (55,59)--(96,49);
+draw fullcircle scaled 1 shifted (50,73) withcolor black;	9.09469833313
+27	draw (56,60)--(94,50);
+draw fullcircle scaled 2 shifted (50,72) withcolor black;	9.71213305197
+28	draw (36,59)--(97,51);
+draw fullcircle scaled 1 shifted (48,86) withcolor black;	9.28653913901
+29	draw (35,58)--(96,50);
+draw fullcircle scaled 2 shifted (47,86) withcolor black;	9.00827958562
+30	draw (46,58)--(95,51);
+draw fullcircle scaled 3 shifted (48,88) withcolor black;	9.1010326135
+
+SURVIVORS:
+draw (88,61)--(97,12);
+draw fullcircle scaled 20 shifted (60,48) withcolor black;
+draw (87,65)--(97,11);
+draw fullcircle scaled 17 shifted (58,49) withcolor black;
+draw (88,65)--(97,11);
+draw fullcircle scaled 18 shifted (59,49) withcolor black;
+draw (38,69)--(92,35);
+draw fullcircle scaled 1 shifted (51,79) withcolor black;
+draw (38,71)--(94,35);
+draw fullcircle scaled 2 shifted (50,82) withcolor black;
+draw (87,66)--(96,10);
+draw fullcircle scaled 17 shifted (59,48) withcolor black;
+draw (38,73)--(93,38);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;
+draw (39,72)--(91,36);
+draw fullcircle scaled 1 shifted (51,78) withcolor black;
+draw (39,72)--(91,37);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;
+GENERATION 5/15 COMPLETE
+
+
+STARTING GENERATION 6
+
+PROGRAMS:
+1	draw (88,61)--(97,12);
+draw fullcircle scaled 20 shifted (60,48) withcolor black;	7.47433659223
+2	draw (87,61)--(95,13);
+draw fullcircle scaled 19 shifted (61,45) withcolor black;	8.33131513909
+3	draw (89,61)--(97,11);
+draw fullcircle scaled 18 shifted (59,47) withcolor black;	8.44488517334
+4	draw (89,61)--(98,9);
+draw fullcircle scaled 17 shifted (61,47) withcolor black;	8.36477998046
+5	draw (87,65)--(97,11);
+draw fullcircle scaled 17 shifted (58,49) withcolor black;	7.79762554804
+6	draw (86,64)--(97,10);
+draw fullcircle scaled 17 shifted (57,49) withcolor black;	7.76815812655
+7	draw (97,65)--(95,10);
+draw fullcircle scaled 16 shifted (58,49) withcolor black;	9.66418639586
+8	draw (88,64)--(96,11);
+draw fullcircle scaled 16 shifted (57,50) withcolor black;	8.03427799413
+9	draw (88,65)--(97,11);
+draw fullcircle scaled 18 shifted (59,49) withcolor black;	7.88920098084
+10	draw (87,64)--(98,11);
+draw fullcircle scaled 18 shifted (49,49) withcolor black;	8.15089860107
+11	draw (88,65)--(96,10);
+draw fullcircle scaled 17 shifted (59,47) withcolor black;	8.25189496311
+12	draw (88,64)--(96,11);
+draw fullcircle scaled 18 shifted (57,49) withcolor black;	7.94899456563
+13	draw (38,69)--(92,35);
+draw fullcircle scaled 1 shifted (51,79) withcolor black;	7.89532885143
+14	draw (35,69)--(91,34);
+draw fullcircle scaled 3 shifted (51,77) withcolor black;	7.7117191518
+15	draw (38,68)--(91,34);
+draw fullcircle scaled 1 shifted (51,79) withcolor black;	8.03673504499
+16	draw (38,71)--(94,35);
+draw fullcircle scaled 2 shifted (50,82) withcolor black;	7.90863577134
+17	draw (35,70)--(95,35);
+draw fullcircle scaled 1 shifted (65,81) withcolor black;	7.44930501732
+18	draw (36,72)--(96,34);
+draw fullcircle scaled 2 shifted (51,83) withcolor black;	7.71749733647
+19	draw (87,66)--(96,10);
+draw fullcircle scaled 17 shifted (59,48) withcolor black;	7.9414966641
+20	draw (86,65)--(95,9);
+draw fullcircle scaled 17 shifted (59,47) withcolor black;	8.09396754237
+21	draw (87,67)--(98,14);
+draw fullcircle scaled 15 shifted (59,47) withcolor black;	8.73682179367
+22	draw (38,73)--(93,38);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;	7.97448610639
+23	draw (40,72)--(91,37);
+draw fullcircle scaled 2 shifted (51,79) withcolor black;	7.83580278368
+24	draw (42,71)--(93,49);
+draw fullcircle scaled 1 shifted (37,77) withcolor black;	10.8523668545
+25	draw (39,72)--(91,36);
+draw fullcircle scaled 1 shifted (51,78) withcolor black;	7.97642664898
+26	draw (38,72)--(90,36);
+draw fullcircle scaled 2 shifted (50,78) withcolor black;	8.22383673998
+27	draw (39,73)--(92,35);
+draw fullcircle scaled 1 shifted (51,76) withcolor black;	8.20649061718
+28	draw (39,72)--(91,37);
+draw fullcircle scaled 1 shifted (50,79) withcolor black;	7.98939031723
+29	draw (38,72)--(89,37);
+draw fullcircle scaled 2 shifted (49,78) withcolor black;	8.33268493316
+30	draw (40,73)--(92,37);
+draw fullcircle scaled 1 shifted (50,90) withcolor black;	8.17640263767
+
+SURVIVORS:
+draw (35,70)--(95,35);
+draw fullcircle scaled 1 shifted (65,81) withcolor black;
+draw (88,61)--(97,12);
+draw fullcircle scaled 20 shifted (60,48) withcolor black;
+draw (35,69)--(91,34);
+draw fullcircle scaled 3 shifted (51,77) withcolor black;
+draw (36,72)--(96,34);
+draw fullcircle scaled 2 shifted (51,83) withcolor black;
+draw (86,64)--(97,10);
+draw fullcircle scaled 17 shifted (57,49) withcolor black;
+draw (87,65)--(97,11);
+draw fullcircle scaled 17 shifted (58,49) withcolor black;
+draw (40,72)--(91,37);
+draw fullcircle scaled 2 shifted (51,79) withcolor black;
+draw (88,65)--(97,11);
+draw fullcircle scaled 18 shifted (59,49) withcolor black;
+draw (38,69)--(92,35);
+draw fullcircle scaled 1 shifted (51,79) withcolor black;
+GENERATION 6/15 COMPLETE
+
+
+STARTING GENERATION 7
+
+PROGRAMS:
+1	draw (35,70)--(95,35);
+draw fullcircle scaled 1 shifted (65,81) withcolor black;	7.44930501732
+2	draw (34,68)--(96,35);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;	7.18614477062
+3	draw (34,71)--(94,35);
+draw fullcircle scaled 2 shifted (66,80) withcolor black;	7.71599887958
+4	draw (36,69)--(95,33);
+draw fullcircle scaled 1 shifted (64,82) withcolor black;	7.508189519
+5	draw (88,61)--(97,12);
+draw fullcircle scaled 20 shifted (60,48) withcolor black;	7.47433659223
+6	draw (87,60)--(97,12);
+draw fullcircle scaled 22 shifted (58,48) withcolor black;	7.5461891164
+7	draw (88,61)--(97,10);
+draw fullcircle scaled 20 shifted (60,47) withcolor black;	7.83805231206
+8	draw (87,60)--(98,12);
+draw fullcircle scaled 19 shifted (59,47) withcolor black;	7.92358915821
+9	draw (35,69)--(91,34);
+draw fullcircle scaled 3 shifted (51,77) withcolor black;	7.7117191518
+10	draw (34,67)--(90,33);
+draw fullcircle scaled 2 shifted (50,77) withcolor black;	8.64754939083
+11	draw (35,68)--(91,31);
+draw fullcircle scaled 3 shifted (52,75) withcolor black;	8.11648442204
+12	draw (36,68)--(78,33);
+draw fullcircle scaled 2 shifted (79,76) withcolor black;	12.8413548051
+13	draw (36,72)--(96,34);
+draw fullcircle scaled 2 shifted (51,83) withcolor black;	7.71749733647
+14	draw (36,72)--(96,33);
+draw fullcircle scaled 2 shifted (51,82) withcolor black;	7.80556194628
+15	draw (36,72)--(96,34);
+draw fullcircle scaled 4 shifted (50,83) withcolor black;	7.48466374896
+16	draw (86,64)--(97,10);
+draw fullcircle scaled 17 shifted (57,49) withcolor black;	7.76815812655
+17	draw (84,64)--(96,10);
+draw fullcircle scaled 17 shifted (56,48) withcolor black;	7.96899687291
+18	draw (86,64)--(96,10);
+draw fullcircle scaled 17 shifted (56,49) withcolor black;	7.76505271364
+19	draw (87,65)--(97,11);
+draw fullcircle scaled 17 shifted (58,49) withcolor black;	7.79762554804
+20	draw (87,64)--(98,10);
+draw fullcircle scaled 17 shifted (59,48) withcolor black;	7.98173285992
+21	draw (88,64)--(96,9);
+draw fullcircle scaled 19 shifted (57,49) withcolor black;	7.73939886093
+22	draw (40,72)--(91,37);
+draw fullcircle scaled 2 shifted (51,79) withcolor black;	7.83580278368
+23	draw (38,72)--(91,37);
+draw fullcircle scaled 2 shifted (51,80) withcolor black;	7.79250481405
+24	draw (39,72)--(92,36);
+draw fullcircle scaled 2 shifted (38,77) withcolor black;	9.61321119208
+25	draw (88,65)--(97,11);
+draw fullcircle scaled 18 shifted (59,49) withcolor black;	7.88920098084
+26	draw (88,64)--(98,11);
+draw fullcircle scaled 17 shifted (58,50) withcolor black;	7.73022646842
+27	draw (86,64)--(97,11);
+draw fullcircle scaled 19 shifted (59,50) withcolor black;	7.50220706081
+28	draw (38,69)--(92,35);
+draw fullcircle scaled 1 shifted (51,79) withcolor black;	7.89532885143
+29	draw (37,67)--(90,34);
+draw fullcircle scaled 1 shifted (63,81) withcolor black;	7.65028091239
+30	draw (37,67)--(93,32);
+draw fullcircle scaled 1 shifted (48,78) withcolor black;	8.81385679592
+
+SURVIVORS:
+draw (34,68)--(96,35);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;
+draw (35,70)--(95,35);
+draw fullcircle scaled 1 shifted (65,81) withcolor black;
+draw (88,61)--(97,12);
+draw fullcircle scaled 20 shifted (60,48) withcolor black;
+draw (36,72)--(96,34);
+draw fullcircle scaled 4 shifted (50,83) withcolor black;
+draw (86,64)--(97,11);
+draw fullcircle scaled 19 shifted (59,50) withcolor black;
+draw (36,69)--(95,33);
+draw fullcircle scaled 1 shifted (64,82) withcolor black;
+draw (87,60)--(97,12);
+draw fullcircle scaled 22 shifted (58,48) withcolor black;
+draw (37,67)--(90,34);
+draw fullcircle scaled 1 shifted (63,81) withcolor black;
+draw (35,69)--(91,34);
+draw fullcircle scaled 3 shifted (51,77) withcolor black;
+GENERATION 7/15 COMPLETE
+
+
+STARTING GENERATION 8
+
+PROGRAMS:
+1	draw (34,68)--(96,35);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;	7.18614477062
+2	draw (34,69)--(96,35);
+draw fullcircle scaled 1 shifted (63,82) withcolor black;	7.06327396548
+3	draw (33,67)--(96,35);
+draw fullcircle scaled 1 shifted (63,79) withcolor black;	7.07965338596
+4	draw (34,69)--(95,36);
+draw fullcircle scaled 1 shifted (65,82) withcolor black;	7.33294819849
+5	draw (35,70)--(95,35);
+draw fullcircle scaled 1 shifted (65,81) withcolor black;	7.44930501732
+6	draw (34,70)--(94,34);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;	7.48657443459
+7	draw (35,71)--(94,35);
+draw fullcircle scaled 2 shifted (63,79) withcolor black;	7.2474124138
+8	draw (33,71)--(94,35);
+draw fullcircle scaled 1 shifted (63,80) withcolor black;	7.29796110829
+9	draw (88,61)--(97,12);
+draw fullcircle scaled 20 shifted (60,48) withcolor black;	7.47433659223
+10	draw (87,60)--(96,12);
+draw fullcircle scaled 25 shifted (61,54) withcolor black;	7.59392799447
+11	draw (86,60)--(97,11);
+draw fullcircle scaled 18 shifted (61,47) withcolor black;	8.04583774872
+12	draw (87,61)--(97,12);
+draw fullcircle scaled 20 shifted (61,49) withcolor black;	7.37223799673
+13	draw (36,72)--(96,34);
+draw fullcircle scaled 4 shifted (50,83) withcolor black;	7.48466374896
+14	draw (36,70)--(96,33);
+draw fullcircle scaled 4 shifted (51,82) withcolor black;	7.3371605323
+15	draw (37,71)--(95,31);
+draw fullcircle scaled 3 shifted (50,82) withcolor black;	7.92751921232
+16	draw (86,64)--(97,11);
+draw fullcircle scaled 19 shifted (59,50) withcolor black;	7.50220706081
+17	draw (86,63)--(97,10);
+draw fullcircle scaled 18 shifted (58,48) withcolor black;	8.03008698756
+18	draw (86,65)--(95,10);
+draw fullcircle scaled 19 shifted (58,50) withcolor black;	7.69893109933
+19	draw (36,69)--(95,33);
+draw fullcircle scaled 1 shifted (64,82) withcolor black;	7.508189519
+20	draw (34,68)--(94,31);
+draw fullcircle scaled 1 shifted (66,84) withcolor black;	8.32687436394
+21	draw (37,68)--(94,31);
+draw fullcircle scaled 1 shifted (63,82) withcolor black;	7.71478348191
+22	draw (87,60)--(97,12);
+draw fullcircle scaled 22 shifted (58,48) withcolor black;	7.5461891164
+23	draw (88,59)--(95,12);
+draw fullcircle scaled 22 shifted (57,47) withcolor black;	7.55194991212
+24	draw (86,59)--(93,12);
+draw fullcircle scaled 23 shifted (60,46) withcolor black;	7.499075275
+25	draw (37,67)--(90,34);
+draw fullcircle scaled 1 shifted (63,81) withcolor black;	7.65028091239
+26	draw (37,67)--(89,33);
+draw fullcircle scaled 2 shifted (62,81) withcolor black;	7.82183427701
+27	draw (11,65)--(89,34);
+draw fullcircle scaled 1 shifted (64,82) withcolor black;	15.2401650242
+28	draw (35,69)--(91,34);
+draw fullcircle scaled 3 shifted (51,77) withcolor black;	7.7117191518
+29	draw (35,70)--(90,34);
+draw fullcircle scaled 2 shifted (51,77) withcolor black;	8.25405898063
+30	draw (35,67)--(89,35);
+draw fullcircle scaled 4 shifted (49,78) withcolor black;	8.03797511884
+
+SURVIVORS:
+draw (34,69)--(96,35);
+draw fullcircle scaled 1 shifted (63,82) withcolor black;
+draw (33,67)--(96,35);
+draw fullcircle scaled 1 shifted (63,79) withcolor black;
+draw (34,68)--(96,35);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;
+draw (35,71)--(94,35);
+draw fullcircle scaled 2 shifted (63,79) withcolor black;
+draw (33,71)--(94,35);
+draw fullcircle scaled 1 shifted (63,80) withcolor black;
+draw (34,69)--(95,36);
+draw fullcircle scaled 1 shifted (65,82) withcolor black;
+draw (36,70)--(96,33);
+draw fullcircle scaled 4 shifted (51,82) withcolor black;
+draw (87,61)--(97,12);
+draw fullcircle scaled 20 shifted (61,49) withcolor black;
+draw (35,70)--(95,35);
+draw fullcircle scaled 1 shifted (65,81) withcolor black;
+GENERATION 8/15 COMPLETE
+
+
+STARTING GENERATION 9
+
+PROGRAMS:
+1	draw (34,69)--(96,35);
+draw fullcircle scaled 1 shifted (63,82) withcolor black;	7.06327396548
+2	draw (33,68)--(96,34);
+draw fullcircle scaled 1 shifted (61,82) withcolor black;	7.09026649939
+3	draw (32,70)--(95,34);
+draw fullcircle scaled 1 shifted (62,83) withcolor black;	7.49548527837
+4	draw (35,70)--(95,36);
+draw fullcircle scaled 2 shifted (63,82) withcolor black;	7.04328939668
+5	draw (33,67)--(96,35);
+draw fullcircle scaled 1 shifted (63,79) withcolor black;	7.07965338596
+6	draw (31,67)--(94,34);
+draw fullcircle scaled 2 shifted (62,78) withcolor black;	7.83663734653
+7	draw (33,67)--(96,35);
+draw fullcircle scaled 2 shifted (61,79) withcolor black;	6.84777122794
+8	draw (34,67)--(96,35);
+draw fullcircle scaled 1 shifted (62,77) withcolor black;	6.91439582546
+9	draw (34,68)--(96,35);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;	7.18614477062
+10	draw (33,66)--(96,32);
+draw fullcircle scaled 2 shifted (63,93) withcolor black;	8.56102673472
+11	draw (34,67)--(96,34);
+draw fullcircle scaled 2 shifted (53,98) withcolor black;	8.9561150785
+12	draw (34,59)--(94,34);
+draw fullcircle scaled 1 shifted (63,81) withcolor black;	7.43321053455
+13	draw (35,71)--(94,35);
+draw fullcircle scaled 2 shifted (63,79) withcolor black;	7.2474124138
+14	draw (34,72)--(93,45);
+draw fullcircle scaled 2 shifted (63,79) withcolor black;	7.72743739921
+15	draw (45,70)--(94,36);
+draw fullcircle scaled 1 shifted (61,78) withcolor black;	7.25096547117
+16	draw (33,71)--(94,35);
+draw fullcircle scaled 1 shifted (63,80) withcolor black;	7.29796110829
+17	draw (28,71)--(86,33);
+draw fullcircle scaled 1 shifted (61,81) withcolor black;	10.3055429847
+18	draw (32,69)--(92,34);
+draw fullcircle scaled 2 shifted (63,81) withcolor black;	7.81133486126
+19	draw (34,69)--(95,36);
+draw fullcircle scaled 1 shifted (65,82) withcolor black;	7.33294819849
+20	draw (34,68)--(93,34);
+draw fullcircle scaled 1 shifted (64,82) withcolor black;	7.55948060159
+21	draw (33,68)--(94,36);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;	7.21634757014
+22	draw (36,70)--(96,33);
+draw fullcircle scaled 4 shifted (51,82) withcolor black;	7.3371605323
+23	draw (36,88)--(96,32);
+draw fullcircle scaled 3 shifted (50,83) withcolor black;	8.41252144879
+24	draw (37,71)--(97,12);
+draw fullcircle scaled 4 shifted (51,82) withcolor black;	10.5278045568
+25	draw (87,61)--(97,12);
+draw fullcircle scaled 20 shifted (61,49) withcolor black;	7.37223799673
+26	draw (86,59)--(97,11);
+draw fullcircle scaled 18 shifted (60,49) withcolor black;	7.60201591647
+27	draw (88,59)--(96,11);
+draw fullcircle scaled 19 shifted (59,49) withcolor black;	7.42019250628
+28	draw (35,70)--(95,35);
+draw fullcircle scaled 1 shifted (65,81) withcolor black;	7.44930501732
+29	draw (34,69)--(95,33);
+draw fullcircle scaled 1 shifted (63,80) withcolor black;	7.36291852312
+30	draw (36,70)--(94,50);
+draw fullcircle scaled 1 shifted (65,81) withcolor black;	9.28164788762
+
+SURVIVORS:
+draw (33,67)--(96,35);
+draw fullcircle scaled 2 shifted (61,79) withcolor black;
+draw (34,67)--(96,35);
+draw fullcircle scaled 1 shifted (62,77) withcolor black;
+draw (35,70)--(95,36);
+draw fullcircle scaled 2 shifted (63,82) withcolor black;
+draw (34,69)--(96,35);
+draw fullcircle scaled 1 shifted (63,82) withcolor black;
+draw (33,67)--(96,35);
+draw fullcircle scaled 1 shifted (63,79) withcolor black;
+draw (33,68)--(96,34);
+draw fullcircle scaled 1 shifted (61,82) withcolor black;
+draw (34,68)--(96,35);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;
+draw (33,68)--(94,36);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;
+draw (35,71)--(94,35);
+draw fullcircle scaled 2 shifted (63,79) withcolor black;
+GENERATION 9/15 COMPLETE
+
+
+STARTING GENERATION 10
+
+PROGRAMS:
+1	draw (33,67)--(96,35);
+draw fullcircle scaled 2 shifted (61,79) withcolor black;	6.84777122794
+2	draw (34,66)--(95,35);
+draw fullcircle scaled 2 shifted (61,78) withcolor black;	6.89645704662
+3	draw (32,67)--(95,34);
+draw fullcircle scaled 1 shifted (62,78) withcolor black;	7.49038796945
+4	draw (32,66)--(95,35);
+draw fullcircle scaled 2 shifted (61,79) withcolor black;	7.64223263616
+5	draw (34,67)--(96,35);
+draw fullcircle scaled 1 shifted (62,77) withcolor black;	6.91439582546
+6	draw (34,68)--(94,36);
+draw fullcircle scaled 1 shifted (62,78) withcolor black;	6.9506563432
+7	draw (33,66)--(96,35);
+draw fullcircle scaled 3 shifted (61,76) withcolor black;	6.75514430233
+8	draw (35,67)--(97,35);
+draw fullcircle scaled 1 shifted (61,76) withcolor black;	6.82665166195
+9	draw (35,70)--(95,36);
+draw fullcircle scaled 2 shifted (63,82) withcolor black;	7.04328939668
+10	draw (35,71)--(97,36);
+draw fullcircle scaled 2 shifted (61,81) withcolor black;	6.80290530658
+11	draw (34,70)--(94,35);
+draw fullcircle scaled 1 shifted (80,83) withcolor black;	9.77606562743
+12	draw (33,69)--(95,35);
+draw fullcircle scaled 3 shifted (54,82) withcolor black;	6.94882361266
+13	draw (34,69)--(96,35);
+draw fullcircle scaled 1 shifted (63,82) withcolor black;	7.06327396548
+14	draw (33,70)--(95,36);
+draw fullcircle scaled 1 shifted (62,81) withcolor black;	7.11601674239
+15	draw (33,68)--(95,34);
+draw fullcircle scaled 1 shifted (62,80) withcolor black;	7.2690781988
+16	draw (33,67)--(96,35);
+draw fullcircle scaled 1 shifted (63,79) withcolor black;	7.07965338596
+17	draw (32,68)--(97,33);
+draw fullcircle scaled 1 shifted (62,80) withcolor black;	7.43335612225
+18	draw (34,66)--(95,34);
+draw fullcircle scaled 1 shifted (62,78) withcolor black;	7.14045142951
+19	draw (33,68)--(96,34);
+draw fullcircle scaled 1 shifted (61,82) withcolor black;	7.09026649939
+20	draw (43,67)--(95,34);
+draw fullcircle scaled 1 shifted (61,82) withcolor black;	6.97291510591
+21	draw (33,68)--(96,33);
+draw fullcircle scaled 1 shifted (61,81) withcolor black;	7.26071026769
+22	draw (34,68)--(96,35);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;	7.18614477062
+23	draw (35,66)--(95,35);
+draw fullcircle scaled 1 shifted (62,80) withcolor black;	6.86122131819
+24	draw (33,69)--(95,34);
+draw fullcircle scaled 2 shifted (64,81) withcolor black;	7.38687851597
+25	draw (33,68)--(94,36);
+draw fullcircle scaled 1 shifted (64,81) withcolor black;	7.21634757014
+26	draw (31,67)--(94,36);
+draw fullcircle scaled 2 shifted (64,81) withcolor black;	7.94219154653
+27	draw (32,68)--(93,37);
+draw fullcircle scaled 1 shifted (62,80) withcolor black;	7.19222165443
+28	draw (35,71)--(94,35);
+draw fullcircle scaled 2 shifted (63,79) withcolor black;	7.2474124138
+29	draw (36,70)--(94,35);
+draw fullcircle scaled 2 shifted (63,76) withcolor black;	7.43165648395
+30	draw (35,88)--(81,34);
+draw fullcircle scaled 1 shifted (62,79) withcolor black;	9.0865377434
+
+SURVIVORS:
+draw (33,66)--(96,35);
+draw fullcircle scaled 3 shifted (61,76) withcolor black;
+draw (35,71)--(97,36);
+draw fullcircle scaled 2 shifted (61,81) withcolor black;
+draw (35,67)--(97,35);
+draw fullcircle scaled 1 shifted (61,76) withcolor black;
+draw (33,67)--(96,35);
+draw fullcircle scaled 2 shifted (61,79) withcolor black;
+draw (35,66)--(95,35);
+draw fullcircle scaled 1 shifted (62,80) withcolor black;
+draw (34,66)--(95,35);
+draw fullcircle scaled 2 shifted (61,78) withcolor black;
+draw (34,67)--(96,35);
+draw fullcircle scaled 1 shifted (62,77) withcolor black;
+draw (33,69)--(95,35);
+draw fullcircle scaled 3 shifted (54,82) withcolor black;
+draw (34,68)--(94,36);
+draw fullcircle scaled 1 shifted (62,78) withcolor black;
+GENERATION 10/15 COMPLETE
+
+
+STARTING GENERATION 11
+
+PROGRAMS:
+1	draw (33,66)--(96,35);
+draw fullcircle scaled 3 shifted (61,76) withcolor black;	6.75514430233
+2	draw (34,65)--(95,34);
+draw fullcircle scaled 2 shifted (61,75) withcolor black;	7.2045731773
+3	draw (32,65)--(97,34);
+draw fullcircle scaled 6 shifted (60,75) withcolor black;	6.39591464102
+4	draw (32,65)--(95,34);
+draw fullcircle scaled 3 shifted (59,78) withcolor black;	7.13711531603
+5	draw (35,71)--(97,36);
+draw fullcircle scaled 2 shifted (61,81) withcolor black;	6.80290530658
+6	draw (36,71)--(95,4);
+draw fullcircle scaled 6 shifted (60,79) withcolor black;	12.3231386026
+7	draw (34,71)--(97,35);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;	6.31580976337
+8	draw (35,70)--(96,37);
+draw fullcircle scaled 2 shifted (69,80) withcolor black;	8.03726062247
+9	draw (35,67)--(97,35);
+draw fullcircle scaled 1 shifted (61,76) withcolor black;	6.82665166195
+10	draw (35,81)--(96,34);
+draw fullcircle scaled 1 shifted (61,75) withcolor black;	7.87940264994
+11	draw (35,66)--(97,34);
+draw fullcircle scaled 1 shifted (61,75) withcolor black;	6.96836706032
+12	draw (20,68)--(96,34);
+draw fullcircle scaled 1 shifted (61,76) withcolor black;	11.197917865
+13	draw (33,67)--(96,35);
+draw fullcircle scaled 2 shifted (61,79) withcolor black;	6.84777122794
+14	draw (32,66)--(95,35);
+draw fullcircle scaled 3 shifted (60,75) withcolor black;	7.05222482929
+15	draw (31,67)--(96,34);
+draw fullcircle scaled 1 shifted (61,81) withcolor black;	7.48647364619
+16	draw (35,66)--(95,35);
+draw fullcircle scaled 1 shifted (62,80) withcolor black;	6.86122131819
+17	draw (32,66)--(94,33);
+draw fullcircle scaled 1 shifted (61,80) withcolor black;	7.64093269531
+18	draw (35,65)--(94,51);
+draw fullcircle scaled 2 shifted (61,82) withcolor black;	8.44508944417
+19	draw (34,66)--(95,35);
+draw fullcircle scaled 2 shifted (61,78) withcolor black;	6.89645704662
+20	draw (32,65)--(96,35);
+draw fullcircle scaled 2 shifted (82,77) withcolor black;	10.3779785525
+21	draw (34,57)--(94,35);
+draw fullcircle scaled 1 shifted (60,78) withcolor black;	6.87837938066
+22	draw (34,67)--(96,35);
+draw fullcircle scaled 1 shifted (62,77) withcolor black;	6.91439582546
+23	draw (34,68)--(97,34);
+draw fullcircle scaled 2 shifted (62,76) withcolor black;	7.10754828368
+24	draw (34,66)--(96,51);
+draw fullcircle scaled 1 shifted (60,76) withcolor black;	8.80069730594
+25	draw (33,69)--(95,35);
+draw fullcircle scaled 3 shifted (54,82) withcolor black;	6.94882361266
+26	draw (31,68)--(96,33);
+draw fullcircle scaled 2 shifted (52,83) withcolor black;	7.81637212652
+27	draw (33,69)--(96,34);
+draw fullcircle scaled 3 shifted (52,83) withcolor black;	7.15169304703
+28	draw (34,68)--(94,36);
+draw fullcircle scaled 1 shifted (62,78) withcolor black;	6.9506563432
+29	draw (34,67)--(94,15);
+draw fullcircle scaled 1 shifted (61,78) withcolor black;	11.6024432531
+30	draw (34,67)--(92,36);
+draw fullcircle scaled 1 shifted (61,78) withcolor black;	6.96089274175
+
+SURVIVORS:
+draw (34,71)--(97,35);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;
+draw (32,65)--(97,34);
+draw fullcircle scaled 6 shifted (60,75) withcolor black;
+draw (33,66)--(96,35);
+draw fullcircle scaled 3 shifted (61,76) withcolor black;
+draw (35,71)--(97,36);
+draw fullcircle scaled 2 shifted (61,81) withcolor black;
+draw (35,67)--(97,35);
+draw fullcircle scaled 1 shifted (61,76) withcolor black;
+draw (33,67)--(96,35);
+draw fullcircle scaled 2 shifted (61,79) withcolor black;
+draw (35,66)--(95,35);
+draw fullcircle scaled 1 shifted (62,80) withcolor black;
+draw (34,57)--(94,35);
+draw fullcircle scaled 1 shifted (60,78) withcolor black;
+draw (34,66)--(95,35);
+draw fullcircle scaled 2 shifted (61,78) withcolor black;
+GENERATION 11/15 COMPLETE
+
+
+STARTING GENERATION 12
+
+PROGRAMS:
+1	draw (34,71)--(97,35);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;	6.31580976337
+2	draw (34,71)--(96,34);
+draw fullcircle scaled 3 shifted (58,79) withcolor black;	6.4846607543
+3	draw (34,72)--(97,35);
+draw fullcircle scaled 3 shifted (58,79) withcolor black;	6.41070095338
+4	draw (32,71)--(97,32);
+draw fullcircle scaled 2 shifted (57,80) withcolor black;	7.60954945244
+5	draw (32,65)--(97,34);
+draw fullcircle scaled 6 shifted (60,75) withcolor black;	6.39591464102
+6	draw (32,65)--(96,35);
+draw fullcircle scaled 5 shifted (74,75) withcolor black;	8.64479000548
+7	draw (31,67)--(96,34);
+draw fullcircle scaled 6 shifted (59,75) withcolor black;	6.3523106487
+8	draw (31,65)--(96,34);
+draw fullcircle scaled 5 shifted (59,75) withcolor black;	6.76249016293
+9	draw (33,66)--(96,35);
+draw fullcircle scaled 3 shifted (61,76) withcolor black;	6.75514430233
+10	draw (34,67)--(94,35);
+draw fullcircle scaled 1 shifted (61,76) withcolor black;	7.02798088538
+11	draw (33,67)--(94,35);
+draw fullcircle scaled 2 shifted (61,76) withcolor black;	7.17501977628
+12	draw (33,85)--(98,34);
+draw fullcircle scaled 4 shifted (59,76) withcolor black;	7.50205628769
+13	draw (35,71)--(97,36);
+draw fullcircle scaled 2 shifted (61,81) withcolor black;	6.80290530658
+14	draw (35,69)--(96,36);
+draw fullcircle scaled 4 shifted (62,81) withcolor black;	6.19779319832
+15	draw (34,71)--(96,34);
+draw fullcircle scaled 3 shifted (60,81) withcolor black;	6.46504257168
+16	draw (35,67)--(97,35);
+draw fullcircle scaled 1 shifted (61,76) withcolor black;	6.82665166195
+17	draw (35,65)--(96,34);
+draw fullcircle scaled 1 shifted (61,76) withcolor black;	7.05483451086
+18	draw (33,65)--(97,33);
+draw fullcircle scaled 1 shifted (61,77) withcolor black;	7.29681871541
+19	draw (33,67)--(96,35);
+draw fullcircle scaled 2 shifted (61,79) withcolor black;	6.84777122794
+20	draw (31,66)--(96,34);
+draw fullcircle scaled 2 shifted (61,80) withcolor black;	7.98425957582
+21	draw (34,67)--(75,35);
+draw fullcircle scaled 1 shifted (60,80) withcolor black;	9.8258829959
+22	draw (35,66)--(95,35);
+draw fullcircle scaled 1 shifted (62,80) withcolor black;	6.86122131819
+23	draw (36,66)--(95,34);
+draw fullcircle scaled 1 shifted (62,80) withcolor black;	7.06251381443
+24	draw (35,66)--(94,34);
+draw fullcircle scaled 1 shifted (60,80) withcolor black;	6.89674997397
+25	draw (34,57)--(94,35);
+draw fullcircle scaled 1 shifted (60,78) withcolor black;	6.87837938066
+26	draw (35,56)--(94,35);
+draw fullcircle scaled 2 shifted (58,76) withcolor black;	6.72572621552
+27	draw (35,58)--(95,36);
+draw fullcircle scaled 1 shifted (59,77) withcolor black;	6.47899243945
+28	draw (34,66)--(95,35);
+draw fullcircle scaled 2 shifted (61,78) withcolor black;	6.89645704662
+29	draw (31,67)--(93,35);
+draw fullcircle scaled 2 shifted (59,70) withcolor black;	7.48080666353
+30	draw (33,63)--(94,34);
+draw fullcircle scaled 1 shifted (60,77) withcolor black;	7.36391298627
+
+SURVIVORS:
+draw (35,69)--(96,36);
+draw fullcircle scaled 4 shifted (62,81) withcolor black;
+draw (34,71)--(97,35);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;
+draw (31,67)--(96,34);
+draw fullcircle scaled 6 shifted (59,75) withcolor black;
+draw (32,65)--(97,34);
+draw fullcircle scaled 6 shifted (60,75) withcolor black;
+draw (34,72)--(97,35);
+draw fullcircle scaled 3 shifted (58,79) withcolor black;
+draw (34,71)--(96,34);
+draw fullcircle scaled 3 shifted (60,81) withcolor black;
+draw (35,58)--(95,36);
+draw fullcircle scaled 1 shifted (59,77) withcolor black;
+draw (34,71)--(96,34);
+draw fullcircle scaled 3 shifted (58,79) withcolor black;
+draw (35,56)--(94,35);
+draw fullcircle scaled 2 shifted (58,76) withcolor black;
+GENERATION 12/15 COMPLETE
+
+
+STARTING GENERATION 13
+
+PROGRAMS:
+1	draw (35,69)--(96,36);
+draw fullcircle scaled 4 shifted (62,81) withcolor black;	6.19779319832
+2	draw (35,69)--(96,34);
+draw fullcircle scaled 4 shifted (62,80) withcolor black;	6.35765861807
+3	draw (34,69)--(97,37);
+draw fullcircle scaled 4 shifted (61,81) withcolor black;	6.0912050515
+4	draw (34,69)--(96,34);
+draw fullcircle scaled 4 shifted (61,80) withcolor black;	6.34271831224
+5	draw (34,71)--(97,35);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;	6.31580976337
+6	draw (34,70)--(96,35);
+draw fullcircle scaled 3 shifted (60,79) withcolor black;	6.28980520851
+7	draw (33,70)--(95,34);
+draw fullcircle scaled 3 shifted (60,78) withcolor black;	6.75689763178
+8	draw (33,65)--(94,34);
+draw fullcircle scaled 3 shifted (59,79) withcolor black;	6.60475913476
+9	draw (31,67)--(96,34);
+draw fullcircle scaled 6 shifted (59,75) withcolor black;	6.3523106487
+10	draw (30,68)--(96,33);
+draw fullcircle scaled 6 shifted (59,75) withcolor black;	6.79530986932
+11	draw (31,67)--(95,32);
+draw fullcircle scaled 5 shifted (59,73) withcolor black;	7.03062056286
+12	draw (29,66)--(94,35);
+draw fullcircle scaled 5 shifted (59,75) withcolor black;	7.32763907419
+13	draw (32,65)--(97,34);
+draw fullcircle scaled 6 shifted (60,75) withcolor black;	6.39591464102
+14	draw (31,65)--(96,32);
+draw fullcircle scaled 7 shifted (60,73) withcolor black;	6.71358085239
+15	draw (32,64)--(96,35);
+draw fullcircle scaled 5 shifted (60,74) withcolor black;	6.46501993557
+16	draw (34,72)--(97,35);
+draw fullcircle scaled 3 shifted (58,79) withcolor black;	6.41070095338
+17	draw (33,73)--(97,35);
+draw fullcircle scaled 2 shifted (56,81) withcolor black;	7.36829439887
+18	draw (34,70)--(94,35);
+draw fullcircle scaled 2 shifted (56,77) withcolor black;	6.97216839727
+19	draw (34,71)--(96,34);
+draw fullcircle scaled 3 shifted (60,81) withcolor black;	6.46504257168
+20	draw (34,69)--(97,34);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;	6.32890707815
+21	draw (34,83)--(96,34);
+draw fullcircle scaled 4 shifted (58,81) withcolor black;	7.02312646622
+22	draw (35,58)--(95,36);
+draw fullcircle scaled 1 shifted (59,77) withcolor black;	6.47899243945
+23	draw (34,58)--(93,34);
+draw fullcircle scaled 1 shifted (58,78) withcolor black;	7.27587757524
+24	draw (34,58)--(95,36);
+draw fullcircle scaled 1 shifted (59,76) withcolor black;	6.77740771936
+25	draw (34,71)--(96,34);
+draw fullcircle scaled 3 shifted (58,79) withcolor black;	6.4846607543
+26	draw (34,69)--(95,34);
+draw fullcircle scaled 3 shifted (57,79) withcolor black;	6.53130558501
+27	draw (33,71)--(96,32);
+draw fullcircle scaled 3 shifted (57,79) withcolor black;	6.96300688645
+28	draw (35,56)--(94,35);
+draw fullcircle scaled 2 shifted (58,76) withcolor black;	6.72572621552
+29	draw (35,57)--(94,34);
+draw fullcircle scaled 2 shifted (75,78) withcolor black;	10.0036919639
+30	draw (35,56)--(93,33);
+draw fullcircle scaled 2 shifted (57,75) withcolor black;	7.31116185551
+
+SURVIVORS:
+draw (34,69)--(97,37);
+draw fullcircle scaled 4 shifted (61,81) withcolor black;
+draw (35,69)--(96,36);
+draw fullcircle scaled 4 shifted (62,81) withcolor black;
+draw (34,70)--(96,35);
+draw fullcircle scaled 3 shifted (60,79) withcolor black;
+draw (34,71)--(97,35);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;
+draw (34,69)--(97,34);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;
+draw (34,69)--(96,34);
+draw fullcircle scaled 4 shifted (61,80) withcolor black;
+draw (31,67)--(96,34);
+draw fullcircle scaled 6 shifted (59,75) withcolor black;
+draw (35,69)--(96,34);
+draw fullcircle scaled 4 shifted (62,80) withcolor black;
+draw (32,65)--(97,34);
+draw fullcircle scaled 6 shifted (60,75) withcolor black;
+GENERATION 13/15 COMPLETE
+
+
+STARTING GENERATION 14
+
+PROGRAMS:
+1	draw (34,69)--(97,37);
+draw fullcircle scaled 4 shifted (61,81) withcolor black;	6.0912050515
+2	draw (34,70)--(97,28);
+draw fullcircle scaled 3 shifted (60,81) withcolor black;	7.2992556179
+3	draw (32,68)--(97,36);
+draw fullcircle scaled 3 shifted (61,81) withcolor black;	6.97358575459
+4	draw (35,68)--(96,35);
+draw fullcircle scaled 3 shifted (61,80) withcolor black;	6.18902626026
+5	draw (35,69)--(96,36);
+draw fullcircle scaled 4 shifted (62,81) withcolor black;	6.19779319832
+6	draw (34,69)--(97,35);
+draw fullcircle scaled 3 shifted (61,80) withcolor black;	6.23726538171
+7	draw (34,68)--(94,37);
+draw fullcircle scaled 5 shifted (62,81) withcolor black;	5.95001873734
+8	draw (34,68)--(96,34);
+draw fullcircle scaled 3 shifted (61,81) withcolor black;	6.41870960182
+9	draw (34,70)--(96,35);
+draw fullcircle scaled 3 shifted (60,79) withcolor black;	6.28980520851
+10	draw (32,68)--(95,33);
+draw fullcircle scaled 2 shifted (60,79) withcolor black;	7.57559259337
+11	draw (33,69)--(95,35);
+draw fullcircle scaled 3 shifted (59,79) withcolor black;	6.58633487203
+12	draw (34,68)--(96,34);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;	6.38190084603
+13	draw (34,71)--(97,35);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;	6.31580976337
+14	draw (33,74)--(96,35);
+draw fullcircle scaled 4 shifted (58,77) withcolor black;	6.66290226486
+15	draw (32,70)--(98,34);
+draw fullcircle scaled 1 shifted (59,79) withcolor black;	7.31120233996
+16	draw (34,69)--(97,34);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;	6.32890707815
+17	draw (33,68)--(96,34);
+draw fullcircle scaled 4 shifted (60,79) withcolor black;	6.48895042094
+18	draw (33,68)--(96,34);
+draw fullcircle scaled 3 shifted (63,81) withcolor black;	6.70327529246
+19	draw (34,69)--(96,34);
+draw fullcircle scaled 4 shifted (61,80) withcolor black;	6.34271831224
+20	draw (33,69)--(96,36);
+draw fullcircle scaled 4 shifted (59,79) withcolor black;	6.4078749973
+21	draw (33,68)--(94,35);
+draw fullcircle scaled 4 shifted (61,80) withcolor black;	6.52439072695
+22	draw (31,67)--(96,34);
+draw fullcircle scaled 6 shifted (59,75) withcolor black;	6.3523106487
+23	draw (31,67)--(95,33);
+draw fullcircle scaled 9 shifted (59,74) withcolor black;	6.33383957588
+24	draw (31,67)--(95,33);
+draw fullcircle scaled 5 shifted (60,76) withcolor black;	6.77670562782
+25	draw (35,69)--(96,34);
+draw fullcircle scaled 4 shifted (62,80) withcolor black;	6.35765861807
+26	draw (36,68)--(96,33);
+draw fullcircle scaled 3 shifted (61,79) withcolor black;	6.46387069267
+27	draw (43,68)--(95,32);
+draw fullcircle scaled 4 shifted (61,79) withcolor black;	6.68966048195
+28	draw (32,65)--(97,34);
+draw fullcircle scaled 6 shifted (60,75) withcolor black;	6.39591464102
+29	draw (31,61)--(95,33);
+draw fullcircle scaled 6 shifted (59,74) withcolor black;	6.76172901546
+30	draw (31,64)--(97,35);
+draw fullcircle scaled 6 shifted (58,75) withcolor black;	6.37386893657
+
+SURVIVORS:
+draw (34,68)--(94,37);
+draw fullcircle scaled 5 shifted (62,81) withcolor black;
+draw (34,69)--(97,37);
+draw fullcircle scaled 4 shifted (61,81) withcolor black;
+draw (35,68)--(96,35);
+draw fullcircle scaled 3 shifted (61,80) withcolor black;
+draw (35,69)--(96,36);
+draw fullcircle scaled 4 shifted (62,81) withcolor black;
+draw (34,69)--(97,35);
+draw fullcircle scaled 3 shifted (61,80) withcolor black;
+draw (34,70)--(96,35);
+draw fullcircle scaled 3 shifted (60,79) withcolor black;
+draw (34,71)--(97,35);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;
+draw (34,69)--(97,34);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;
+draw (31,67)--(95,33);
+draw fullcircle scaled 9 shifted (59,74) withcolor black;
+GENERATION 14/15 COMPLETE
+
+
+STARTING GENERATION 15
+
+PROGRAMS:
+1	draw (34,68)--(94,37);
+draw fullcircle scaled 5 shifted (62,81) withcolor black;	5.95001873734
+2	draw (34,68)--(94,33);
+draw fullcircle scaled 5 shifted (62,81) withcolor black;	6.48061593963
+3	draw (34,67)--(94,36);
+draw fullcircle scaled 5 shifted (64,62) withcolor black;	8.56982020611
+4	draw (34,68)--(92,36);
+draw fullcircle scaled 5 shifted (62,91) withcolor black;	7.20140324104
+5	draw (34,69)--(97,37);
+draw fullcircle scaled 4 shifted (61,81) withcolor black;	6.0912050515
+6	draw (35,69)--(98,36);
+draw fullcircle scaled 4 shifted (60,78) withcolor black;	6.12708056922
+7	draw (34,68)--(96,36);
+draw fullcircle scaled 4 shifted (61,79) withcolor black;	6.02771744362
+8	draw (31,69)--(96,37);
+draw fullcircle scaled 3 shifted (60,79) withcolor black;	7.25455661856
+9	draw (35,68)--(96,35);
+draw fullcircle scaled 3 shifted (61,80) withcolor black;	6.18902626026
+10	draw (33,68)--(95,35);
+draw fullcircle scaled 3 shifted (61,79) withcolor black;	6.4976237985
+11	draw (35,67)--(96,35);
+draw fullcircle scaled 2 shifted (60,77) withcolor black;	6.75106813965
+12	draw (34,69)--(95,36);
+draw fullcircle scaled 4 shifted (61,80) withcolor black;	6.16487431263
+13	draw (35,69)--(96,36);
+draw fullcircle scaled 4 shifted (62,81) withcolor black;	6.19779319832
+14	draw (34,69)--(95,35);
+draw fullcircle scaled 4 shifted (64,81) withcolor black;	6.51714214136
+15	draw (34,67)--(95,36);
+draw fullcircle scaled 3 shifted (62,80) withcolor black;	6.23038756606
+16	draw (34,69)--(97,35);
+draw fullcircle scaled 3 shifted (61,80) withcolor black;	6.23726538171
+17	draw (34,69)--(96,36);
+draw fullcircle scaled 2 shifted (61,79) withcolor black;	6.74378202472
+18	draw (35,69)--(97,34);
+draw fullcircle scaled 1 shifted (61,80) withcolor black;	6.83754256781
+19	draw (34,70)--(96,35);
+draw fullcircle scaled 3 shifted (60,79) withcolor black;	6.28980520851
+20	draw (34,70)--(95,35);
+draw fullcircle scaled 2 shifted (59,78) withcolor black;	6.89501497672
+21	draw (45,68)--(93,34);
+draw fullcircle scaled 2 shifted (59,77) withcolor black;	7.25101620243
+22	draw (34,71)--(97,35);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;	6.31580976337
+23	draw (34,72)--(97,36);
+draw fullcircle scaled 1 shifted (61,78) withcolor black;	6.9570559609
+24	draw (34,69)--(97,36);
+draw fullcircle scaled 4 shifted (61,79) withcolor black;	6.24690329029
+25	draw (34,69)--(97,34);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;	6.32890707815
+26	draw (35,68)--(97,33);
+draw fullcircle scaled 3 shifted (60,80) withcolor black;	6.32799674207
+27	draw (34,69)--(96,34);
+draw fullcircle scaled 2 shifted (59,79) withcolor black;	6.85497307754
+28	draw (31,67)--(95,33);
+draw fullcircle scaled 9 shifted (59,74) withcolor black;	6.33383957588
+29	draw (30,68)--(95,32);
+draw fullcircle scaled 9 shifted (59,73) withcolor black;	6.81774689334
+30	draw (32,67)--(97,33);
+draw fullcircle scaled 8 shifted (53,74) withcolor black;	6.83160790285
+
+SURVIVORS:
+draw (34,68)--(94,37);
+draw fullcircle scaled 5 shifted (62,81) withcolor black;
+draw (34,68)--(96,36);
+draw fullcircle scaled 4 shifted (61,79) withcolor black;
+draw (34,69)--(97,37);
+draw fullcircle scaled 4 shifted (61,81) withcolor black;
+draw (35,69)--(98,36);
+draw fullcircle scaled 4 shifted (60,78) withcolor black;
+draw (34,69)--(95,36);
+draw fullcircle scaled 4 shifted (61,80) withcolor black;
+draw (35,68)--(96,35);
+draw fullcircle scaled 3 shifted (61,80) withcolor black;
+draw (35,69)--(96,36);
+draw fullcircle scaled 4 shifted (62,81) withcolor black;
+draw (34,67)--(95,36);
+draw fullcircle scaled 3 shifted (62,80) withcolor black;
+draw (34,69)--(97,35);
+draw fullcircle scaled 3 shifted (61,80) withcolor black;
+GENERATION 15/15 COMPLETE
+
+***** Best code: *****
+draw (34,68)--(94,37);
+draw fullcircle scaled 5 shifted (62,81) withcolor black;
+***** Original: *****
+draw (54,29)--(60,90);
+draw fullcircle scaled 11 shifted (88,45) withcolor black;
+***** Score: *****
+5.95001873734
+***** Best scores over generations: *****
+[10.63962848180673, 10.63962848180673, 8.034156052918972, 7.889200980839667, 7.474336592225816, 7.449305017315075, 7.1861447706248125, 7.063273965477875, 6.847771227936603, 6.755144302328115, 6.315809763373815, 6.19779319831907, 6.091205051502974, 5.950018737337256, 5.950018737337256, 5.950018737337256]
+
+**************************************
+************   END TEST   ************
+**************************************
+Test completed at 2017-05-13 12:03:44.928000.

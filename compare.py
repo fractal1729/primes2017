@@ -18,9 +18,39 @@ def edge_hausdorff(img1, img2):
 		logging.warning("edge_hausdorff: attempted to compare two images that are not the same shape")
 	edge1 = cv2.Canny(img1,100,200) # thresholds may need tweaking?
 	edge2 = cv2.Canny(img2,100,200)
-	return hausdorff(edge1, edge2)
+	return avg_hausdorff(edge1, edge2)
 
-def hausdorff(edge1, edge2):
+def avg_hausdorff(edge1, edge2):
+	A = []
+	B = []
+	for i in range(0,edge1.shape[0]):
+		for j in range(0,edge1.shape[1]):
+			if edge1[i][j] == 255:
+				A.append([i,j])
+			if edge2[i][j] == 255:
+				B.append([i,j])
+
+	hBA = 0
+	for i in range(len(A)):
+		mindist = np.inf
+		for j in range(len(B)):
+			dist = math.sqrt(((A[i][0]-B[j][0])**2+(A[i][1]-B[j][1])**2))
+			mindist = min(mindist, dist)
+		hBA += mindist
+	hBA = hBA/len(A)
+
+	hAB = 0
+	for i in range(len(B)):
+		mindist = np.inf
+		for j in range(len(A)):
+			dist = math.sqrt(((B[i][0]-A[j][0])**2+(B[i][1]-A[j][1])**2))
+			mindist = min(mindist, dist)
+		hAB += mindist
+	hAB = hAB/len(B)
+	
+	return max(hAB,hBA)
+
+def max_hausdorff(edge1, edge2):
 	A = []
 	B = []
 	for i in range(0,edge1.shape[0]):

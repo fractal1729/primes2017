@@ -32,7 +32,7 @@ def testSimpleCircle(numiter):
 ************   END TEST   ************
 **************************************'''
 
-def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(None), showgraphs=False, run_id="Run Data"):
+def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(None), showgraphs=False, run_id="RUN"):
 	print '''**************************************
 ***********   START TEST   ***********
 **************************************
@@ -41,10 +41,11 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 **************************************
 '''
 	#goalsrc = '''fill fullcircle scaled 12 shifted (30,20) withcolor black;'''
-	#goalsrc = mptree.Program().tocode() # generate random program
-	goalsrc = mptree.Program([mptree.Draw()]).tocode() # generate two random lines code
+	goalsrc = mptree.Program().tocode() # generate random program
+	#goalsrc = mptree.Program([mptree.Draw()]).tocode() # generate randome line code
+	#goalsrc = '''draw fullcircle scaled 25 shifted (42,33) withcolor black;\ndraw fullcircle scaled 11 shifted (88,45) withcolor black;'''
 	goalpix = rendermp.renderImage(goalsrc)
-	bestprog, best_scores = genmp.beamSearch(goalpix, numiter, survival, numprogs, dw)
+	bestprog, best_scores = genmp.beamSearch(goalpix, numiter, survival, numprogs, dw, run_id)
 	print "***** Best code: *****\n" + bestprog.tocode()
 	print "***** Original: *****\n" + goalsrc
 	print "***** Score: *****\n" + str(best_scores[-1])
@@ -96,6 +97,6 @@ if __name__ == "__main__":
 	dw = dataWriter("./data/RUN"+sys.argv[1]+"-data.txt")
 	#dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
-	testBeamHausdorff(15, 0.3, 30, dw, True, run_id)
+	testBeamHausdorff(12, 0.3, 50, dw, True, run_id)
 	sys.__stdout__.write("\nOutput written to RUN"+run_id+"-log.txt.")
 	end()

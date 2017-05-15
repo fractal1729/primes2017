@@ -41,11 +41,11 @@ endfig;
 			returnValue.append(np.array(Image.open(datapath+"/images/gen"+gennumstr+"-"+str(i+1)+".png").convert('L')))
 
 	if not storeSrc:
-		os.system("del "+datapath+"\\mpsrc\\gen"+gennumstr+".mp")
+		os.system("del "+datapath.replace('/','\\')+"\\mpsrc\\gen"+gennumstr+".mp")
 	if not storeImg:
-		os.system("del .\\images\\")
+		os.system("del "+datapath.replace('/','\\')+"\\images\\gen"+gennumstr+"-*.png")
 	if not storeLog:
-
+		os.system("del "+datapath.replace('/','\\')+"\\images\\gen"+gennumstr+"-*.log")
 
 
 def renderImage(mpsrc, returnPixels=True, storeSrc=False, storeImg=False, storeLog=False):

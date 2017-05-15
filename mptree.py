@@ -10,10 +10,10 @@ CANVAS_SIZE = rendermp.CANVAS_SIZE
 NUMERIC_MAX_VALUE = CANVAS_SIZE-1
 NUMERIC_MIN_VALUE = 1
 
-class Program: # currently set up to draw a single black circle randomly on the 50x50 canvas
+class Program: # currently set up to draw two lines randomly on the 50x50 canvas
 	def __init__(self, commands=None):
 		if commands: self.commands = commands
-		else: self.commands = [Draw()]
+		else: self.commands = [Draw(LinePath()), Draw(LinePath())]
 
 	def mutate(self):
 		for command in self.commands:
@@ -116,7 +116,7 @@ class Numeric:
 		else: self.val = random.randint(minVal, maxVal) # generate random value in range
 		self.minVal = minVal
 		self.maxVal = maxVal
-		self.sigma_reset_val = (float)(maxVal-minVal)/8 # this is pretty arbitrary
+		self.sigma_reset_val = (float)(maxVal-minVal)/4 # this is pretty arbitrary
 		if sigma: self.sigma = (float)(sigma)
 		else: self.sigma = self.sigma_reset_val
 		self.time_absolute = 0
