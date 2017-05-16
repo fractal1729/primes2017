@@ -64,7 +64,7 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 		plt.title("Original image")
 		plt.figure(2)
 		plt.plot(range(len(best_scores)), best_scores, 'ro')
-		plt.title(run_id+" Convergence")
+		plt.title("RUN"+run_id+" Convergence")
 		plt.ylim(0, plt.ylim()[1])
 		plt.show()
 
