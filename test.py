@@ -45,6 +45,8 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 	#goalsrc = mptree.Program([mptree.Draw()]).tocode() # generate randome line code
 	#goalsrc = '''draw fullcircle scaled 25 shifted (42,33) withcolor black;\ndraw fullcircle scaled 11 shifted (88,45) withcolor black;'''
 	goalpix = rendermp.renderImage(goalsrc)
+	print "Settings:\nCANVAS_SIZE: "+str(rendermp.CANVAS_SIZE)+"\nNUMERIC_SNAP_FACTOR: "+str(mptree.NUMERIC_SNAP_FACTOR)
+	print "***** Original program: *****\n" + goalsrc + "\n"
 	bestprog, best_scores = genmp.beamSearch(goalpix, numiter, survival, numprogs, dw, run_id)
 	print "***** Best code: *****\n" + bestprog.tocode()
 	print "***** Original: *****\n" + goalsrc
@@ -62,6 +64,7 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 		plt.title("Original image")
 		plt.figure(2)
 		plt.plot(range(len(best_scores)), best_scores, 'ro')
+		plt.title(run_id+" Convergence")
 		plt.ylim(0, plt.ylim()[1])
 		plt.show()
 
@@ -94,9 +97,9 @@ if __name__ == "__main__":
 	run_id = sys.argv[1]
 
 	start(compname, run_id)
-	dw = dataWriter("./data/RUN"+sys.argv[1]+"-data.txt")
-	#dw = dataWriter(None) # don't write data for now
+	#dw = dataWriter("./data/RUN"+sys.argv[1]+"-data.txt")
+	dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
-	testBeamHausdorff(12, 0.3, 50, dw, True, run_id)
+	testBeamHausdorff(10, 0.3, 10, dw, True, run_id)
 	sys.__stdout__.write("\nOutput written to RUN"+run_id+"-log.txt.")
 	end()

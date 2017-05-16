@@ -18,7 +18,7 @@ def edge_hausdorff(img1, img2):
 		logging.warning("edge_hausdorff: attempted to compare two images that are not the same shape")
 	edge1 = cv2.Canny(img1,100,200) # thresholds may need tweaking?
 	edge2 = cv2.Canny(img2,100,200)
-	return avg_hausdorff(edge1, edge2)
+	return max_hausdorff(edge1, edge2)
 
 def avg_hausdorff(edge1, edge2):
 	A = []

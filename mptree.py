@@ -1,4 +1,5 @@
 import random
+import math
 from scipy.stats import truncnorm
 import rendermp
 
@@ -7,8 +8,9 @@ import rendermp
 # times without having to recompute each time.
 
 CANVAS_SIZE = rendermp.CANVAS_SIZE
-NUMERIC_MAX_VALUE = CANVAS_SIZE-1
-NUMERIC_MIN_VALUE = 1
+NUMERIC_SNAP_FACTOR = 5
+NUMERIC_MAX_VALUE = NUMERIC_SNAP_FACTOR*int(math.floor(float(CANVAS_SIZE-1)/NUMERIC_SNAP_FACTOR))
+NUMERIC_MIN_VALUE = NUMERIC_SNAP_FACTOR
 
 class Program: # currently set up to draw two lines randomly on the 50x50 canvas
 	def __init__(self, commands=None):
@@ -114,6 +116,7 @@ class Numeric:
 	def __init__(self, val=None, minVal=NUMERIC_MIN_VALUE, maxVal=NUMERIC_MAX_VALUE, sigma=None):
 		if val: self.val = val
 		else: self.val = random.randint(minVal, maxVal) # generate random value in range
+		self.val = self.snapTo(self.val, NUMERIC_SNAP_FACTOR)
 		self.minVal = minVal
 		self.maxVal = maxVal
 		self.sigma_reset_val = (float)(maxVal-minVal)/4 # this is pretty arbitrary
@@ -126,6 +129,10 @@ class Numeric:
 		self.mutate_sigma()
 		self.val = (int)(truncnorm.rvs(((float)(self.minVal-self.val))/((float)(self.sigma)),
 			((float)(self.maxVal-self.val))/((float)(self.sigma)), loc=self.val, scale=self.sigma))
+		self.val = self.snapTo(self.val, NUMERIC_SNAP_FACTOR)
+
+	def snapTo(self, val, a): # snaps val to the nearest multiple of a
+		return int(a*round(float(val)/a))
 
 	def mutate_sigma(self):
 		self.time_absolute += 1
