@@ -8,7 +8,7 @@ import rendermp
 # times without having to recompute each time.
 
 CANVAS_SIZE = rendermp.CANVAS_SIZE
-NUMERIC_SNAP_FACTOR = 5
+NUMERIC_SNAP_FACTOR = 2
 NUMERIC_MAX_VALUE = NUMERIC_SNAP_FACTOR*int(math.floor(float(CANVAS_SIZE-1)/NUMERIC_SNAP_FACTOR))
 NUMERIC_MIN_VALUE = NUMERIC_SNAP_FACTOR
 

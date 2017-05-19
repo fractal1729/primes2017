@@ -43,7 +43,7 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 	#goalsrc = '''fill fullcircle scaled 12 shifted (30,20) withcolor black;'''
 	#goalsrc = mptree.Program().tocode() # generate random program
 	#goalsrc = mptree.Program([mptree.Draw()]).tocode() # generate randome line code
-	goalsrc = '''draw(20,40)--(80,40)\ndraw fullcircle scaled 15 shifted (30,35) withcolor black;\ndraw fullcircle scaled 15 shifted (70,35) withcolor black;'''
+	goalsrc = '''draw(20,40)--(80,40);\ndraw fullcircle scaled 15 shifted (30,35) withcolor black;\ndraw fullcircle scaled 15 shifted (70,35) withcolor black;'''
 	print "***** Settings: *****\nCANVAS_SIZE: "+str(rendermp.CANVAS_SIZE)+"\nNUMERIC_SNAP_FACTOR: "+str(mptree.NUMERIC_SNAP_FACTOR)+"\n"
 	print "***** Original program: *****\n" + goalsrc + "\n"
 	goalpix = rendermp.renderImage(goalsrc)
@@ -61,7 +61,7 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 		plt.title("Generated image")
 		plt.subplot(2,1,2)
 		plt.imshow(goalpix, cmap="gray")
-		plt.title("Original image")
+		plt.title("Original image ("+run_id+")")
 		plt.figure(2)
 		plt.plot(range(len(best_scores)), best_scores, 'ro')
 		plt.title("RUN"+run_id+" Convergence")
@@ -79,8 +79,8 @@ def start(compname, run_id):
 	sys.stdout = open("./log/RUN"+run_id+"-log.txt", 'w')
 	sys.stderr = sys.stdout
 	timestamp = str(datetime.datetime.now())
-	sys.__stdout__.write(timestamp+"\n")
-	print "Starting test at "+timestamp+"."
+	sys.__stdout__.write("Starting RUN"+run_id+" at "+timestamp+".\n")
+	print "Starting RUN"+run_id+" at "+timestamp+"."
 	print "Running on "+compname
 	print "Run ID: "+run_id
 	
@@ -100,6 +100,6 @@ if __name__ == "__main__":
 	#dw = dataWriter("./data/RUN"+sys.argv[1]+"-data.txt")
 	dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
-	testBeamHausdorff(50, 0.25, 100, dw, True, run_id)
+	testBeamHausdorff(60, 0.25, 150, dw, True, run_id)
 	sys.__stdout__.write("\nOutput written to RUN"+run_id+"-log.txt.")
 	end()
