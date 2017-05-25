@@ -15,7 +15,7 @@ NUMERIC_MIN_VALUE = NUMERIC_SNAP_FACTOR
 class Program: # currently set up to draw two lines randomly on the 50x50 canvas
 	def __init__(self, commands=None):
 		if commands: self.commands = commands
-		else: self.commands = [Draw(LinePath()), Draw(Circle()), Draw(Circle())]
+		else: self.commands = [Draw(LinePath()), Draw(LinePath())]
 
 	def mutate(self):
 		for command in self.commands:
