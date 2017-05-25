@@ -43,7 +43,7 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 	#goalsrc = '''fill fullcircle scaled 12 shifted (30,20) withcolor black;'''
 	#goalsrc = mptree.Program().tocode() # generate random program
 	#goalsrc = mptree.Program([mptree.Draw()]).tocode() # generate randome line code
-	goalsrc = '''draw(20,40)--(80,40);\ndraw fullcircle scaled 15 shifted (30,35) withcolor black;\ndraw fullcircle scaled 15 shifted (70,35) withcolor black;'''
+	goalsrc = '''draw(20,40)--(80,40);\ndraw fullcircle scaled 15 shifted (30,30) withcolor black;\ndraw fullcircle scaled 15 shifted (70,30) withcolor black;'''
 	print "***** Settings: *****\nCANVAS_SIZE: "+str(rendermp.CANVAS_SIZE)+"\nNUMERIC_SNAP_FACTOR: "+str(mptree.NUMERIC_SNAP_FACTOR)+"\n"
 	print "***** Original program: *****\n" + goalsrc + "\n"
 	goalpix = rendermp.renderImage(goalsrc)
