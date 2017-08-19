@@ -10,17 +10,25 @@ import numpy as np
 
 CANVAS_SIZE = 100
 
+def ensure_dir(file_path): # useful function
+    directory = os.path.dirname(file_path)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
 def renderImages(mpsrcs, datapath, gennum, returnPixels=True, storeSrc=False, storeImg=False, storeLog=False):
 	datapath = datapath.rstrip('/')
-	# data: path to where the run data will be stored.  e.g. primes2017/data/RUN0015
-	#gennumstr = '{:03}'.format(gennum)
-	gennumstr = str(gennum)
+	ensure_dir(datapath+"/mpsrc/")
+	ensure_dir(datapath+"/images/")
+
+	# datapath: path to where the run data will be stored.  e.g. primes2017/data/RUN0015
+	gennumstr = '{:03}'.format(gennum)
+	# gennumstr = str(gennum)
 	if CANVAS_SIZE: canvas = "fill (0,0)--("+str(CANVAS_SIZE)+",0)--("+str(CANVAS_SIZE)+","+str(CANVAS_SIZE)+")--(0,"+str(CANVAS_SIZE)+")--cycle withcolor white;"
 	else: canvas = ""
 	# MetaPost source
-	src = '''outputformat : "png";
-outputformatoptions := "format=rgb"
-outputtemplate := %%j-%%c.%%o
+	src = '''outputformat := "png";
+outputformatoptions := "format=rgb";
+outputtemplate := "%j-%c.%o";
 '''
 	for i in range(len(mpsrcs)):
 		src += '''beginfig(%d);
@@ -45,7 +53,9 @@ endfig;
 	if not storeImg:
 		os.system("del "+datapath.replace('/','\\')+"\\images\\gen"+gennumstr+"-*.png")
 	if not storeLog:
-		os.system("del "+datapath.replace('/','\\')+"\\images\\gen"+gennumstr+"-*.log")
+		os.system("del "+datapath.replace('/','\\')+"\\images\\gen"+gennumstr+".log")
+
+	return returnValue
 
 
 def renderImage(mpsrc, returnPixels=True, storeSrc=False, storeImg=False, storeLog=False):
@@ -97,5 +107,16 @@ end.'''%(canvas, mpsrc)
 
 
 if __name__ == "__main__":
- 	pix = renderImage('''draw (20,20)--(40,30);''')
- 	print pix
+	n = 200
+	# Code to test the speed of individual vs group rendering
+	startTime = datetime.datetime.now()
+ 	for i in range(n):
+ 		pix = renderImage('''draw (20,20)--(40,30);''')
+ 	nextTime = datetime.datetime.now()
+ 	print nextTime - startTime
+ 	mpsrcs = ['''draw (20,20)--(40,30);''']*n
+ 	datapath = "./data/speedtest2/"
+ 	gennum = 0
+ 	pixs = renderImages(mpsrcs, datapath, gennum)
+ 	#print pixs
+ 	print datetime.datetime.now() - nextTime
