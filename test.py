@@ -1,4 +1,4 @@
-import genmp, rendermp, mptree, compare
+import genmp, rendermp, mptree, compare, config
 import re
 import datetime, time
 import numpy as numpy
@@ -41,10 +41,10 @@ def testBeamHausdorff(numiter=100, survival=0.1, numprogs=100, dw=dataWriter(Non
 **************************************
 '''
 	#goalsrc = '''fill fullcircle scaled 12 shifted (30,20) withcolor black;'''
-	goalsrc = mptree.Program().tocode() # generate random program
+	goalsrc = mptree.Program([mptree.Draw(), mptree.Draw()]).tocode() # generate random program
 	#goalsrc = mptree.Program([mptree.Draw()]).tocode() # generate randome line code
 	#goalsrc = '''draw(20,40)--(80,40);\ndraw fullcircle scaled 15 shifted (30,30) withcolor black;\ndraw fullcircle scaled 15 shifted (70,30) withcolor black;'''
-	print "***** Settings: *****\nCANVAS_SIZE: "+str(rendermp.CANVAS_SIZE)+"\nNUMERIC_SNAP_FACTOR: "+str(mptree.NUMERIC_SNAP_FACTOR)+"\n"
+	print "***** Settings: *****\nCANVAS_SIZE: "+str(rendermp.CANVAS_SIZE)+"\nNUMERIC_SCALE_FACTOR: "+str(mptree.NUMERIC_SCALE_FACTOR)+"\n"
 	print "***** Original program: *****\n" + goalsrc + "\n"
 	goalpix = rendermp.renderImage(goalsrc)
 	bestprog, best_scores = genmp.beamSearch(goalpix, numiter, survival, numprogs, dw, run_id)
@@ -94,12 +94,15 @@ if __name__ == "__main__":
 	compinfo = open("compinfo.txt", 'r')
 	compname = compinfo.readline()
 	compinfo.close()
-	run_id = sys.argv[1]
+	run_id = config.RUN_ID
+	if not run_id: run_id = sys.argv[1]
 
 	start(compname, run_id)
 	#dw = dataWriter("./data/RUN"+sys.argv[1]+"-data.txt")
-	dw = dataWriter(None) # don't write data for now
+	#dw = dataWriter(None) # don't write data for now
 	#testSimpleCircle(50)
-	testBeamHausdorff(25, 0.25, 50, dw, True, run_id)
+	if config.TEST_FUNCTION == "BEAM_HAUSDORFF":
+		testBeamHausdorff(config.NUMBER_OF_GENERATIONS, config.ALPHA, config.PROGRAMS_PER_GENERATION,
+			dataWriter(config.DATA_WRITER), config.SHOW_GRAPHS, run_id)
 	sys.__stdout__.write("\nOutput written to RUN"+run_id+"-log.txt.")
 	end()

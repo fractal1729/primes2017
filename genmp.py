@@ -1,4 +1,4 @@
-import compare, mptree, rendermp
+import compare, mptree, rendermp, config
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
@@ -26,17 +26,20 @@ def beamSearch(goalpix, numiter=100, survival=0.1, numprogs=100, dw=dataWriter(N
 		print "\nSTARTING GENERATION "+str(gennum)+"\n\nPROGRAMS:"
 		dw.writeln("generation "+str(gennum))
 		scores = [np.inf]*numprogs
+		candprogsrcs = [""]*numprogs
 		for j in range(0, numprogs):
-			candprog = progs[j]
-			candprogsrc = candprog.tocode()
-			candprogpix = rendermp.renderImage(candprogsrc, run_id)
-			scores[j] = compare.edge_hausdorff(goalpix, candprogpix)
-			print str(j+1)+"\t"+candprogsrc+"\t"+str(scores[j])
+			candprogsrcs[j] = progs[j].tocode()
+
+		candprogpixs = rendermp.renderImages(candprogsrcs, "./data/"+run_id, gennum)
+
+		for j in range(0, numprogs):
+			scores[j] = compare.edge_hausdorff(goalpix, candprogpixs[j])
+			print str(j+1)+"\t"+candprogsrcs[j]+"\t"+str(scores[j])
 			dw.writeln("program-num "+str(j+1))
 			dw.writeln("code")
-			dw.writeln(str(candprogsrc))
+			dw.writeln(str(candprogsrcs[j]))
 			dw.writeln("image")
-			dw.writeln(dw.encodeBinaryImage(candprogpix))
+			dw.writeln(dw.encodeBinaryImage(candprogpixs[j]))
 			dw.writeln("score")
 			dw.writeln(str(scores[j]))
 			sys.__stdout__.write("\r",)

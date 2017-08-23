@@ -5,8 +5,56 @@ import datetime, time
 import sys
 from PIL import Image
 import numpy as np
+import config
 
-CANVAS_SIZE = 100
+CANVAS_SIZE = config.CANVAS_SIZE
+
+def ensure_dir(file_path): # useful function
+    directory = os.path.dirname(file_path)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+def renderImages(mpsrcs, datapath, gennum, returnPixels=True, storeSrc=False, storeImg=False, storeLog=False):
+	datapath = datapath.rstrip('/')
+	ensure_dir(datapath+"/mpsrc/")
+	ensure_dir(datapath+"/images/")
+
+	# datapath: path to where the run data will be stored.  e.g. primes2017/data/RUN0015
+	gennumstr = '{:03}'.format(gennum)
+	# gennumstr = str(gennum)
+	if CANVAS_SIZE: canvas = "fill (0,0)--("+str(CANVAS_SIZE)+",0)--("+str(CANVAS_SIZE)+","+str(CANVAS_SIZE)+")--(0,"+str(CANVAS_SIZE)+")--cycle withcolor white;"
+	else: canvas = ""
+	# MetaPost source
+	src = '''outputformat := "png";
+outputformatoptions := "format=rgb";
+outputtemplate := "%j-%c.%o";
+'''
+	for i in range(len(mpsrcs)):
+		src += '''beginfig(%d);
+%s
+%s
+endfig;
+'''%(i+1, canvas, mpsrcs[i])
+	
+	src += '''end.'''
+	out = open(datapath+"/mpsrc/gen"+gennumstr+".mp", 'w')
+	out.write(src)
+	out.close()
+	os.system("mpost -output-directory "+datapath+"/images "+datapath+"/mpsrc/gen"+gennumstr+".mp >NUL")
+	returnValue = []
+
+	if returnPixels:
+		for i in range(len(mpsrcs)):
+			returnValue.append(np.array(Image.open(datapath+"/images/gen"+gennumstr+"-"+str(i+1)+".png").convert('L')))
+
+	if not storeSrc:
+		os.system("del "+datapath.replace('/','\\')+"\\mpsrc\\gen"+gennumstr+".mp")
+	if not storeImg:
+		os.system("del "+datapath.replace('/','\\')+"\\images\\gen"+gennumstr+"-*.png")
+	if not storeLog:
+		os.system("del "+datapath.replace('/','\\')+"\\images\\gen"+gennumstr+".log")
+
+	return returnValue
 
 def renderImage(mpsrc, run_id="RUN", returnPixels=True, storeSrc=False, storeImg=False, storeLog=False):
 	# Start clock
@@ -61,6 +109,6 @@ end.'''%(canvas, mpsrc)
 	if not returnValue == []: return returnValue
 
 
-if __name__ == "__main__":
- 	pix = renderImage('''draw (20,20)--(40,30);''')
- 	print pix
+# if __name__ == "__main__":
+#  	pix = renderImage('''draw (20,20)--(40,30);''')
+#  	print pix

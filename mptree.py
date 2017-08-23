@@ -1,21 +1,21 @@
 import random
 import math
 from scipy.stats import truncnorm
-import rendermp
+import rendermp, config
 
 # Notes:
 # Might want to make code an attribute so that it can be accessed multiple
 # times without having to recompute each time.
 
-CANVAS_SIZE = rendermp.CANVAS_SIZE
-NUMERIC_SNAP_FACTOR = 5
-NUMERIC_MAX_VALUE = NUMERIC_SNAP_FACTOR*int(math.floor(float(CANVAS_SIZE-1)/NUMERIC_SNAP_FACTOR))
-NUMERIC_MIN_VALUE = NUMERIC_SNAP_FACTOR
+CANVAS_SIZE = config.CANVAS_SIZE
+NUMERIC_SCALE_FACTOR = config.NUMERIC_SCALE_FACTOR
+NUMERIC_MAX_VALUE = int(math.floor(float(CANVAS_SIZE-1)/NUMERIC_SCALE_FACTOR))
+NUMERIC_MIN_VALUE = 1
 
 class Program: # currently set up to draw two lines randomly on the 50x50 canvas
 	def __init__(self, commands=None):
 		if commands: self.commands = commands
-		else: self.commands = [Draw(LinePath()), Draw(LinePath())]
+		else: self.commands = [Draw(LinePath())]
 
 	def mutate(self):
 		for command in self.commands:
@@ -110,16 +110,17 @@ class Pair:
 
 class Numeric:
 
-	P_SIGMA_RESET = 0.07 # number should be tweaked
-	SIGMA_DECAY_FACTOR = 0.9 # number should be tweaked
+	P_SIGMA_RESET = config.P_SIGMA_RESET # number should be tweaked
+	SIGMA_DECAY_FACTOR = config.SIGMA_DECAY_FACTOR # number should be tweaked
+	SIGMA_RESET_VAL = config.SIGMA_RESET_VALUE
 
 	def __init__(self, val=None, minVal=NUMERIC_MIN_VALUE, maxVal=NUMERIC_MAX_VALUE, sigma=None):
 		if val: self.val = val
 		else: self.val = random.randint(minVal, maxVal) # generate random value in range
-		self.val = self.snapTo(self.val, NUMERIC_SNAP_FACTOR)
 		self.minVal = minVal
 		self.maxVal = maxVal
-		self.sigma_reset_val = (float)(maxVal-minVal)/4 # this is pretty arbitrary
+		#self.sigma_reset_val = (float)(maxVal-minVal)/4 # this is pretty arbitrary
+		self.sigma_reset_val = self.SIGMA_RESET_VAL
 		if sigma: self.sigma = (float)(sigma)
 		else: self.sigma = self.sigma_reset_val
 		self.time_absolute = 0
@@ -129,9 +130,8 @@ class Numeric:
 		self.mutate_sigma()
 		self.val = (int)(truncnorm.rvs(((float)(self.minVal-self.val))/((float)(self.sigma)),
 			((float)(self.maxVal-self.val))/((float)(self.sigma)), loc=self.val, scale=self.sigma))
-		self.val = self.snapTo(self.val, NUMERIC_SNAP_FACTOR)
 
-	def snapTo(self, val, a): # snaps val to the nearest multiple of a
+	def snapTo(self, val, a): # snaps val to the nearest multiple of a; this function is no longer used
 		return int(a*round(float(val)/a))
 
 	def mutate_sigma(self):
@@ -145,7 +145,7 @@ class Numeric:
 			self.sigma = self.SIGMA_DECAY_FACTOR
 
 	def tocode(self):
-		return str(self.val)
+		return str(self.val*NUMERIC_SCALE_FACTOR)
 
 # if __name__ == "__main__":
 # 	d = Draw()

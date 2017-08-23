@@ -1,0 +1,16 @@
+Starting RUN0037 at 2017-08-22 11:41:04.612000.
+Running on vvale
+Run ID: 0037
+**************************************
+***********   START TEST   ***********
+**************************************
+********* SEARCH ALGO:  BEAM *********
+*** SCORING METRIC: EDGE HAUSDORFF ***
+**************************************
+
+Traceback (most recent call last):
+  File "test.py", line 106, in <module>
+    dataWriter(config.DATA_WRITER), config.SHOW_GRAPHS, run_id)
+  File "test.py", line 47, in testBeamHausdorff
+    print "***** Settings: *****\nCANVAS_SIZE: "+str(rendermp.CANVAS_SIZE)+"\nNUMERIC_SNAP_FACTOR: "+str(mptree.NUMERIC_SNAP_FACTOR)+"\n"
+AttributeError: 'module' object has no attribute 'NUMERIC_SNAP_FACTOR'

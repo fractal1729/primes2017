@@ -16,18 +16,27 @@ warnings.filterwarnings("ignore") # a little dangerous... but I'm doing this for
 def edge_hausdorff(img1, img2):
 	if not img1.shape == img2.shape:
 		logging.warning("edge_hausdorff: attempted to compare two images that are not the same shape")
-	edge1 = cv2.Canny(img1,100,200) # thresholds may need tweaking?
-	edge2 = cv2.Canny(img2,100,200)
+	edge1 = binarify(img1)
+	edge2 = binarify(img2)
+	#edge1 = cv2.Canny(img1,100,200) # thresholds may need tweaking?
+	#edge2 = cv2.Canny(img2,100,200)
 	return max_hausdorff(edge1, edge2)
+
+def binarify(img):
+	img2 = np.ones(img.shape)*255
+	for i in range(0, img.shape[0]):
+		for j in range(0, img.shape[1]):
+			if img[i][j] < 255: img2[i][j] = 0
+	return img2
 
 def avg_hausdorff(edge1, edge2):
 	A = []
 	B = []
 	for i in range(0,edge1.shape[0]):
 		for j in range(0,edge1.shape[1]):
-			if edge1[i][j] == 255:
+			if edge1[i][j] == 0:
 				A.append([i,j])
-			if edge2[i][j] == 255:
+			if edge2[i][j] == 0:
 				B.append([i,j])
 
 	hBA = 0
@@ -55,9 +64,9 @@ def max_hausdorff(edge1, edge2):
 	B = []
 	for i in range(0,edge1.shape[0]):
 		for j in range(0,edge1.shape[1]):
-			if edge1[i][j] == 255:
+			if edge1[i][j] == 0:
 				A.append([i,j])
-			if edge2[i][j] == 255:
+			if edge2[i][j] == 0:
 				B.append([i,j])
 
 	hBA = 0
