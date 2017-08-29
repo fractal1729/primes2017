@@ -4,7 +4,7 @@ import logging
 import datetime, time
 import re
 import warnings
-import cv2
+#import cv2
 from matplotlib import pyplot as plt
 import rendermp
 import math
@@ -16,8 +16,8 @@ warnings.filterwarnings("ignore") # a little dangerous... but I'm doing this for
 def edge_hausdorff(img1, img2):
 	if not img1.shape == img2.shape:
 		logging.warning("edge_hausdorff: attempted to compare two images that are not the same shape")
-	edge1 = binarify(img1)
-	edge2 = binarify(img2)
+	#edge1 = binarify(img1)
+	#edge2 = binarify(img2)
 	#edge1 = cv2.Canny(img1,100,200) # thresholds may need tweaking?
 	#edge2 = cv2.Canny(img2,100,200)
 	return max_hausdorff(edge1, edge2)

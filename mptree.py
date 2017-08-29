@@ -62,7 +62,7 @@ class Circle():
 		if not radius:
 			xbound = min(self.center.x.val,CANVAS_SIZE-self.center.x.val)
 			ybound = min(self.center.y.val,CANVAS_SIZE-self.center.y.val)
-			self.radius = Numeric(minVal=1, maxVal=min(xbound, ybound))
+			self.radius = Numeric(maxVal=min(xbound, ybound))
 
 		if color: self.color = color
 		if not color: self.color = "black"
@@ -74,6 +74,26 @@ class Circle():
 
 	def tocode(self):
 		return "fullcircle scaled "+self.radius.tocode()+" shifted "+self.center.tocode()+" withcolor "+self.color
+
+class Square():
+	def __init__(self, bottom_left=None, sidelength=None):
+		if sidelength: self.sidelength = sidelength
+		else: self.sidelength = Numeric(maxVal=NUMERIC_MAX_VALUE-1)
+
+		if bottom_left: self.bottom_left = bottom_left
+		else:
+			self.bottom_left = Pair(Numeric(maxVal=NUMERIC_MAX_VALUE-self.sidelength.val),
+				Numeric(maxVal=NUMERIC_MAX_VALUE-self.sidelength.val))
+
+	def mutate(self):
+		self.sidelength.mutate()
+		self.bottom_left.mutate()
+
+	def tocode(self):
+		bottom_right = Pair(Numeric(val=(self.bottom_left.x.val+self.sidelength.val)), Numeric(val=self.bottom_left.y.val))
+		top_left = Pair(Numeric(val=self.bottom_left.x.val), Numeric(val=(self.bottom_left.y.val+self.sidelength.val)))
+		top_right = Pair(Numeric(val=(self.bottom_left.x.val+self.sidelength.val)), Numeric(val=(self.bottom_left.y.val+self.sidelength.val)))
+		return self.bottom_left.tocode()+"--"+bottom_right.tocode()+"--"+top_right.tocode()+"--"+top_left.tocode()+"--cycle"
 
 class LinePath(): # currently this path is lines-only, no Bezier curves
 	def __init__(self, pairs=None):
