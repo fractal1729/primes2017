@@ -8,6 +8,8 @@
 *.tex
 *.pyc
 
+data.npy
+
 !RUN*.txt
 !RUN*.png
 
