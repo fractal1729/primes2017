@@ -1,6 +1,6 @@
 # Configuration file for runs
 
-CANVAS_SIZE = 80
+CANVAS_SIZE = 256
 NUMERIC_SCALE_FACTOR = 1
 
 P_SIGMA_RESET = 0.1

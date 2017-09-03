@@ -1,0 +1,23 @@
+import cairocffi as cairo
+
+WIDTH = 256
+HEIGHT = 256
+
+surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, WIDTH, HEIGHT)
+cr = cairo.Context(surface)
+cr.set_source_rgb(255, 255, 255)
+cr.paint()
+cr.set_source_rgb(0, 0, 0)
+
+cr.scale(WIDTH, HEIGHT)
+cr.set_line_width(0.01)
+
+cr.move_to(0.1, 0.1)
+cr.line_to(0.4, 0.7)
+cr.stroke()
+
+cr.move_to(0.5, 0.3)
+cr.line_to(0.8, 0.9)
+cr.stroke()
+
+surface.write_to_png('cairo/examples/two_lines_parallel.png')

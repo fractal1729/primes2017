@@ -17,7 +17,7 @@ num_classes = 10 # there are 10 classes (1 per digit)
 
 X_train = X_train.reshape(num_train, height * width) # Flatten data to 1D
 X_test = X_test.reshape(num_test, height * width) # Flatten data to 1D
-X_train = X_train.astype('float32') 
+X_train = X_train.astype('float32')
 X_test = X_test.astype('float32')
 X_train /= 255 # Normalise data to [0, 1] range
 X_test /= 255 # Normalise data to [0, 1] range

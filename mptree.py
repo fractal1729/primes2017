@@ -53,7 +53,7 @@ class Fill:
 	def tocode(self):
 		return "fill "+self.path.tocode()+";"
 
-class Circle():
+class Circle:
 	def __init__(self, center=None, radius=None, color=None):
 		if center: self.center = center
 		if not center: self.center = Pair()
@@ -75,7 +75,7 @@ class Circle():
 	def tocode(self):
 		return "fullcircle scaled "+self.radius.tocode()+" shifted "+self.center.tocode()+" withcolor "+self.color
 
-class Square():
+class Square:
 	def __init__(self, bottom_left=None, sidelength=None):
 		if sidelength: self.sidelength = sidelength
 		else: self.sidelength = Numeric(maxVal=NUMERIC_MAX_VALUE-1)

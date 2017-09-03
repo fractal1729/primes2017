@@ -14,7 +14,7 @@ def ensure_dir(file_path): # useful function
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-def renderImages(mpsrcs, datapath, gennum, returnPixels=True, storeSrc=False, storeImg=False, storeLog=False): # NOTE: limited to gennum < 1000
+def renderImages(mpsrcs, datapath="./data/tmp", gennum=0, returnPixels=True, storeSrc=False, storeImg=False, storeLog=False): # NOTE: limited to gennum < 1000
 	pwd = subprocess.check_output("pwd").rstrip("\n")
 	datapath = datapath.rstrip('/')
 	ensure_dir(datapath+"/mpsrc/")
