@@ -23,9 +23,13 @@ WHITE = (255, 255, 255)
 # Definitions
 
 class Program:
+
 	def __init__(self, components=None):
-		if components: self.components = components
+		if components != None: self.components = components
 		else: self.components = [Square()]
+
+	def addComponent(self, component):
+		self.components.append(component)
 
 	def draw(self):
 		surface = cairo.ImageSurface(cairo.FORMAT_RGB24, WIDTH, HEIGHT)
@@ -79,21 +83,25 @@ class Circle:
 	
 	def __init__(self, center=None, radius=None, color=(0, 0, 0), fill=True):
 		self.center = Point(center)
-		self.radius = Numeric(radius, 0.02, min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
+		self.radius = Numeric(radius, 0.005, min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
 		self.fill = fill
 		self.color = color
 
 	def draw(self, cr):
 		cr.set_source_rgb(self.color[0], self.color[1], self.color[2])
-		cr.arc(self.x.val, self.y.val, self.radius.val, 0, 2*math.pi)
+		cr.arc(self.center.x.val, self.center.y.val, self.radius.val, 0, 2*math.pi)
 		if self.fill: cr.fill()
 		else: cr.stroke()
+
+	def __repr__(self):
+		return ("Circle(center=("+str(self.center.x.val)+", "+str(self.center.y.val)+"), radius="
+			+str(self.radius.val)+", color=("+self.color[0]+", "+self.color[1]+", "+self.color[2]+"))")
 
 class Square:
 	
 	def __init__(self, center=None, sidelength=None, color=(0, 0, 0), fill=True):
 		self.center = Point(center)
-		self.sidelength = Numeric(sidelength, 0.04, 2*min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
+		self.sidelength = Numeric(sidelength, 0.01, 2*min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
 		self.fill = fill
 		self.color = color
 
@@ -103,6 +111,10 @@ class Square:
 			self.sidelength.val, self.sidelength.val)
 		if self.fill: cr.fill()
 		else: cr.stroke()
+
+	def __repr__(self):
+		return ("Square(center=("+str(self.center.x.val)+", "+str(self.center.y.val)+"), sidelength="
+			+str(self.sidelength.val)+", color=("+self.color[0]+", "+self.color[1]+", "+self.color[2]+"))")
 
 class Point:
 
@@ -118,6 +130,9 @@ class Point:
 	def __str__(self):
 		return "("+str(self.x)+", "+str(self.y)+")"
 
+	def __repr__(self):
+		return "Point("+str(self.x)+", "+str(self.y)+")"
+
 class Numeric: # coordinate or length, float between 0 and 1
 
 	def __init__(self, val=None, minVal=None, maxVal=None):
@@ -125,13 +140,13 @@ class Numeric: # coordinate or length, float between 0 and 1
 			self.minVal = minVal if minVal else val.minVal
 			self.maxVal = maxVal if maxVal else val.maxVal
 			if val.val >= self.minVal and val.val <= self.maxVal: self.val = val.val
-			else: print "Error: value out of range [0, 1]."
+			else: print "Error: tried to initialize Numeric out of range."
 		else:
 			self.minVal = minVal if minVal else 0
 			self.maxVal = maxVal if maxVal else 1
 			if val:
 				if val >= self.minVal and val <= self.maxVal: self.val = val
-				else: print "Error: value out of range [0, 1]."
+				else: print "Error: tried to initialize Numeric out of range."
 			else: self.val = random.random()*(self.maxVal-self.minVal) + self.minVal
 
 	def __add__(self, other):
