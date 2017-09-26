@@ -88,17 +88,23 @@ class Tufa:
 
 class Hugh:
 
-	def __init__(self, center=None, sidelength=None, color=(0, 0, 0), color1=(0, 255, 0)):
-		self.center = center
-		self.radius = Numeric(radius, 0.02, min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
-		self.color = [color[0]/255.0, color[1]/255.0, color[2]/255.0]
-		self.color1 = [color1[0]/255.0, color1[1]/255.0, color1[2]/255.0]
-		self.square = Square(self.center, self.sidelength, self.color)
-		self.circle = Circle(self.center, self.sidelength.val/4, self.color1)
+	def __init__(self, square, circle):
+		self.square = square
+		self.circle = circle
 
-	def draw(self, cr):
-		self.square.draw()
-		self.circle.draw()
+# class Hugh:
+
+# 	def __init__(self, center=None, sidelength=None, color=(0, 0, 0), color1=(0, 255, 0)):
+# 		self.center = center
+# 		self.radius = Numeric(radius, 0.02, min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
+# 		self.color = [color[0]/255.0, color[1]/255.0, color[2]/255.0]
+# 		self.color1 = [color1[0]/255.0, color1[1]/255.0, color1[2]/255.0]
+# 		self.square = Square(self.center, self.sidelength, self.color)
+# 		self.circle = Circle(self.center, self.sidelength.val/4, self.color1)
+
+# 	def draw(self, cr):
+# 		self.square.draw()
+# 		self.circle.draw()
 
 # Primitives
 

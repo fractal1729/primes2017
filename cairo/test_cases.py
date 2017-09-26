@@ -32,11 +32,12 @@ def tc(i):
 			ct.Sq((0.47, 0.82), 0.2, (50, 200, 60)),
 			ct.Ci((0.48, 0.81), 0.04, (255, 0, 0)),
 			ct.Sq((0.74, 0.53), 0.3, (100, 50, 255)),
-			ct.Ci((0.72, 0.53), 0.1, (0, 0, 0))
+			ct.Ci((0.72, 0.53), 0.1, (0, 0, 0)),
+			ct.Sq((0.8, 0.15), 0.2, (0, 255, 0)),
+			ct.Sq((0.8, 0.16), 0.1, (255, 0, 0)),
+			ct.Ci((0.15, 0.8), 0.1, (60, 60, 60))
 			])
 	return pr
 
 def test(i):
-	prog, shapes = simple.encode(tc(i).draw())
-	prog.preview()
-	return prog, shapes
+	return simple.encode(tc(i).draw(), True)
