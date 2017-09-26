@@ -6,6 +6,7 @@ import math
 import random
 from PIL import Image
 import copy
+import utils
 import cv2
 
 # Constants
@@ -47,12 +48,34 @@ class Program:
 
 		data = surface.write_to_png(None)
 		image = Image.open(io.BytesIO(data))
-		return np.asarray(image)
+		return utils.RGB2BGR(np.asarray(image))
 
 	def preview(self):
 		pix = self.draw()
 		cv2.imshow("Program Preview", pix)
 		cv2.waitKey(0)
+
+class PointSet: # in the future, I might want to make a more general version of this class
+# that allows me to make patterns out of non point objects.
+
+	def __init__(self, points=None):
+		if points != None: self.points = points
+		else: self.points = []
+
+	def addPoint(self, point):
+		self.points.append(point)
+
+	def preview(self):
+		pr = Pr([])
+		for p in self.points:
+			pr.addComponent(Ci(p, 0.01, (0, 0, 255), True))
+		pr.preview()
+
+	def size(self):
+		return len(self.points)
+
+	def getPoint(self, index):
+		return self.points[index]
 
 # Compositional objects
 
@@ -68,8 +91,8 @@ class Hugh:
 	def __init__(self, center=None, sidelength=None, color=(0, 0, 0), color1=(0, 255, 0)):
 		self.center = center
 		self.radius = Numeric(radius, 0.02, min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
-		self.color = color
-		self.color1 = color1
+		self.color = [color[0]/255.0, color[1]/255.0, color[2]/255.0]
+		self.color1 = [color1[0]/255.0, color1[1]/255.0, color1[2]/255.0]
 		self.square = Square(self.center, self.sidelength, self.color)
 		self.circle = Circle(self.center, self.sidelength.val/4, self.color1)
 
@@ -81,11 +104,12 @@ class Hugh:
 
 class Circle:
 	
-	def __init__(self, center=None, radius=None, color=(0, 0, 0), fill=True):
+	def __init__(self, center=None, radius=None, color=(0, 0, 0), boundOverride=False, fill=True):
 		self.center = Point(center)
-		self.radius = Numeric(radius, 0.005, min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
+		if boundOverride: self.radius = Numeric(radius)
+		else: self.radius = Numeric(radius, 0.005, min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
 		self.fill = fill
-		self.color = color
+		self.color = [color[0]/255.0, color[1]/255.0, color[2]/255.0]
 
 	def draw(self, cr):
 		cr.set_source_rgb(self.color[0], self.color[1], self.color[2])
@@ -95,15 +119,15 @@ class Circle:
 
 	def __repr__(self):
 		return ("Circle(center=("+str(self.center.x.val)+", "+str(self.center.y.val)+"), radius="
-			+str(self.radius.val)+", color=("+self.color[0]+", "+self.color[1]+", "+self.color[2]+"))")
+			+str(self.radius.val)+", color=("+str(self.color[0])+", "+str(self.color[1])+", "+str(self.color[2])+"))")
 
 class Square:
 	
 	def __init__(self, center=None, sidelength=None, color=(0, 0, 0), fill=True):
 		self.center = Point(center)
-		self.sidelength = Numeric(sidelength, 0.01, 2*min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
+		self.sidelength = Numeric(sidelength, 0.015, 2*min(min(self.center.x.val, 1-self.center.x.val), min(self.center.y.val, 1-self.center.y.val)))
 		self.fill = fill
-		self.color = color
+		self.color = [color[0]/255.0, color[1]/255.0, color[2]/255.0]
 
 	def draw(self, cr):
 		cr.set_source_rgb(self.color[0], self.color[1], self.color[2])
@@ -114,7 +138,27 @@ class Square:
 
 	def __repr__(self):
 		return ("Square(center=("+str(self.center.x.val)+", "+str(self.center.y.val)+"), sidelength="
-			+str(self.sidelength.val)+", color=("+self.color[0]+", "+self.color[1]+", "+self.color[2]+"))")
+			+str(self.sidelength.val)+", color=("+str(self.color[0])+", "+str(self.color[1])+", "+str(self.color[2])+"))")
+
+class Rectangle:
+
+	def __init__(self, center=None, width=None, height=None, color=(0, 0, 0), fill=True):
+		self.center = Point(center)
+		self.width = Numeric(width, 0.03, 2*min(self.center.x.val, 1-self.center.x.val))
+		self.height = Numeric(height, 0.03, 2*min(self.center.y.val, 1-self.center.y.val))
+		self.fill = fill
+		self.color = [color[0]/255.0, color[1]/255.0, color[2]/255.0]
+
+	def draw(self, cr):
+		cr.set_source_rgb(self.color[0], self.color[1], self.color[2])
+		cr.rectangle(self.center.x.val - self.width.val/2, self.center.y.val - self.height.val/2, self.width.val, self.height.val)
+		if self.fill: cr.fill()
+		else: cr.stroke()
+
+	def __repr__(self):
+		return ("Rectangle(center="+str(self.center.x.val)+", "+str(self.center.y.val)+"), width="
+			+str(self.width.val)+", height="+str(self.height.val)+", color=("+str(self.color[0])
+			+", "+str(self.color[1])+", "+str(self.color[2])+"))")
 
 class Point:
 
@@ -132,6 +176,14 @@ class Point:
 
 	def __repr__(self):
 		return "Point("+str(self.x)+", "+str(self.y)+")"
+
+# class NumericRange:
+
+# 	def __init__(self, minVal=0, maxVal=1):
+# 		self.minVal = minVal
+# 		self.maxVal = maxVal
+
+# 	def compare(self, )
 
 class Numeric: # coordinate or length, float between 0 and 1
 
@@ -164,10 +216,13 @@ class Numeric: # coordinate or length, float between 0 and 1
 	def __repr__(self):
 		return 'Numeric(%s)' % self.val
 
+
+
 # Shortcuts
 
 Pr = Program
 Ci = Circle
 Sq = Square
+Re = Rectangle
 Po = Point
 Nu = Numeric

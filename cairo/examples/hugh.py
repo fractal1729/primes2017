@@ -16,7 +16,7 @@ cr.set_source_rgb(0, 0, 0)
 cr.rectangle(0.3, 0.3, 0.4, 0.4)
 cr.fill()
 
-cr.set_source_rgb(0, 255, 0)
+cr.set_source_rgb(0, 0.3, 0)
 cr.arc(0.5, 0.5, 0.1, 0, 2*math.pi)
 cr.fill()
 
