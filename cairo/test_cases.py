@@ -40,4 +40,4 @@ def tc(i):
 	return pr
 
 def test(i):
-	return simple.encode(tc(i).draw(), True)
+	return simple.encode(tc(i).draw())

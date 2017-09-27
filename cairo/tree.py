@@ -86,11 +86,6 @@ class Tufa:
 		self.center = Point(center)
 		self.sidelength = Numeric()
 
-class Hugh:
-
-	def __init__(self, square, circle):
-		self.square = square
-		self.circle = circle
 
 # class Hugh:
 

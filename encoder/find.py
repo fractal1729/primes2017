@@ -1,7 +1,8 @@
 import cv2
 import cairo.tree as ct
+from concepts.objects import NotInstanceError
 
-def findHughs(shapes):
+def findHughsHardCode(shapes):
 	hughs = []
 	for shape in shapes:
 		if(isinstance(shape.program, ct.Sq) and
@@ -10,7 +11,12 @@ def findHughs(shapes):
 			hughs.append(ct.Hugh(shape.program, shape.children[0].program))
 	return hughs
 
-def alltrue(tests):
-	for t in tests:
-		if not t: return False
-	return True
+def find(shapes, Obj):
+	obj_list = []
+	for shape in shapes:
+		try:
+			obj = Obj(shape)
+			obj_list.append(obj)
+		except NotInstanceError:
+			pass
+	return obj_list
