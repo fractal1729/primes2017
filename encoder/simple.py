@@ -60,11 +60,25 @@ def stripInners(contours, hierarchy):
 		newhierarchy.append([nexti, previousi, childi, parenti])
 	return newcontours, newhierarchy
 
+def findEdges(image, lower, upper):
+	blue = image[:, :, 0]
+	green = image[:, :, 1]
+	red = image[:, :, 2]
+	bedge = cv2.Canny(blue, lower, upper)
+	gedge = cv2.Canny(green, lower, upper)
+	redge = cv2.Canny(red, lower, upper)
+	union = np.zeros(image.shape[:2], dtype='uint8')
+	for i in range(union.shape[0]):
+		for j in range(union.shape[1]):
+			if bedge[i][j] > 0 or gedge[i][j] > 0 or redge[i][j] > 0: union[i][j] = 255
+	return union
+
 def encode(image, preview=False):
 	resized = imutils.resize(image, width=scale_size)
 	ratio = image.shape[0]/float(scale_size)
-	gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
-	edged = cv2.Canny(gray, 2, 200)
+	# gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
+	# edged = cv2.Canny(gray, 2, 200)
+	edged = findEdges(resized, 30, 200)
 	# blurred = cv2.GaussianBlur(gray, (5, 5), 0)
 	# thresh = cv2.threshold(blurred, 60, 255, cv2.THRESH_BINARY)[1]
 	image2, contours, hierarchy = cv2.findContours(edged.copy(), cv2.RETR_TREE,

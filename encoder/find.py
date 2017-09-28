@@ -1,6 +1,9 @@
 import cv2
 import cairo.tree as ct
 from concepts.objects import NotInstanceError
+from encoder import simple
+from concepts import objects
+import cairo.test_cases as tc
 
 def findHughsHardCode(shapes):
 	hughs = []
@@ -20,3 +23,8 @@ def find(shapes, Obj):
 		except NotInstanceError:
 			pass
 	return obj_list
+
+def testTrafficLights(i):
+	pix = tc.tc(i).draw()
+	prog, shapes = simple.encode(pix)
+	return find(shapes, objects.TrafficLight)

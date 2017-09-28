@@ -2,6 +2,7 @@ import numpy as np
 import cairo.tree as ct
 import scipy.stats
 import sys
+from utils import pointDistance
 
 def generateRow(p1=None, p2=None, n=None, sigma=0.005): # two endpoints and number of points in total (including endpoints)
 	# ct.Point() is not the default in the function because I might want to specify a non-uniform distribution for this later.
@@ -68,13 +69,6 @@ def hd(P1, P2): # find the distance between two point sets
 			d = min(d, pointDistance(a,b))
 		h21 = max(h21, d)
 	return max(h12, h21)
-
-def pointDistance(a, b):
-	ax = a.x.val
-	ay = a.y.val
-	bx = b.x.val
-	by = b.y.val
-	return ((a.x.val - b.x.val)**2 + (a.y.val - b.y.val)**2)**0.5
 
 def previewPointSets(P1, P2):
 	pr = ct.Pr([])
