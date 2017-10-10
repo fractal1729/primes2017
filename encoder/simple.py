@@ -3,47 +3,9 @@ import cairo.tree as ct
 import imutils
 import math
 import numpy as np
+from concepts.shapes import Shape, buildShapeTree
 
 scale_size = 256
-
-class Shape:
-
-	def __init__(self, contour, index=-1, rank=-1, parent=None, children=[], program=None):
-		self.contour = contour
-		self.index = index
-		self.rank = rank
-		self.parent = parent
-		self.children = children
-		self.program = program
-
-	def addChild(self, child):
-		self.children.append(child)
-
-# class ShapeTree:
-
-# 	def __init__(self, contours, hierarchy):
-
-def buildShapeTree(contours, hierarchy):
-	shapes = []
-	for i in range(len(contours)):
-		contour = contours[i]
-		if hierarchy[i][3] == -1:
-			shapes.append(Shape(contour, i, 0, None, []))
-		else:
-			parent = shapes[hierarchy[i][3]]
-			rank = shapes[parent.index].rank + 1
-			shapes.append(Shape(contour, i, rank, parent, []))
-			shapes[parent.index].addChild(shapes[i])
-	return shapes
-
-	# def __init__(self, contours, hierarchy):
-	# 	self.shapes = [Shape(contours[0], 0, 0, None, [])]
-	# 	for i in range(1, len(contours)):
-	# 		contour = contours[i]
-	# 		parent = self.shapes[hierarchy[i][3]]
-	# 		rank = self.shapes[parent.index].rank + 1
-	# 		self.shapes.append(Shape(contour, i, rank, parent, []))
-	# 		self.shapes[parent.index].addChild(self.shapes[i])
 
 def stripInners(contours, hierarchy):
 	# the contours detected after Canny edge detection include both the outer and inner
@@ -113,8 +75,10 @@ def encode(image, preview=False):
 			component = None
 			if float(w)/float(h) >= 0.95 and float(w)/float(h) <= 1.05:
 				component = ct.Sq(center, math.sqrt(w*h)/float(scale_size), colorRGB)
+				shapes[i].type = "sq"
 			else:
 				component = ct.Re(center, w/float(scale_size), h/float(scale_size), colorRGB)
+				shapes[i].type = "re"
 			prog.addComponent(component)
 			shapes[i].program = component
 
@@ -122,6 +86,7 @@ def encode(image, preview=False):
 			component = ct.Ci(center, (math.sqrt(cv2.contourArea(c)/math.pi))/float(scale_size), colorRGB)
 			prog.addComponent(component)
 			shapes[i].program = component
+			shapes[i].type = "ci"
 
 	if preview: prog.preview()
 	return prog, shapes

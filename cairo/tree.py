@@ -55,6 +55,12 @@ class Program:
 		cv2.imshow("Program Preview", pix)
 		cv2.waitKey(0)
 
+	def flatParams(self):
+		fp = []
+		for c in self.components:
+			fp += c.flatParams()
+		return fp
+
 class PointSet: # in the future, I might want to make a more general version of this class
 # that allows me to make patterns out of non point objects.
 
@@ -79,12 +85,12 @@ class PointSet: # in the future, I might want to make a more general version of 
 
 # Compositional objects
 
-class Tufa:
+# class Tufa:
 
-	def __init__(self, center=None, sidelength=None, r1=None, r2=None, color=(0, 255, 0),
-		color1=(255, 0, 0), color2=(255, 0, 0)):
-		self.center = Point(center)
-		self.sidelength = Numeric()
+# 	def __init__(self, center=None, sidelength=None, r1=None, r2=None, color=(0, 255, 0),
+# 		color1=(255, 0, 0), color2=(255, 0, 0)):
+# 		self.center = Point(center)
+# 		self.sidelength = Numeric()
 
 
 # class Hugh:
@@ -122,6 +128,9 @@ class Circle:
 		return ("Circle(center=("+str(self.center.x.val)+", "+str(self.center.y.val)+"), radius="
 			+str(self.radius.val)+", color=("+str(self.color[0])+", "+str(self.color[1])+", "+str(self.color[2])+"))")
 
+	def flatParams(self):
+		return self.center.flatParams() + self.radius.flatParams() + self.color
+
 class Square:
 	
 	def __init__(self, center=None, sidelength=None, color=(0, 0, 0), fill=True):
@@ -137,9 +146,13 @@ class Square:
 		if self.fill: cr.fill()
 		else: cr.stroke()
 
+
 	def __repr__(self):
 		return ("Square(center=("+str(self.center.x.val)+", "+str(self.center.y.val)+"), sidelength="
 			+str(self.sidelength.val)+", color=("+str(self.color[0])+", "+str(self.color[1])+", "+str(self.color[2])+"))")
+
+	def flatParams(self):
+		return self.center.flatParams() + self.sidelength.flatParams() + self.color
 
 class Rectangle:
 
@@ -161,10 +174,13 @@ class Rectangle:
 			+str(self.width.val)+", height="+str(self.height.val)+", color=("+str(self.color[0])
 			+", "+str(self.color[1])+", "+str(self.color[2])+"))")
 
+	def flatParams(self):
+		return self.center.flatParams() + self.width.flatParams() + self.height.flatParams() + self.color
+
 class Point:
 
 	def __init__(self, coords=None):
-		if not coords: coords = (None, None)
+		if coords == None: coords = (None, None)
 		if isinstance(coords, Point):
 			self.x = coords.x
 			self.y = coords.y
@@ -177,6 +193,9 @@ class Point:
 
 	def __repr__(self):
 		return "Point("+str(self.x)+", "+str(self.y)+")"
+
+	def flatParams(self):
+		return self.x.flatParams() + self.y.flatParams()
 
 # class NumericRange:
 
@@ -217,6 +236,8 @@ class Numeric: # coordinate or length, float between 0 and 1
 	def __repr__(self):
 		return 'Numeric(%s)' % self.val
 
+	def flatParams(self):
+		return [self.val]
 
 
 # Shortcuts

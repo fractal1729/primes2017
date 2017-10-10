@@ -14,7 +14,7 @@ def findHughsHardCode(shapes):
 			hughs.append(ct.Hugh(shape.program, shape.children[0].program))
 	return hughs
 
-def find(shapes, Obj):
+def findObj(shapes, Obj): # find compositional objects
 	obj_list = []
 	for shape in shapes:
 		try:
@@ -28,3 +28,6 @@ def testTrafficLights(i):
 	pix = tc.tc(i).draw()
 	prog, shapes = simple.encode(pix)
 	return find(shapes, objects.TrafficLight)
+
+def matchShapeTreeTypes(shapes1, shapes2):
+	pass

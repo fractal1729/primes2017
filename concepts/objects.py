@@ -3,6 +3,53 @@ from encoder import simple
 import sys
 import utils
 
+#####################
+# OBJECT GENERATORS #
+#####################
+
+
+def generateUpHughs(num):
+	pixels = []
+	programs = []
+	params = []
+	for i in range(num):
+		sidelength = ct.Nu(minVal=0.2, maxVal=0.9)
+		sqX = ct.Nu(minVal=sidelength.val/2, maxVal=1-sidelength.val/2)
+		sqY = ct.Nu(minVal=sidelength.val/2, maxVal=1-sidelength.val/2)
+		square = ct.Sq(ct.Po((sqX, sqY)), sidelength, (0, 0, 0))
+		radius = ct.Nu(minVal=sidelength.val*0.1, maxVal=sidelength.val*0.2)
+		ciX = ct.Nu(minVal=sqX.val-sidelength.val/2+radius.val, maxVal=sqX.val+sidelength.val/2-radius.val)
+		ciY = ct.Nu(minVal=sqY.val-sidelength.val/2+radius.val, maxVal=sqY.val-radius.val) # this is the diff line
+		circle = ct.Ci(ct.Po((ciX, ciY)), radius, (255, 0, 0))
+		prog = ct.Pr([square, circle])
+		programs.append(prog)
+		pixels.append(prog.draw())
+		params.append(prog.flatParams())
+	return programs, pixels, params
+
+def generateDownHughs(num):
+	pixels = []
+	programs = []
+	params = []
+	for i in range(num):
+		sidelength = ct.Nu(minVal=0.2, maxVal=0.9)
+		sqX = ct.Nu(minVal=sidelength.val/2, maxVal=1-sidelength.val/2)
+		sqY = ct.Nu(minVal=sidelength.val/2, maxVal=1-sidelength.val/2)
+		square = ct.Sq(ct.Po((sqX, sqY)), sidelength, (0, 0, 0))
+		radius = ct.Nu(minVal=sidelength.val*0.1, maxVal=sidelength.val*0.2)
+		ciX = ct.Nu(minVal=sqX.val-sidelength.val/2+radius.val, maxVal=sqX.val+sidelength.val/2-radius.val)
+		ciY = ct.Nu(minVal=sqY.val+radius.val, maxVal=sqY.val+sidelength.val/2-radius.val) # this is the diff line
+		circle = ct.Ci(ct.Po((ciX, ciY)), radius, (255, 0, 0))
+		prog = ct.Pr([square, circle])
+		programs.append(prog)
+		pixels.append(prog.draw())
+		params.append(prog.flatParams())
+	return programs, pixels, params
+
+#####################
+#  OBJECT CHECKERS  #
+#####################
+
 class NotInstanceError(Exception):
 	pass
 
@@ -16,22 +63,26 @@ class Hugh():
 #  |-> square (rootShape)
 #       |-> circle
 
-	def __init__(self, rootShape, cp=''): # cp = checkprefix
-		try:
-			check(isinstance(rootShape.program, ct.Sq), cp+'0')
-			self.rootShape = rootShape # root is a square in Hugh
-			self.square = self.rootShape
-			check(len(rootShape.children) == 1, cp+'1')
-			check(isinstance(rootShape.children[0].program, ct.Ci), cp+'2')
-			self.circle = rootShape.children[0]
-			check(len(self.circle.children) == 0, cp+'3')
-			check(utils.pointDistance(self.circle.program.center, self.square.program.center) <= 0.25*self.square.program.sidelength.val, cp+'4')
-			check(self.circle.program.radius.val <= 0.85*self.square.program.sidelength.val
-				and self.circle.program.radius.val >= 0.25*self.square.program.sidelength.val, cp+'5')
+	def __init__(self, rootShape, cp='', generateNew=False): # cp = checkprefix
+		if not generateNew:
+			try:
+				check(rootShape.type == "sq", cp+'0')
+				self.rootShape = rootShape # root is a square in Hugh
+				self.square = self.rootShape
+				check(len(rootShape.children) == 1, cp+'1')
+				check(rootShape.children[0].type == "ci", cp+'2')
+				self.circle = rootShape.children[0]
+				check(len(self.circle.children) == 0, cp+'3')
+				# check(utils.pointDistance(self.circle.program.center, self.square.program.center) <= 0.25*self.square.program.sidelength.val, cp+'4')
+				check(self.circle.program.radius.val <= 0.45*self.square.program.sidelength.val
+					and self.circle.program.radius.val >= 0.08*self.square.program.sidelength.val, cp+'5')
 
-		except NotInstanceError as e:
-			print e.args[0]
-			raise sys.exc_info()
+			except NotInstanceError as e:
+				print e.args[0]
+				raise sys.exc_info()
+
+	def flatParams(self): # a flat array of all the parameters?
+		return self.square.flatParams() + self.circle.flatParams()
 
 class TrafficLight():
 
@@ -44,7 +95,7 @@ class TrafficLight():
 
 	def __init__(self, rootShape, cp=''):
 		try:
-			check(isinstance(rootShape.program, ct.Re), cp+'0')
+			check(rootShape.type == "re", cp+'0')
 			self.rootShape = rootShape
 			self.rect = rootShape
 			aspect_ratio = self.rect.program.height.val/self.rect.program.width.val
@@ -58,7 +109,7 @@ class TrafficLight():
 			rectLeft = rectX - self.rect.program.width.val/2
 			rectRight = rectX + self.rect.program.width.val/2
 			for c in self.rect.children:
-				check(isinstance(c.program, ct.Ci), cp+'3')
+				check(c.type == "ci", cp+'3')
 				check(len(c.children) == 0, cp+'4')
 				in_top_third = (c.program.center.y.val + c.program.radius.val <= (2*rectTop + rectBot)/3)
 				in_mid_third = (c.program.center.y.val - c.program.radius.val >= (2*rectTop + rectBot)/3
@@ -76,6 +127,10 @@ class TrafficLight():
 			#print e.args[0]
 			raise sys.exc_info()
 
+	def flatParams(self):
+		return (self.rect.flatParams() + self.topCircle.flatParams()
+			+ self.midCircle.flatParams() + self.botCircle.flatParams())
+
 class FancyTrafficLight():
 
 # FTL
@@ -87,7 +142,7 @@ class FancyTrafficLight():
 
 	def __init__(self, rootShape, cp=''):
 		try:
-			check(isinstance(rootShape.program, ct.Re), cp+'0')
+			check(rootShape.type == "re", cp+'0')
 			self.rootShape = rootShape
 			self.rect = rootShape
 			aspect_ratio = self.rect.program.height.val/self.rect.program.width.val
@@ -118,6 +173,10 @@ class FancyTrafficLight():
 		except NotInstanceError as e:
 			#print e.args[0]
 			raise sys.exc_info()
+
+	def flatParams(self):
+		return (self.rect.flatParams() + self.topHugh.flatParams()
+			+ self.midHugh.flatParams() + self.botHugh.flatParams())
 
 ################
 
