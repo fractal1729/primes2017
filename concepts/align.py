@@ -18,14 +18,17 @@ def findAlignments(points):
 			a = y1-y2
 			b = x2-x1
 			c = y2*x1 - x2*y1
-			collinearpts = [i,j]
-			for k in range(j+1, len(points)):
-				dist = abs(a*points[k][0]+b*points[k][1]+c)/math.sqrt(a*a+b*b)
-				if dist < 0.03:
-					collinearpts.append(k)
+			collinearpts = set([i,j])
+			for k in range(len(points)):
+				if k != i and k != j:
+					dist = abs(a*points[k][0]+b*points[k][1]+c)/math.sqrt(a*a+b*b)
+					if dist < 0.005:
+						collinearpts.add(k)
 			if len(collinearpts) > 2:
-				lines.append(collinearpts)
-	return lines
+				lines.append(frozenset(collinearpts))
+	return list(set(lines))
+
+	
 
 # O(N^2) attempt:
 # def findAlignments(points):
