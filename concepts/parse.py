@@ -1,9 +1,8 @@
-
+from simple import encoder, 
+from concepts import 
 
 class Parse:
 
-
-
-class Concept:
-
-	
+	def __init__(shapes):
+		self.shapes = shapes
+		

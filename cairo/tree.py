@@ -1,4 +1,4 @@
-import config
+from cairo import cairoconfig
 import cairocffi as cairo
 import numpy as np
 import io
@@ -11,8 +11,8 @@ import cv2
 
 # Constants
 
-WIDTH = config.CANVAS_SIZE
-HEIGHT = config.CANVAS_SIZE
+WIDTH = cairoconfig.CANVAS_SIZE
+HEIGHT = cairoconfig.CANVAS_SIZE
 RED = (255, 0, 0)
 GREEN = (0, 255, 255)
 BLUE = (0, 0, 255)
@@ -170,7 +170,7 @@ class Rectangle:
 		else: cr.stroke()
 
 	def __repr__(self):
-		return ("Rectangle(center="+str(self.center.x.val)+", "+str(self.center.y.val)+"), width="
+		return ("Rectangle(center=("+str(self.center.x.val)+", "+str(self.center.y.val)+"), width="
 			+str(self.width.val)+", height="+str(self.height.val)+", color=("+str(self.color[0])
 			+", "+str(self.color[1])+", "+str(self.color[2])+"))")
 

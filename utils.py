@@ -1,6 +1,6 @@
 import cv2
 
-def drawWithIDs(prog, shapes, idcolor=(0,0,0)):
+def previewWithIDs(prog, shapes, idcolor=(0,0,0)):
 	imageb = prog.draw()
 	image = imageb.copy() # i have to make a copy due to some bug in opencv...
 	# see https://stackoverflow.com/questions/30249053/python-opencv-drawing-errors-after-manipulating-array-with-numpy
@@ -27,6 +27,14 @@ def pointDistance(a, b):
 	bx = b.x.val
 	by = b.y.val
 	return ((a.x.val - b.x.val)**2 + (a.y.val - b.y.val)**2)**0.5
+
+def isInside(shape1, shape2):
+	s = shape1
+	while(s != None):
+		s = s.parent
+		if s == shape2:
+			return True
+	return False
 
 # import utils, cv2
 # from encoder import simple

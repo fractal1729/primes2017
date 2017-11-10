@@ -1,12 +1,12 @@
 import numpy as np
 import math
 
-def findCenterAlignments(shapes):
-	return findAlignments([(shape.program.center.x.val, shape.program.center.y.val) for shape in shapes])
+def centerCollinearities(shapes):
+	return collinearities([(shape.program.center.x.val, shape.program.center.y.val) for shape in shapes])
 
 # straightforward O(N^3) implementation
 # for every line between two points I run through all the other points and see who else is on that line
-def findAlignments(points):
+def collinearities(points):
 	lines = [] # uses indices of points as opposed to the points themselves!
 	for i in range(len(points)):
 		for j in range(i+1, len(points)):
@@ -28,10 +28,8 @@ def findAlignments(points):
 				lines.append(frozenset(collinearpts))
 	return list(set(lines))
 
-	
-
 # O(N^2) attempt:
-# def findAlignments(points):
+# def findCollinearities(points):
 	# lines = [] # pairs of the form (m, b) for lines y = mx+b
 	# for i in range(len(points)):
 	# 	for j in range(i+1, len(points)):

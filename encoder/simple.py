@@ -1,11 +1,12 @@
 import cv2
 import cairo.tree as ct
+from cairo import cairoconfig
 import imutils
 import math
 import numpy as np
-from concepts.shapes import Shape, buildShapeTree
+from concepts.shapeutils import Shape, buildShapeTree
 
-scale_size = 256
+scale_size = cairoconfig.CANVAS_SIZE
 
 def stripInners(contours, hierarchy):
 	# the contours detected after Canny edge detection include both the outer and inner
@@ -64,10 +65,10 @@ def encode(image, preview=False):
 		while child_index != -1:
 			maskcontours.append(contours[child_index])
 			child_index = hierarchy[child_index][0]
-		mask = np.zeros(image.shape[:2], dtype="uint8")
+		mask = np.zeros(resized.shape[:2], dtype="uint8")
 		cv2.drawContours(mask, maskcontours, -1, 255, -1)
 		mask = cv2.erode(mask, None, iterations=2)
-		colorBGR = cv2.mean(image, mask=mask)[:3]
+		colorBGR = cv2.mean(resized, mask=mask)[:3]
 		colorRGB = [colorBGR[2], colorBGR[1], colorBGR[0]] # BGR -> RGB
 
 		if len(approx) == 4:
@@ -86,7 +87,7 @@ def encode(image, preview=False):
 			component = ct.Ci(center, (math.sqrt(cv2.contourArea(c)/math.pi))/float(scale_size), colorRGB)
 			prog.addComponent(component)
 			shapes[i].program = component
-			shapes[i].type = "ci"
+			shapes[i].initci()
 
 	if preview: prog.preview()
 	return prog, shapes
