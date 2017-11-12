@@ -158,8 +158,8 @@ class Rectangle:
 
 	def __init__(self, center=None, width=None, height=None, color=(0, 0, 0), fill=True):
 		self.center = Point(center)
-		self.width = Numeric(width, 0.03, 2*min(self.center.x.val, 1-self.center.x.val))
-		self.height = Numeric(height, 0.03, 2*min(self.center.y.val, 1-self.center.y.val))
+		self.width = Numeric(width, 0.01, 2*min(self.center.x.val, 1-self.center.x.val))
+		self.height = Numeric(height, 0.01, 2*min(self.center.y.val, 1-self.center.y.val))
 		self.fill = fill
 		self.color = [color[0]/255.0, color[1]/255.0, color[2]/255.0]
 

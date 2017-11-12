@@ -54,7 +54,7 @@ def encode(image, preview=False):
 	for i in range(len(contours)):
 		c = contours[i]
 		peri = cv2.arcLength(c, True)
-		approx = cv2.approxPolyDP(c, 0.04*peri, True)
+		approx = cv2.approxPolyDP(c, 0.02*peri, True)
 		M = cv2.moments(c)
 		cX = (M["m10"] / M["m00"]) / float(scale_size)
 		cY = (M["m01"] / M["m00"]) / float(scale_size)
@@ -73,15 +73,20 @@ def encode(image, preview=False):
 
 		if len(approx) == 4:
 			(x, y, w, h) = cv2.boundingRect(approx)
-			component = None
-			if float(w)/float(h) >= 0.95 and float(w)/float(h) <= 1.05:
-				component = ct.Sq(center, math.sqrt(w*h)/float(scale_size), colorRGB)
-				shapes[i].type = "sq"
-			else:
-				component = ct.Re(center, w/float(scale_size), h/float(scale_size), colorRGB)
-				shapes[i].type = "re"
+			
+			# -- DISTINGUISHING BETWEEN SQUARES AND RECTANGLES IS DISABLED --
+			# component = None
+			# if float(w)/float(h) >= 0.95 and float(w)/float(h) <= 1.05:
+			# 	component = ct.Sq(center, math.sqrt(w*h)/float(scale_size), colorRGB)
+			# 	shapes[i].type = "sq"
+			# else:
+			# 	component = ct.Re(center, w/float(scale_size), h/float(scale_size), colorRGB)
+			# 	shapes[i].type = "re"
+
+			component = ct.Re(center, w/float(scale_size), h/float(scale_size), colorRGB)
 			prog.addComponent(component)
 			shapes[i].program = component
+			shapes[i].initre()
 
 		if len(approx) > 5:
 			component = ct.Ci(center, (math.sqrt(cv2.contourArea(c)/math.pi))/float(scale_size), colorRGB)

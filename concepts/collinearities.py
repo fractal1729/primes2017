@@ -1,12 +1,12 @@
 import numpy as np
 import math
 
-def centerCollinearities(shapes):
-	return collinearities([(shape.program.center.x.val, shape.program.center.y.val) for shape in shapes])
+def centerCollinearities(shapes, thresh):
+	return collinearities([(shape.program.center.x.val, shape.program.center.y.val) for shape in shapes], thresh)
 
 # straightforward O(N^3) implementation
 # for every line between two points I run through all the other points and see who else is on that line
-def collinearities(points):
+def collinearities(points, thresh=0.005):
 	lines = [] # uses indices of points as opposed to the points themselves!
 	for i in range(len(points)):
 		for j in range(i+1, len(points)):
@@ -22,7 +22,7 @@ def collinearities(points):
 			for k in range(len(points)):
 				if k != i and k != j:
 					dist = abs(a*points[k][0]+b*points[k][1]+c)/math.sqrt(a*a+b*b)
-					if dist < 0.005:
+					if dist < thresh:
 						collinearpts.add(k)
 			if len(collinearpts) > 2:
 				lines.append(frozenset(collinearpts))
