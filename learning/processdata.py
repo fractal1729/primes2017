@@ -3,7 +3,7 @@ import numpy as np
 from concepts import features
 from encoder import simple
 
-n = 16 # n concepts
+n = 18 # n concepts
 m = 5 # m examples for each concept
 
 def trainingImages(): # returns images, classes
@@ -59,3 +59,6 @@ def trainingInceptionFeatures(): # returns X, Y
 	for i in range(n*m):
 		Y[i] = i/m
 	return X, Y
+
+if __name__ == '__main__':
+	writeCustomFeatures()

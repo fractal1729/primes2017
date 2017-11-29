@@ -7,7 +7,8 @@ def centerCollinearities(shapes, thresh):
 # straightforward O(N^3) implementation
 # for every line between two points I run through all the other points and see who else is on that line
 def collinearities(points, thresh=0.005):
-	lines = [] # uses indices of points as opposed to the points themselves!
+	lines = [] # includes angle, dist to center (NOT YET)
+	# followed by indices of points as opposed to the points themselves!
 	for i in range(len(points)):
 		for j in range(i+1, len(points)):
 			x1 = points[i][0]
@@ -25,6 +26,12 @@ def collinearities(points, thresh=0.005):
 					if dist < thresh:
 						collinearpts.add(k)
 			if len(collinearpts) > 2:
+				angle = np.pi/2
+				if b != 0:
+					angle = np.arctan(-1*a/b)
+				disttocenter = (0.5*a+0.5*b+c)/((a**2+b**2)**0.5)
+				#lines.append(angle)
+				#lines.append(disttocenter)
 				lines.append(frozenset(collinearpts))
 	return list(set(lines))
 

@@ -151,7 +151,7 @@ def maybe_download_and_extract():
   tarfile.open(filepath, 'r:gz').extractall(dest_directory)
 
 def main(_):
-  n = '15'
+  n = '17'
   m = 5
   maybe_download_and_extract()
   features = np.zeros((m, 2048))

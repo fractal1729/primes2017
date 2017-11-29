@@ -4,11 +4,38 @@ from learning import processdata
 import random
 import numpy as np
 
-n = 16
+n = 18
 m = 5
 
 myX, Y = processdata.trainingCustomFeatures()
 nnX, Y = processdata.trainingInceptionFeatures()
+bothX = np.concatenate((myX, nnX), axis=1)
+
+numcorrect = {}
+numtotal = {}
+
+def initcounters():
+	for i in range(n*m):
+		numcorrect[sum(myX[i])] = 0
+		numcorrect[sum(nnX[i])] = 0
+		numtotal[sum(myX[i])] = 0
+		numtotal[sum(nnX[i])] = 0
+
+def accuracydata():
+	mycor = []
+	nncor = []
+	mytot = []
+	nntot = []
+	for i in range(n*m):
+		mycor += [numcorrect[sum(myX[i])]]
+		nncor += [numcorrect[sum(nnX[i])]]
+		mytot += [numtotal[sum(myX[i])]]
+		nntot += [numtotal[sum(nnX[i])]]
+	mycor = np.array(mycor)
+	nncor = np.array(nncor)
+	mytot = np.array(mytot)
+	nntot = np.array(nntot)
+	return nncor.astype(np.float64)/nntot, mycor.astype(np.float64)/mytot
 
 def maketraintest(X, Y, trainops, testops):
 	trainX = []
@@ -23,34 +50,62 @@ def maketraintest(X, Y, trainops, testops):
 		testY += [Y[m*i+k] for k in testops[j]]
 	return np.array(trainX), np.array(trainY), np.array(testX), np.array(testY)
 
-def oneshot():
+def oneshot(X, Y):
 	trainops = [[0], [1], [2], [3], [4]]
 	testops = [[1,2,3,4], [0,2,3,4], [0,1,3,4], [0,1,2,4], [0,1,2,3]]
-	return maketraintest(nnX, Y, trainops, testops), maketraintest(myX, Y, trainops, testops)
+	return maketraintest(X, Y, trainops, testops)
 
-def twoshot():
+def twoshot(X, Y):
 	trainops = [[0,1], [0,2], [0,3], [0,4], [1,2], [1,3], [1,4], [2,3], [2,4], [3,4]]
 	testops = [[2,3,4], [1,3,4], [1,2,4], [1,2,3], [0,3,4], [0,2,4], [0,2,3], [0,1,4], [0,1,3], [0,1,2]]
-	return maketraintest(nnX, Y, trainops, testops), maketraintest(myX, Y, trainops, testops)
+	return maketraintest(X, Y, trainops, testops)
 
-def threeshot():
+def threeshot(X, Y):
 	trainops = [[2,3,4], [1,3,4], [1,2,4], [1,2,3], [0,3,4], [0,2,4], [0,2,3], [0,1,4], [0,1,3], [0,1,2]]
 	testops = [[0,1], [0,2], [0,3], [0,4], [1,2], [1,3], [1,4], [2,3], [2,4], [3,4]]
-	return maketraintest(nnX, Y, trainops, testops), maketraintest(myX, Y, trainops, testops)
+	return maketraintest(X, Y, trainops, testops)
 
-def fourshot():
+def fourshot(X, Y):
 	trainops = [[1,2,3,4], [0,2,3,4], [0,1,3,4], [0,1,2,4], [0,1,2,3]]
 	testops = [[0], [1], [2], [3], [4]]
-	return maketraintest(nnX, Y, trainops, testops), maketraintest(myX, Y, trainops, testops)
+	return maketraintest(X, Y, trainops, testops)
 
-def run(trainsize):
-	nndata = None
-	mydata = None
+def run(trainsize, X, Y, method='linear'):
+	data = None
 	if trainsize == 1:
-		nndata, mydata = oneshot()
+		data = oneshot(X, Y)
 	if trainsize == 2:
-		nndata, mydata = twoshot()
+		data = twoshot(X, Y)
 	if trainsize == 3:
-		nndata, mydata = threeshot()
+		data = threeshot(X, Y)
 	if trainsize == 4:
-		nndata, mydata = fourshot()
+		data = fourshot(X, Y)
+	trainX, trainY, testX, testY = data
+	clf = svm.LinearSVC()
+	if method == 'rbf':
+		clf = svm.SVC(decision_function_shape='ovo')
+	clf.fit(trainX, trainY)
+	pred = clf.predict(testX)
+	numright = 0
+	for i in range(len(testY)):
+		numtotal[sum(testX[i])] += 1
+		if pred[i] == testY[i]:
+			numright += 1
+			numcorrect[sum(testX[i])] += 1
+	return float(numright)/len(testY)
+
+def runmany(trainsize, numiter=50, dataset='my', method='linear'):
+	initcounters()
+	X = myX
+	if dataset == 'nn':
+		X = nnX
+	if dataset == 'both':
+		x = bothX
+	s = []
+	for i in range(numiter):
+		s += [run(trainsize, X, Y, method=method)]
+	nnresults, myresults = accuracydata()
+	return s, nnresults, myresults
+
+# if __name__ == '__main__':
+# 	run(1, nnX, Y)

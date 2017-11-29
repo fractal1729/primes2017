@@ -1,33 +1,17 @@
 import cv2
 from concepts import collinearities, cluster
 
-# Feature list:
+# I need more features. Here are some ideas:
+#	- average row slope
+#	- average row distance to (0.5,0.5) [can be negative]
+#	- standard deviation of circle/rect size and coordinates
+#	- average tightness (average distance between two shapes)
+#	- average circle index
+#	- average rectangle index
+#	- average circle rank
+#	- average rectangle rank
 
-# number of shapes
-# number of rects
-# number of circles
-# depth of tree
-# average shape area
-# average rect area
-# average circle area
-# average shape area/largest shape area
-# average rect area/largest shape area
-# average circle area/largest shape area
-# number of circles in circles
-# number of rects in circles
-# number of circles in rects
-# number of rects in rects
-# base 10 representation (rects = 0.1*0.01^depth, circles = 0.01*0.01^depth)
-# number of loose rows
-# number of tight rows
-# average loose row size
-# average tight row size
-# number of loose clusters
-# number of tight clusters
-# average loose cluster size
-# average tight cluster size
-
-NUM_FEATURES = 23
+NUM_FEATURES = 34
 
 def getFeatures(shapes):
 	return [
@@ -35,25 +19,36 @@ def getFeatures(shapes):
 		number_of_rects(shapes), # 1
 		number_of_circles(shapes), # 2
 		depth_of_tree(shapes), # 3
-		average_shape_area(shapes), # 4
-		average_rect_area(shapes), # 5
-		average_circle_area(shapes), # 6
+		average_shape_area(shapes)/10000.0, # 4
+		average_rect_area(shapes)/10000.0, # 5
+		average_circle_area(shapes)/10000.0, # 6
 		average_shape_area_per_largest_shape_area(shapes), # 7
 		average_rect_area_per_largest_shape_area(shapes), # 8
 		average_circle_area_per_largest_shape_area(shapes), # 9
-		number_of_circles_in_circles(shapes), # 10
-		number_of_rects_in_circles(shapes), # 11
-		number_of_circles_in_rects(shapes), # 12
-		number_of_rects_in_rects(shapes), # 13
-		base_10_representation(shapes), # 14
-		number_of_loose_rows(shapes), # 15
-		number_of_tight_rows(shapes), # 16
-		average_loose_row_size(shapes), # 17
-		average_tight_row_size(shapes), # 18
-		number_of_loose_clusters(shapes), # 19
-		number_of_tight_clusters(shapes), # 20
-		average_loose_cluster_size(shapes), # 21
-		average_tight_cluster_size(shapes) # 22
+		number_of_circles_in_circles(shapes)/5.0, # 10
+		number_of_rects_in_circles(shapes)/5.0, # 11
+		number_of_circles_in_rects(shapes)/5.0, # 12
+		number_of_rects_in_rects(shapes)/5.0, # 13
+		base_10_representation(shapes)*10.0, # 14
+		base_10_representation_flipped(shapes)*10.0, # 15
+		base_10_representation_total(shapes)*10.0, # 24
+		number_of_loose_rows(shapes)/5.0, # 16
+		number_of_tight_rows(shapes)/5.0, # 17
+		average_loose_row_size(shapes)/5.0, # 18
+		average_tight_row_size(shapes)/5.0, # 19
+		number_of_loose_clusters(shapes)/5.0, # 20
+		number_of_tight_clusters(shapes)/5.0, # 21
+		average_loose_cluster_size(shapes)/5.0, # 22
+		average_tight_cluster_size(shapes)/5.0, # 23
+		average_x_coord(shapes), # 25
+		average_y_coord(shapes), # 26
+		average_circle_x_coord(shapes), # 27
+		average_circle_y_coord(shapes), # 28
+		average_circle_radius(shapes), # 29
+		average_rect_x_coord(shapes), # 30
+		average_rect_y_coord(shapes), # 31
+		average_rect_width(shapes), # 32
+		average_rect_height(shapes) # 33
 	]
 
 def number_of_shapes(shapes):
@@ -147,6 +142,18 @@ def base_10_representation(shapes):
 			code += 0.01*(0.01**s.rank)
 	return code
 
+def base_10_representation_flipped(shapes):
+	code = 0.0
+	for s in shapes:
+		if s.type == 're':
+			code += 0.01*(0.01**s.rank)
+		if s.type == 'ci':
+			code += 0.1*(0.01**s.rank)
+	return code
+
+def base_10_representation_total(shapes):
+	return base_10_representation(shapes)+base_10_representation_flipped(shapes)
+
 def number_of_loose_rows(shapes):
 	rows = collinearities.centerCollinearities(shapes, 0.03)
 	return len(rows)
@@ -182,6 +189,89 @@ def average_loose_cluster_size(shapes):
 def average_tight_cluster_size(shapes):
 	clusters = cluster.cluster(shapes, 0.05)[0]
 	return float(sum([len(clu) for clu in clusters]))/len(clusters)
+
+def average_x_coord(shapes):
+	return sum([s.program.center.x.val for s in shapes])/len(shapes)
+
+def average_y_coord(shapes):
+	return sum([s.program.center.y.val for s in shapes])/len(shapes)
+
+def average_circle_x_coord(shapes):
+	su = 0
+	count = 0
+	for s in shapes:
+		if s.type == 'ci':
+			count += 1
+			su += s.program.center.x.val
+	if count == 0:
+		return 0
+	return su/count
+
+def average_circle_y_coord(shapes):
+	su = 0
+	count = 0
+	for s in shapes:
+		if s.type == 'ci':
+			count += 1
+			su += s.program.center.y.val
+	if count == 0:
+		return 0
+	return su/count
+
+def average_circle_radius(shapes):
+	su = 0
+	count = 0
+	for s in shapes:
+		if s.type == 'ci':
+			count += 1
+			su += s.program.radius.val
+	if count == 0:
+		return 0
+	return su/count
+
+def average_rect_x_coord(shapes):
+	su = 0
+	count = 0
+	for s in shapes:
+		if s.type == 're':
+			count += 1
+			su += s.program.center.x.val
+	if count == 0:
+		return 0
+	return su/count
+
+def average_rect_y_coord(shapes):
+	su = 0
+	count = 0
+	for s in shapes:
+		if s.type == 're':
+			count += 1
+			su += s.program.center.y.val
+	if count == 0:
+		return 0
+	return su/count
+
+def average_rect_width(shapes):
+	su = 0
+	count = 0
+	for s in shapes:
+		if s.type == 're':
+			count += 1
+			su += s.program.width.val
+	if count == 0:
+		return 0
+	return su/count
+
+def average_rect_height(shapes):
+	su = 0
+	count = 0
+	for s in shapes:
+		if s.type == 're':
+			count += 1
+			su += s.program.height.val
+	if count == 0:
+		return 0
+	return su/count
 
 # import cv2
 # from encoder import simple
