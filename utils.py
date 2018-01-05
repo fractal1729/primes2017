@@ -36,6 +36,9 @@ def isInside(shape1, shape2):
 			return True
 	return False
 
+def syncSVMDataset(n, m):
+	
+
 # import utils, cv2
 # from encoder import simple
 # from concepts import align
