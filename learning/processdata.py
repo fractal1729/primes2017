@@ -49,11 +49,12 @@ def trainingCustomFeatures():
 	return X, Y
 
 def trainingInceptionFeatures(): # returns X, Y
-	X = np.zeros((n*m, 2048))
-	for i in range(n):
-		x = np.load('nn/inceptionfeatures/'+'{:02}'.format(i)+'.npy')
-		for j in range(m):
-			X[i*m+j] = x[j]
+	# X = np.zeros((n*m, 2048))
+	# for i in range(n):
+	# 	x = np.load('nn/inceptionfeatures/'+'{:02}'.format(i)+'.npy')
+	# 	for j in range(m):
+	# 		X[i*m+j] = x[j]
+	X = np.load('nn/inceptionfeatures/allfeatures.npy')
 
 	Y = np.zeros((n*m))
 	for i in range(n*m):

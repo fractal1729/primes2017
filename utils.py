@@ -34,10 +34,7 @@ def isInside(shape1, shape2):
 		s = s.parent
 		if s == shape2:
 			return True
-	return False
-
-def syncSVMDataset(n, m):
-	
+	return False	
 
 # import utils, cv2
 # from encoder import simple

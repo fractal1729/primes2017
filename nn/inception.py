@@ -10,6 +10,7 @@ from six.moves import urllib
 import tensorflow as tf
 
 FLAGS = None
+DEFAULT_MODEL_DIR = '/tmp/imagenet'
 
 # pylint: disable=line-too-long
 DATA_URL = 'http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz'
@@ -23,10 +24,10 @@ class NodeLookup(object):
                uid_lookup_path=None):
     if not label_lookup_path:
       label_lookup_path = os.path.join(
-          FLAGS.model_dir, 'imagenet_2012_challenge_label_map_proto.pbtxt')
+          DEFAULT_MODEL_DIR, 'imagenet_2012_challenge_label_map_proto.pbtxt')
     if not uid_lookup_path:
       uid_lookup_path = os.path.join(
-          FLAGS.model_dir, 'imagenet_synset_to_human_label_map.txt')
+          DEFAULT_MODEL_DIR, 'imagenet_synset_to_human_label_map.txt')
     self.node_lookup = self.load(label_lookup_path, uid_lookup_path)
 
   def load(self, label_lookup_path, uid_lookup_path):
@@ -84,13 +85,13 @@ def create_graph():
   """Creates a graph from saved GraphDef file and returns a saver."""
   # Creates graph from saved graph_def.pb.
   with tf.gfile.FastGFile(os.path.join(
-      FLAGS.model_dir, 'classify_image_graph_def.pb'), 'rb') as f:
+      DEFAULT_MODEL_DIR, 'classify_image_graph_def.pb'), 'rb') as f:
     graph_def = tf.GraphDef()
     graph_def.ParseFromString(f.read())
     _ = tf.import_graph_def(graph_def, name='')
 
 
-def run_inference_on_image(image):
+def run_inference_on_image(image): # function decomissioned; use run_inference_on_images() instead.
   """Runs inference on an image.
 
   Args:
@@ -131,10 +132,27 @@ def run_inference_on_image(image):
     #   score = predictions[node_id]
     #   print('%s (score = %.5f)' % (human_string, score))
 
+def run_inference_on_images(images):
+	images_data = []
+	for image in images:
+	  if not tf.gfile.Exists(image):
+	    tf.logging.fatal('File does not exist %s', image)
+	  image_data = tf.gfile.FastGFile(image, 'rb').read()
+	  images_data.append(image_data)
+	create_graph()
+	m = len(images)
+	with tf.Session() as sess:
+		softmax_tensor = sess.graph.get_tensor_by_name('pool_3:0')
+		features = np.zeros((m, 2048))
+		for j in range(m):
+			prediction = sess.run(softmax_tensor, {'DecodeJpeg/contents:0': images_data[j]})
+			prediction = np.squeeze(prediction)
+			features[j] = prediction
+		return features
 
 def maybe_download_and_extract():
   """Download and extract model tar file."""
-  dest_directory = FLAGS.model_dir
+  dest_directory = DEFAULT_MODEL_DIR
   if not os.path.exists(dest_directory):
     os.makedirs(dest_directory)
   filename = DATA_URL.split('/')[-1]
@@ -150,54 +168,81 @@ def maybe_download_and_extract():
     print('Successfully downloaded', filename, statinfo.st_size, 'bytes.')
   tarfile.open(filepath, 'r:gz').extractall(dest_directory)
 
-def main(_):
-  n = '17'
+def main(n): # function decomissioned; use compileAll instead.
+  # n = '17'
   m = 5
   maybe_download_and_extract()
-  features = np.zeros((m, 2048))
   # print(run_inference_on_image('nn/cropped_panda.jpg'))
+  # for j in range(m):
+  #   start = time.time()
+  #   imgfile = 'cairo/test_cases/svmdata/'+n+'-'+str(j)+'.png'
+  #   f = run_inference_on_image(imgfile)
+  #   features[j] = f
+  #   print imgfile+" done"
+  #   end = time.time()
+  #   print "time: "+str(end-start)
+  #   time.sleep(0.5)
+  start = time.time()
+  imgfiles = []
   for j in range(m):
-    start = time.time()
-    imgfile = 'cairo/test_cases/svmdata/'+n+'-'+str(j)+'.png'
-    f = run_inference_on_image(imgfile)
-    features[j] = f
-    print imgfile+" done"
-    end = time.time()
-    print "time: "+str(end-start)
-    time.sleep(0.5)
+  	imgfiles.append('cairo/test_cases/svmdata/'+n+'-'+str(j)+'.png')
+  features = run_inference_on_images(imgfiles)
+  print n+" done"
+  end = time.time()
+  print "time: "+str(end-start)
   np.save("nn/inceptionfeatures/"+n, features)
 
-if __name__ == '__main__':
-  parser = argparse.ArgumentParser()
-  # classify_image_graph_def.pb:
-  #   Binary representation of the GraphDef protocol buffer.
-  # imagenet_synset_to_human_label_map.txt:
-  #   Map from synset ID to a human readable string.
-  # imagenet_2012_challenge_label_map_proto.pbtxt:
-  #   Text representation of a protocol buffer mapping a label to synset ID.
-  parser.add_argument(
-      '--model_dir',
-      type=str,
-      default='/tmp/imagenet',
-      help="""\
-      Path to classify_image_graph_def.pb,
-      imagenet_synset_to_human_label_map.txt, and
-      imagenet_2012_challenge_label_map_proto.pbtxt.\
-      """
-  )
-  parser.add_argument(
-      '--image_file',
-      type=str,
-      default='',
-      help='Absolute path to image file.'
-  )
-  parser.add_argument(
-      '--num_top_predictions',
-      type=int,
-      default=5,
-      help='Display this many predictions.'
-  )
-  FLAGS, unparsed = parser.parse_known_args()
-  print sys.argv[0]
-  print unparsed
-  tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
+
+
+def compileAll(n=18,m=5):
+	maybe_download_and_extract()
+	imgfiles = []
+	for i in range(n):
+		for j in range(m):
+			imgfiles.append('cairo/test_cases/svmdata/'+'{:02}'.format(i)+'-'+str(j)+'.png')
+		print i+" loaded"
+	print "All images loaded"
+	features = run_inference_on_images(imgfiles)
+	print "Inference complete"
+	np.save("nn/inceptionfeatures/allfeatures", features)
+	print "Save complete"
+
+
+# def run(n):
+#   parser = argparse.ArgumentParser()
+#   # classify_image_graph_def.pb:
+#   #   Binary representation of the GraphDef protocol buffer.
+#   # imagenet_synset_to_human_label_map.txt:
+#   #   Map from synset ID to a human readable string.
+#   # imagenet_2012_challenge_label_map_proto.pbtxt:
+#   #   Text representation of a protocol buffer mapping a label to synset ID.
+#   # parser.add_argument(
+#   #     '--model_dir',
+#   #     type=str,
+#   #     default='/tmp/imagenet',
+#   #     help="""\
+#   #     Path to classify_image_graph_def.pb,
+#   #     imagenet_synset_to_human_label_map.txt, and
+#   #     imagenet_2012_challenge_label_map_proto.pbtxt.\
+#   #     """
+#   # )
+#   # # parser.add_argument(
+#   # #     '--image_file',
+#   # #     type=str,
+#   # #     default='',
+#   # #     help='Absolute path to image file.'
+#   # # )
+#   # parser.add_argument(
+#   #     '--num_top_predictions',
+#   #     type=int,
+#   #     default=5,
+#   #     help='Display this many predictions.'
+#   # # )
+#   # FLAGS, unparsed = parser.parse_known_args()
+#   # #unparsed.append(str(n))
+#   # print FLAGS
+
+#   tf.app.run(main=main, argv=[sys.argv[0], n])
+
+# if __name__ == '__main__':
+#  	run(3)

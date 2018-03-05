@@ -1,0 +1,18 @@
+var geometric = function () {
+	return flip(0.5) ? 0 : geometric() + 1;
+}
+
+var sampleCircle = function () {
+	var xm = uniform(0, 1);
+	var ym = uniform(0, 1);
+	var xs = uniform(0, 0.1);
+	var ys = uniform(0, 0.1);
+	return {xm:xm, ym:ym, xs:xs, ys:ys};
+}
+
+var sampleConcept = function () {
+	var num = geometric();
+	return num;
+}
+
+sampleCircle()
