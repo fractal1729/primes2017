@@ -144,10 +144,16 @@ def run_inference_on_images(images):
 	with tf.Session() as sess:
 		softmax_tensor = sess.graph.get_tensor_by_name('pool_3:0')
 		features = np.zeros((m, 2048))
+		start = time.time()
 		for j in range(m):
 			prediction = sess.run(softmax_tensor, {'DecodeJpeg/contents:0': images_data[j]})
 			prediction = np.squeeze(prediction)
 			features[j] = prediction
+			sys.stdout.write("\r"+str(j)+" of "+str(m)+" complete.   ")
+			sys.stdout.flush()
+		print ""
+		end = time.time()
+		print "total time: "+str(end-start)
 		return features
 
 def maybe_download_and_extract():
@@ -200,8 +206,7 @@ def compileAll(n=18,m=5):
 	for i in range(n):
 		for j in range(m):
 			imgfiles.append('cairo/test_cases/svmdata/'+'{:02}'.format(i)+'-'+str(j)+'.png')
-		print i+" loaded"
-	print "All images loaded"
+	print "Images loaded"
 	features = run_inference_on_images(imgfiles)
 	print "Inference complete"
 	np.save("nn/inceptionfeatures/allfeatures", features)

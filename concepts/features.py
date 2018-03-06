@@ -13,33 +13,36 @@ from concepts import collinearities, cluster
 
 NUM_FEATURES = 34
 
+averages = [4.6888888888888891, 3.588888888888889, 1.1000000000000001, 0.44444444444444442, 22151.674762706429, 25968.510767997428, 10237.515277777778, 0.46443348665834561, 0.50591699902256648, 0.2539454128280963, 0.0, 0.1111111111111111, 0.1111111111111111, 1.288888888888889, 0.23013388888888894, 0.12102338888888892, 0.35115727777777783, 2.4666666666666668, 1.5888888888888888, 2.4011048863990041, 1.5580537725365313, 1.211111111111111, 3.0777777777777779, 4.3212962962962962, 2.0463095238095237, 0.48826940118747797, 0.51043844677545003, 0.25573048397358245, 0.28974353378252515, 0.066351288538623321, 0.45006379721296014, 0.44848341002053971, 0.34529183670785235, 0.26673249108144947]
+maxes = [22.0, 22.0, 6.0, 2.0, 79615.666666666672, 111389.0, 106713.0, 0.91021278058506072, 1.0, 1.0, 0.0, 2.0, 2.0, 21.0, 0.79999999999999993, 0.60999999999999999, 0.87999999999999989, 51.0, 29.0, 6.0, 5.0, 4.0, 16.0, 22.0, 11.0, 0.65639478157257414, 0.73835076224365981, 0.85214141499756579, 0.89125696430153978, 0.35996789409910701, 0.65237023935878691, 0.69340767605576137, 0.923828125, 0.59440104166666663]
+
 def getFeatures(shapes):
-	return [
+	raw_features = [
 		number_of_shapes(shapes), # 0
 		number_of_rects(shapes), # 1
 		number_of_circles(shapes), # 2
 		depth_of_tree(shapes), # 3
-		average_shape_area(shapes)/10000.0, # 4
-		average_rect_area(shapes)/10000.0, # 5
-		average_circle_area(shapes)/10000.0, # 6
+		average_shape_area(shapes), # 4
+		average_rect_area(shapes), # 5
+		average_circle_area(shapes), # 6
 		average_shape_area_per_largest_shape_area(shapes), # 7
 		average_rect_area_per_largest_shape_area(shapes), # 8
 		average_circle_area_per_largest_shape_area(shapes), # 9
-		number_of_circles_in_circles(shapes)/5.0, # 10
-		number_of_rects_in_circles(shapes)/5.0, # 11
-		number_of_circles_in_rects(shapes)/5.0, # 12
-		number_of_rects_in_rects(shapes)/5.0, # 13
-		base_10_representation(shapes)*10.0, # 14
-		base_10_representation_flipped(shapes)*10.0, # 15
-		base_10_representation_total(shapes)*10.0, # 24
-		number_of_loose_rows(shapes)/5.0, # 16
-		number_of_tight_rows(shapes)/5.0, # 17
-		average_loose_row_size(shapes)/5.0, # 18
-		average_tight_row_size(shapes)/5.0, # 19
-		number_of_loose_clusters(shapes)/5.0, # 20
-		number_of_tight_clusters(shapes)/5.0, # 21
-		average_loose_cluster_size(shapes)/5.0, # 22
-		average_tight_cluster_size(shapes)/5.0, # 23
+		number_of_circles_in_circles(shapes), # 10
+		number_of_rects_in_circles(shapes), # 11
+		number_of_circles_in_rects(shapes), # 12
+		number_of_rects_in_rects(shapes), # 13
+		base_10_representation(shapes), # 14
+		base_10_representation_flipped(shapes), # 15
+		base_10_representation_total(shapes), # 16
+		number_of_loose_rows(shapes), # 17
+		number_of_tight_rows(shapes), # 18
+		average_loose_row_size(shapes), # 19
+		average_tight_row_size(shapes), # 20
+		number_of_loose_clusters(shapes), # 21
+		number_of_tight_clusters(shapes), # 22
+		average_loose_cluster_size(shapes), # 23
+		average_tight_cluster_size(shapes), # 24
 		average_x_coord(shapes), # 25
 		average_y_coord(shapes), # 26
 		average_circle_x_coord(shapes), # 27
@@ -50,6 +53,13 @@ def getFeatures(shapes):
 		average_rect_width(shapes), # 32
 		average_rect_height(shapes) # 33
 	]
+	norm_features = []
+	for i in range(NUM_FEATURES):
+		if(averages[i] == 0):
+			norm_features.append(raw_features[i])
+		else:
+			norm_features.append(raw_features[i]/averages[i])
+	return norm_features
 
 def number_of_shapes(shapes):
 	return len(shapes)

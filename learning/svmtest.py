@@ -1,8 +1,10 @@
 # squared exponential/gaussian kernel, also linear kernel
 from sklearn import svm
 from learning import processdata
+import sys
 import random
 import numpy as np
+import time
 
 n = 18
 m = 5
@@ -29,8 +31,14 @@ def accuracydata():
 	for i in range(n*m):
 		mycor += [numcorrect[sum(myX[i])]]
 		nncor += [numcorrect[sum(nnX[i])]]
-		mytot += [numtotal[sum(myX[i])]]
-		nntot += [numtotal[sum(nnX[i])]]
+		if numtotal[sum(myX[i])] > 0:
+			mytot += [numtotal[sum(myX[i])]]
+		else:
+			mytot += [-1]
+		if numtotal[sum(nnX[i])] > 0:
+			nntot += [numtotal[sum(nnX[i])]]
+		else:
+			nntot += [-1]
 	mycor = np.array(mycor)
 	nncor = np.array(nncor)
 	mytot = np.array(mytot)
@@ -100,12 +108,18 @@ def runmany(trainsize, numiter=50, dataset='my', method='linear'):
 	if dataset == 'nn':
 		X = nnX
 	if dataset == 'both':
-		x = bothX
+		X = bothX
 	s = []
+	start = time.time()
 	for i in range(numiter):
 		s += [run(trainsize, X, Y, method=method)]
+		sys.stdout.write("\r"+str(i)+" of "+str(numiter)+" complete.   ")
+		sys.stdout.flush()
+	print ""
+	end = time.time()
+	runtime = end-start
 	nnresults, myresults = accuracydata()
-	return s, nnresults, myresults
+	return s, nnresults, myresults, runtime
 
 # if __name__ == '__main__':
 # 	run(1, nnX, Y)

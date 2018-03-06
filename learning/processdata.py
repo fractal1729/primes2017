@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 from concepts import features
+import sys
 from encoder import simple
 
 n = 18 # n concepts
@@ -38,11 +39,15 @@ def writeCustomFeatures():
 		img = images[i]
 		p, s = simple.encode(img)
 		X[i] = features.getFeatures(s)
-		print str(i)+" done"
+		sys.stdout.write("\r"+str(i)+" of "+str(n*m)+" done.   ")
+		sys.stdout.flush()
 	np.save("learning/customfeatures", X)
+	print "Custom features written and saved."
 
 def trainingCustomFeatures():
+	#mask = [0, 1, 2, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24]
 	X = np.load("learning/customfeatures.npy")
+	#X = X[:, mask]
 	Y = np.zeros((n*m))
 	for i in range(n*m):
 		Y[i] = i/m
