@@ -1,7 +1,7 @@
 from learning import svmtest
 import numpy as np
 
-num_trials = 100
+num_trials = 1000
 
 sm1, dm1, m1, tm1 = svmtest.runmany(1,num_trials)
 sm2, dm2, m2, tm2 = svmtest.runmany(2,num_trials)
@@ -22,6 +22,8 @@ sm = np.array([sm1, sm2, sm3, sm4])
 sn = np.array([sn1, sn2, sn3, sn4])
 
 summary = np.array([compscores, comptimes, incscores, inctimes])
-detailed = np.array([m, n, sm, sn])
 np.save("learning/svmtestsummary", summary)
-np.save("learning/svmtestdetailed", detailed)
+np.save("learning/svmtestm", m)
+np.save("learning/svmtestn", n)
+np.save("learning/svmtestsm", sm)
+np.save("learning/svmtestsn", sn)

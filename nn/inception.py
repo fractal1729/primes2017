@@ -190,7 +190,7 @@ def main(n): # function decomissioned; use compileAll instead.
   #   time.sleep(0.5)
   start = time.time()
   imgfiles = []
-  for j in range(m):
+  for j in range(m):\
   	imgfiles.append('cairo/test_cases/svmdata/'+n+'-'+str(j)+'.png')
   features = run_inference_on_images(imgfiles)
   print n+" done"
@@ -200,7 +200,7 @@ def main(n): # function decomissioned; use compileAll instead.
 
 
 
-def compileAll(n=18,m=5):
+def compileAll(n=22,m=5):
 	maybe_download_and_extract()
 	imgfiles = []
 	for i in range(n):

@@ -6,11 +6,15 @@ import random
 import numpy as np
 import time
 
-n = 18
+n = 19
 m = 5
 
 myX, Y = processdata.trainingCustomFeatures()
 nnX, Y = processdata.trainingInceptionFeatures()
+
+myX = myX[np.concatenate(np.array([np.arange(0,50), np.arange(55,60), np.arange(65, 105)]))]
+nnX = nnX[np.concatenate(np.array([np.arange(0,50), np.arange(55,60), np.arange(65, 105)]))]
+
 bothX = np.concatenate((myX, nnX), axis=1)
 
 numcorrect = {}

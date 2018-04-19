@@ -4,7 +4,7 @@ from concepts import features
 import sys
 from encoder import simple
 
-n = 18 # n concepts
+n = 22 # n concepts
 m = 5 # m examples for each concept
 
 def trainingImages(): # returns images, classes
